@@ -2,6 +2,7 @@ package com.example.kevindrakonian.eticallv01.Chats;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.kevindrakonian.eticallv01.R;
 
@@ -13,6 +14,7 @@ public class HolderMensaje extends RecyclerView.ViewHolder {
     private TextView mensaje;
     private TextView hora;
     private CircleImageView foto;
+    private ImageView fotoMensaje;
 
     public HolderMensaje(View itemView) {
         super(itemView);
@@ -21,6 +23,7 @@ public class HolderMensaje extends RecyclerView.ViewHolder {
         mensaje = (TextView) itemView.findViewById(R.id.mensajeMensaje);
         hora = (TextView) itemView.findViewById(R.id.horaMensaje);
         foto = (CircleImageView) itemView.findViewById(R.id.foto_mensaje);
+        fotoMensaje= (ImageView) itemView.findViewById(R.id.mensajefoto);
     }
 
     public TextView getNombre() {
@@ -53,5 +56,13 @@ public class HolderMensaje extends RecyclerView.ViewHolder {
 
     public void setFoto(CircleImageView foto) {
         this.foto = foto;
+    }
+
+    public ImageView getFotoMensaje() {
+        return fotoMensaje;
+    }
+
+    public void setFotoMensaje(ImageView fotoMensaje) {
+        this.fotoMensaje = fotoMensaje;
     }
 }
