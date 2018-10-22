@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kevindrakonian.eticallv01.Entidades.MensajeEntity;
 import com.example.kevindrakonian.eticallv01.Entidades.MensajeEnviarEntity;
@@ -92,7 +93,6 @@ public class ActivityChatEstudianteDocente extends AppCompatActivity {
                 i.setType("image/jpeg");
                 i.putExtra(Intent.EXTRA_LOCAL_ONLY,true);
                 startActivityForResult(Intent.createChooser(i,"Seleciona una foto"),PHOTO_SEND);
-                
             }
         });
 
@@ -141,7 +141,7 @@ public class ActivityChatEstudianteDocente extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PHOTO_SEND && requestCode == RESULT_OK){
+        if (requestCode == PHOTO_SEND && resultCode == RESULT_OK){
             Uri u = data.getData();
             storageRef = storage.getReference("imagenes_del_chat");//Carpeta  de la imagen
             final StorageReference FOTO_REF = storageRef.child(u.getLastPathSegment());
