@@ -52,7 +52,7 @@ public class AdapterMensajes extends RecyclerView.Adapter <HolderMensaje> {
             holder.getMensaje().setVisibility(View.VISIBLE);
         }
 
-        long condigoHora = listamensajes.get(position).getHora();
+        Long condigoHora = listamensajes.get(position).getHora();
         Date d = new Date(condigoHora);
         SimpleDateFormat ho = new SimpleDateFormat("hh:mm:ss a");
         holder.getHora().setText(ho.format(d));

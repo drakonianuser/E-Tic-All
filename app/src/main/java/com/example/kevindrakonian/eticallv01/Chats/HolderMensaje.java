@@ -13,7 +13,7 @@ public class HolderMensaje extends RecyclerView.ViewHolder {
     private TextView nombre;
     private TextView mensaje;
     private TextView hora;
-    private CircleImageView foto;
+    private ImageView foto;
     private ImageView fotoMensaje;
 
     public HolderMensaje(View itemView) {
@@ -22,7 +22,7 @@ public class HolderMensaje extends RecyclerView.ViewHolder {
         nombre = (TextView) itemView.findViewById(R.id.nombreMensaje);
         mensaje = (TextView) itemView.findViewById(R.id.mensajeMensaje);
         hora = (TextView) itemView.findViewById(R.id.horaMensaje);
-        foto = (CircleImageView) itemView.findViewById(R.id.foto_mensaje);
+        foto = (ImageView) itemView.findViewById(R.id.foto_mensaje);
         fotoMensaje= (ImageView) itemView.findViewById(R.id.mensajefoto);
     }
 
@@ -50,7 +50,7 @@ public class HolderMensaje extends RecyclerView.ViewHolder {
         this.hora = hora;
     }
 
-    public CircleImageView getFoto() {
+    public ImageView getFoto() {
         return foto;
     }
 

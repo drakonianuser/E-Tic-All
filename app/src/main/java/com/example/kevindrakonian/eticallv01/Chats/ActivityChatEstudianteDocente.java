@@ -3,6 +3,7 @@ package com.example.kevindrakonian.eticallv01.Chats;
 import android.content.Intent;
 import android.net.Uri;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.kevindrakonian.eticallv01.Entidades.MensajeEntity;
@@ -18,6 +20,8 @@ import com.example.kevindrakonian.eticallv01.Entidades.MensajeEnviarEntity;
 import com.example.kevindrakonian.eticallv01.Entidades.MensajeRecibirEntity;
 import com.example.kevindrakonian.eticallv01.R;
 import com.google.android.gms.auth.api.signin.internal.Storage;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
@@ -35,7 +39,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ActivityChatEstudianteDocente extends AppCompatActivity {
 
     // creando los objetos
-    private CircleImageView cifoto;
+    private ImageView cifoto;
     private TextView tvnombre;
     private RecyclerView rvMensajes;
     private EditText etMensaje;
@@ -57,7 +61,7 @@ public class ActivityChatEstudianteDocente extends AppCompatActivity {
         setContentView(R.layout.activity_chat_estudiante_docente);
 
         //trallendo desde la vista
-        cifoto = (CircleImageView) findViewById(R.id.Foto_Docente);
+        cifoto = (ImageView) findViewById(R.id.Foto_Docente);
         tvnombre = (TextView) findViewById(R.id.txt_nombreDocente);
         rvMensajes = (RecyclerView) findViewById(R.id.rvMensajes);
         etMensaje = (EditText) findViewById(R.id.mensaje);
@@ -88,6 +92,7 @@ public class ActivityChatEstudianteDocente extends AppCompatActivity {
                 i.setType("image/jpeg");
                 i.putExtra(Intent.EXTRA_LOCAL_ONLY,true);
                 startActivityForResult(Intent.createChooser(i,"Seleciona una foto"),PHOTO_SEND);
+                
             }
         });
 
@@ -95,6 +100,7 @@ public class ActivityChatEstudianteDocente extends AppCompatActivity {
             @Override
             public void onItemRangeInserted(int positionStart, int itemCount) {
                 super.onItemRangeInserted(positionStart, itemCount);
+                setScrollbar();
             }
         });
 
@@ -139,14 +145,22 @@ public class ActivityChatEstudianteDocente extends AppCompatActivity {
             Uri u = data.getData();
             storageRef = storage.getReference("imagenes_del_chat");//Carpeta  de la imagen
             final StorageReference FOTO_REF = storageRef.child(u.getLastPathSegment());
-            FOTO_REF.putFile(u).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            FOTO_REF.putFile(u).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
-                    while (!urlTask.isSuccessful());
-                    Uri u = urlTask.getResult();
-                    MensajeEnviarEntity m = new MensajeEnviarEntity("autor",u.toString(),tvnombre.getText().toString(),"","2",2,ServerValue.TIMESTAMP);
-                    reference.push().setValue(m);
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    if(!task.isSuccessful()){
+                        throw task.getException();
+                    }
+                    return FOTO_REF.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()){
+                        Uri uri = task.getResult();
+                        MensajeEnviarEntity m = new MensajeEnviarEntity("autor",uri.toString(),tvnombre.getText().toString(),"","2",2,ServerValue.TIMESTAMP);
+                        reference.push().setValue(m);
+                    }
                 }
             });
 
