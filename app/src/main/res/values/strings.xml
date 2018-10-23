@@ -12,4 +12,8 @@
     <string name="txtDocumento">Documento</string>
     <string name="btn_Enviar">Enviar</string>
     <string name="txt_Campo_mensaje">Escribe un mensaje</string>
+
+
+
+    <string name="campo_Filtro">documento</string>
 </resources>
