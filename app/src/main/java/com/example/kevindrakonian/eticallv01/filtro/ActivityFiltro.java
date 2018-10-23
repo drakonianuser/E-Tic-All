@@ -21,7 +21,6 @@ public class ActivityFiltro extends AppCompatActivity {
 
     private Button btnfiltro;
 
-    DatabaseReference bd;
     private FirebaseDatabase database;
     private DatabaseReference reference;
     private FirebaseStorage storage;

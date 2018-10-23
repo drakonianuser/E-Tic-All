@@ -137,31 +137,19 @@ public class ActivityLogin extends AppCompatActivity {
     }
 
 
-    /*protected void onResume(){
+    protected void onResume(){
         super.onResume();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser!=null){
-            DatabaseReference reference = database.getReference("Estudiantes/"+currentUser.getUid());
-            reference.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    UsuariosEstudiantes usuario = dataSnapshot.getValue(UsuariosEstudiantes.class);
-                    Toast.makeText(ActivityLogin.this,"Este Usuario es: "+usuario.getPerfil(),Toast.LENGTH_LONG);
+            Toast.makeText(ActivityLogin.this,"Usuario logeado",Toast.LENGTH_LONG);
+            nextActivity();
+        }else{
 
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-            //Toast.makeText(this,"Usuario logeado",Toast.LENGTH_SHORT).show();
-            //nextActivity();
         }
-    }*/
+    }
 
     private void nextActivity(){
-        startActivity(new Intent(ActivityLogin.this,ActivityDocente.class));
+        startActivity(new Intent(ActivityLogin.this,ActivityEnsayo.class));
         finish();
     }
 
