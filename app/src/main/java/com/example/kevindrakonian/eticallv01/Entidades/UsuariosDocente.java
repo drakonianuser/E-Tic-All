@@ -1,12 +1,11 @@
 package com.example.kevindrakonian.eticallv01.Entidades;
 
-public class UsuariosDocentes {
-    private String Nombre,Apellidos,Correo,Unidad,Departamento,Documento,Perfil="ActivityDocente";
+public class UsuariosDocente {
+    private String Nombre,Apellidos,Correo,Unidad,Departamento,Documento,Perfil="Docente";
 
-    public UsuariosDocentes() {
+    public UsuariosDocente() {
 
     }
-
     public String getNombre() {
         return Nombre;
     }

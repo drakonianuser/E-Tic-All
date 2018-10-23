@@ -83,6 +83,7 @@ public class ActivityLogin extends AppCompatActivity {
                                                 progressDialog.dismiss();
                                                 Usuarios usuario = dataSnapshot.getValue(Usuarios.class);
                                                 Toast.makeText(ActivityLogin.this, "Este Usuario es: " + usuario.getPerfil(), Toast.LENGTH_SHORT).show();
+                                                nextActivity();
                                             }
 
                                             @Override

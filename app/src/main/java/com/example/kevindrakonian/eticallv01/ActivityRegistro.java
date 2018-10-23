@@ -60,7 +60,7 @@ public class ActivityRegistro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final String correo = etCorreo.getText().toString().trim();
-                if (isValidEmail(correo) && Validarcontraseña() && Validarnombre(nombre)) {
+                if (isValidEmail(correo) && Validarcontraseña() && ValidarCampos(nombre,apellidos)) {
                     String contraseña = etContraseña.getText().toString();
 
                     mAuth.createUserWithEmailAndPassword(correo, contraseña)
@@ -88,6 +88,8 @@ public class ActivityRegistro extends AppCompatActivity {
                                     }
                                 }
                             });
+                }else{
+                    Toast.makeText(ActivityRegistro.this, "El correo esta mal ingresado", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -108,16 +110,22 @@ public class ActivityRegistro extends AppCompatActivity {
             if (Contraseña.length()>=8 && Contraseña.length()<=20){
                 return true;
             }else{
+                Toast.makeText(ActivityRegistro.this, "la contraseña debe ser de 8 a 20 caracteres", Toast.LENGTH_SHORT).show();
                 return false;
             }
         }else {
+            Toast.makeText(ActivityRegistro.this, "las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
             return false;
         }
 
     }
-    public boolean Validarnombre(String nombre){
-
-        return !nombre.isEmpty();
+    public boolean ValidarCampos(String nombre,String apellido){
+        if(nombre.isEmpty() && apellido.isEmpty()){
+            Toast.makeText(ActivityRegistro.this, "Debe rellenar todos los campos", Toast.LENGTH_SHORT).show();
+            return false;
+        }else{
+            return true;
+        }
     }
 
     public String SelecGrado(){
