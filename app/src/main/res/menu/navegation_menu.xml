@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/nav_lol"
+        android:title="lol"/>
+
+    <item android:id="@+id/nav_xd"
+        android:title="xd"/>
+
+    <item android:id="@+id/nav_d"
+    android:title="d"/>
+
+</menu>

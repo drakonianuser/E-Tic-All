@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Eticallv01</string>
+    <string name="txtNombre">Nombre</string>
+    <string name="txtApellidos">Apellidos</string>
+    <string name="txtmail">Correo</string>
+    <string name="txtPw">Contraseña</string>
+    <string name="txtPw2">Repite la Contraseña</string>
+    <string name="btnLogin">Iniciar</string>
+    <string name="btnRegistrar">Registrar</string>
+    <string name="txtUnidad">Unidad</string>
+    <string name="txtDepartamento">Departamento</string>
+    <string name="txtDocumento">Documento</string>
+</resources>
