@@ -162,6 +162,33 @@ public class ActivityRegistroDo extends AppCompatActivity {
             return true;
         }
     }
+    public boolean UsuarioExiste(String documento){
+        contador=0;
+        Query q=reference.orderByChild("dc").equalTo(documento);
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
+                    contador++;
+                }
+
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+
+        });
+        if(contador==0){
+            return true;
+        }else{
+            Toast.makeText(ActivityRegistroDo.this, "El usuario ya se encuentra registrado", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
 
 
 
