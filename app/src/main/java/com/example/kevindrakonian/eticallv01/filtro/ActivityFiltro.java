@@ -30,8 +30,11 @@ public class ActivityFiltro extends AppCompatActivity {
     private RecyclerView rvDocentes;
     private EditText tvTexto;
 
+<<<<<<< HEAD
     DatabaseReference bd;
 
+=======
+>>>>>>> fe8305c62809455bbb6f7ee5563ee36581ff7f7e
     private FirebaseDatabase database;
     private DatabaseReference reference;
     private FirebaseStorage storage;

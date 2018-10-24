@@ -2,7 +2,7 @@ package com.example.kevindrakonian.eticallv01.Entidades;
 
 public class UsuariosEstudiantes {
 
-    private String Nombre,Apellidos,Correo,grado,perfil="ActivityEstudiante";
+    private String Nombre,Apellidos,Correo,grado,perfil="ActivityEstudiante",Documento;
 
     public UsuariosEstudiantes() {
     }
@@ -18,6 +18,14 @@ public class UsuariosEstudiantes {
     public void setNombre(String nombre) {
 
         Nombre = nombre;
+    }
+
+    public String getDocumento() {
+        return Documento;
+    }
+
+    public void setDocumento(String documento) {
+        Documento = documento;
     }
 
     public String getApellidos() {
