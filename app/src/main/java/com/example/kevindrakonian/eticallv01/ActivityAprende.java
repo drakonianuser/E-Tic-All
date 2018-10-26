@@ -10,33 +10,30 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
-public class ActivityInicio extends AppCompatActivity {
+public class ActivityAprende extends AppCompatActivity {
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
 
-    //menu haburguesa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inicio);
+        setContentView(R.layout.activity_aprende);
 
         toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
 
-        drawerLayout =findViewById(R.id.inicio);
+        drawerLayout =findViewById(R.id.aprende);
 
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
-
     }
-
-    //menu hamburguesa
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch(item.getItemId()){
+
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
                 return true;
@@ -44,15 +41,40 @@ public class ActivityInicio extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //botones
+    public void bullyng(View view){
 
-    public void aprende(View view){
+        Intent siguiente = new Intent(this,ActivityBullyng.class);
+        startActivity(siguiente);
 
-        Intent siguiente = new Intent(this,ActivityAprende.class);
+    }
+
+    public void grooming(View view){
+
+        Intent siguiente = new Intent(this,ActivityGrooming.class);
+        startActivity(siguiente);
+
+    }
+
+    public void sexting(View view) {
+
+        Intent siguiente = new Intent(this,ActivitySexting.class);
+        startActivity(siguiente);
+
+    }
+
+    public void crime(View view){
+
+        Intent siguiente = new Intent(this,ActivityCrime.class);
         startActivity(siguiente);
 
     }
 
 
+    public void tips(View view){
+
+        Intent siguiente = new Intent(this,ActivityTips.class);
+        startActivity(siguiente);
+
+    }
 
 }

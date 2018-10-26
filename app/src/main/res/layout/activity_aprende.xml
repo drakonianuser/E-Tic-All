@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/inicio"
-    tools:context=".ActivityInicio"
+    android:id="@+id/aprende"
+    tools:context=".ActivityAprende"
     android:background="#ffff">
 
     <LinearLayout
@@ -47,17 +47,18 @@
 
                 <TextView
                     android:id="@+id/textView16"
-                    android:layout_width="wrap_content"
+                    android:layout_width="13dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
                 <ImageButton
-                    android:id="@+id/imageButton"
-                    android:layout_width="170dp"
-                    android:layout_height="162dp"
+                    android:id="@+id/imageButton6"
+                    android:layout_width="175dp"
+                    android:layout_height="145dp"
                     android:layout_weight="1"
                     android:background="#ffff"
-                    app:srcCompat="@mipmap/ic_perfil" />
+                    android:onClick="bullyng"
+                    app:srcCompat="@mipmap/ic_cybrebullyng" />
 
                 <TextView
                     android:id="@+id/textView17"
@@ -78,12 +79,13 @@
                     android:layout_weight="1" />
 
                 <ImageButton
-                    android:id="@+id/imageButton3"
-                    android:layout_width="194dp"
-                    android:layout_height="160dp"
+                    android:id="@+id/imageButton7"
+                    android:layout_width="197dp"
+                    android:layout_height="144dp"
                     android:layout_weight="1"
                     android:background="#ffff"
-                    app:srcCompat="@mipmap/ic_crear" />
+                    android:onClick="grooming"
+                    app:srcCompat="@mipmap/ic_cybergrooming" />
 
                 <TextView
                     android:id="@+id/textView12"
@@ -95,7 +97,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="188dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
@@ -105,13 +107,13 @@
                     android:layout_weight="1" />
 
                 <ImageButton
-                    android:id="@+id/imageButton4"
-                    android:layout_width="170dp"
-                    android:layout_height="166dp"
+                    android:id="@+id/imageButton9"
+                    android:layout_width="181dp"
+                    android:layout_height="143dp"
                     android:layout_weight="1"
                     android:background="#ffff"
-                    android:onClick="aprende"
-                    app:srcCompat="@mipmap/ic_aprende" />
+                    android:onClick="sexting"
+                    app:srcCompat="@mipmap/ic_sexting" />
 
                 <TextView
                     android:id="@+id/textView19"
@@ -132,12 +134,13 @@
                     android:layout_weight="1" />
 
                 <ImageButton
-                    android:id="@+id/imageButton5"
-                    android:layout_width="206dp"
-                    android:layout_height="156dp"
+                    android:id="@+id/imageButton10"
+                    android:layout_width="195dp"
+                    android:layout_height="143dp"
                     android:layout_weight="1"
                     android:background="#ffff"
-                    app:srcCompat="@mipmap/ic_acerca" />
+                    android:onClick="crime"
+                    app:srcCompat="@mipmap/ic_cybercrime" />
 
                 <TextView
                     android:id="@+id/textView22"
@@ -146,6 +149,34 @@
                     android:layout_weight="1" />
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="13dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/imageButton11"
+                    android:layout_width="188dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#ffff"
+                    android:onClick="tips"
+                    app:srcCompat="@mipmap/ic_tips" />
+
+                <TextView
+                    android:id="@+id/textView25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
 
         </LinearLayout>
     </ScrollView>

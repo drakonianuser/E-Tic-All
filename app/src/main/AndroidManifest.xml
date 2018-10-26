@@ -34,7 +34,13 @@
         <activity
             android:name=".ActivityInicio"
             android:label="Inicio" />
-        <activity android:name=".ActivityAcercaDe"></activity>
+        <activity android:name=".ActivityAcercaDe" />
+        <activity android:name=".ActivityAprende" />
+        <activity android:name=".ActivityBullyng" />
+        <activity android:name=".ActivityGrooming" />
+        <activity android:name=".ActivityCrime" />
+        <activity android:name=".ActivitySexting" />
+        <activity android:name=".ActivityTips"></activity>
     </application>
 
 </manifest>
