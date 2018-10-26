@@ -60,6 +60,7 @@ public class ActivityRegistro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(ActivityRegistro.this, "Boton presionado", Toast.LENGTH_SHORT).show();
+
                 final String correo = etCorreo.getText().toString().trim();
                 if (isValidEmail(correo) && Validarcontraseña() && Validarnombre(nombre)) {
                     String contraseña = etContraseña.getText().toString();

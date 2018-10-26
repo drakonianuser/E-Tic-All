@@ -33,9 +33,7 @@
         <activity android:name=".Chats.ActivityChatEstudianteDocente">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.DEFAULT" />
-
             </intent-filter>
         </activity>
         <activity android:name=".filtro.ActivityFiltro">
@@ -44,6 +42,18 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+        <activity android:name=".ActivityDrawle" />
+        <activity
+            android:name=".ActivityInicio"
+            android:label="Inicio" />
+        <activity android:name=".ActivityAcercaDe" />
+        <activity android:name=".ActivityAprende" />
+        <activity android:name=".ActivityBullyng" />
+        <activity android:name=".ActivityGrooming" />
+        <activity android:name=".ActivityCrime" />
+        <activity android:name=".ActivitySexting" />
+        <activity android:name=".ActivityTips"></activity>
+
     </application>
 
 </manifest>

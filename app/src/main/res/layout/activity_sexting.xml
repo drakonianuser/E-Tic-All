@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/sexting"
+    tools:context=".ActivitySexting"
+    android:background="#ffff">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/toolbar_layout" />
+
+    </LinearLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navegationView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/fondo_menu"
+        app:headerLayout="@layout/header_layout"
+        app:menu="@menu/navegation_menu" />
+
+
+    <ScrollView
+        android:layout_width="297dp"
+        android:layout_height="449dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="60dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="295dp"
+                android:layout_height="306dp"
+                android:text="Es una conducta que implica el envió de mensajes sexuales, eróticos o pornográficos, por medio de teléfonos móviles. También se le denomina “sexteo”. Si bien es una conducta, dependiendo de sus características puede terminar en problemas legales como es el llevarla a cabo con un menor."
+                android:textSize="18sp"
+                android:typeface="serif" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.v4.widget.DrawerLayout >

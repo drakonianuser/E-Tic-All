@@ -123,6 +123,12 @@ public class ActivityLogin extends AppCompatActivity {
 
     }
 
+    public void siguiente(View view){
+
+        Intent siguiente = new Intent(this,ActivityInicio.class);
+        startActivity(siguiente);
+
+    }
 
     private boolean isValidEmail(CharSequence target) {
         return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
