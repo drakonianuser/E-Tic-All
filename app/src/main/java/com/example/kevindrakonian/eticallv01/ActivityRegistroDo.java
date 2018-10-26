@@ -58,7 +58,11 @@ public class ActivityRegistroDo extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     final String correo = etCorreo.getText().toString().trim();
+<<<<<<< Updated upstream
                     if (isValidEmail(correo) && Validarcontraseña() && Validarnombre(nombre)) {
+=======
+                    if (isValidEmail(correo) && Validarcontraseña() ) {
+>>>>>>> Stashed changes
                         String contraseña = etContraseña.getText().toString();
 
                         mAuth.createUserWithEmailAndPassword(correo, contraseña)
