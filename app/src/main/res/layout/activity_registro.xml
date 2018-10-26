@@ -7,7 +7,7 @@
     tools:context=".ActivityRegistro">
 
     <EditText
-        android:id="@+id/txt_correo_registro_estudiante"
+        android:id="@+id/txt_correo"
         android:layout_width="354dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -24,7 +24,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_Apellidos" />
 
     <EditText
-        android:id="@+id/txt_password_registro_estudiante"
+        android:id="@+id/pw"
         android:layout_width="167dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -38,7 +38,7 @@
         tools:textSize="14sp" />
 
     <EditText
-        android:id="@+id/txt_nombre_registro_estudiante"
+        android:id="@+id/txt_Name"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -54,7 +54,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/txt_confirmacion_contraseña_registro_estudiante"
+        android:id="@+id/txt_confir"
         android:layout_width="175dp"
         android:layout_height="39dp"
         android:layout_marginEnd="8dp"
@@ -73,7 +73,7 @@
         tools:textSize="14sp" />
 
     <EditText
-        android:id="@+id/txt_apellidos_registro_estudiantes"
+        android:id="@+id/txt_Apellidos"
         android:layout_width="352dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -91,7 +91,7 @@
 
 
     <Spinner
-        android:id="@+id/Sp_grado_registro_estudiantes"
+        android:id="@+id/Sp_grado"
         android:layout_width="81dp"
         android:layout_height="25dp"
         android:layout_marginEnd="8dp"
@@ -105,7 +105,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_confir" />
 
     <Button
-        android:id="@+id/btn_registrar_regitro_estudiantes"
+        android:id="@+id/btnRegistrar"
         android:layout_width="163dp"
         android:layout_height="33dp"
         android:layout_marginEnd="8dp"
@@ -119,10 +119,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Sp_grado_registro_estudiantes" />
+        app:layout_constraintTop_toBottomOf="@+id/Sp_grado" />
 
     <TextView
-        android:id="@+id/textView_registro_estudiantes"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -139,7 +139,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView_registro_estudiantes"
+        android:id="@+id/imageView"
         android:layout_width="107dp"
         android:layout_height="107dp"
         android:layout_marginBottom="8dp"
@@ -151,6 +151,6 @@
         app:layout_constraintBottom_toTopOf="@+id/btnRegistrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Sp_grado_registro_estudiantes"
+        app:layout_constraintTop_toBottomOf="@+id/Sp_grado"
         app:srcCompat="@mipmap/e_tic_all" />
 </android.support.constraint.ConstraintLayout>

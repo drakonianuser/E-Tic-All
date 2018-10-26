@@ -37,13 +37,13 @@ public class ActivityRegistro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-        etNombre = (EditText) findViewById(R.id.txt_nombre_registro_estudiante);
-        etApellidos = (EditText) findViewById(R.id.txt_apellidos_registro_estudiantes);
-        etCorreo = (EditText) findViewById(R.id.txt_correo_registro_estudiante);
-        etContraseña = (EditText) findViewById(R.id.txt_password_registro_estudiante);
-        etConfir = (EditText) findViewById(R.id.txt_confirmacion_contraseña_registro_estudiante);
-        Spgrado = (Spinner) findViewById(R.id.Sp_grado_registro_estudiantes);
-        btnRegistro= (Button) findViewById(R.id.btn_registrar_regitro_estudiantes);
+        etNombre = (EditText) findViewById(R.id.txt_Name);
+        etApellidos = (EditText) findViewById(R.id.txt_Apellidos);
+        etCorreo = (EditText) findViewById(R.id.txt_correo);
+        etContraseña = (EditText) findViewById(R.id.pw);
+        etConfir = (EditText) findViewById(R.id.txt_confir);
+        Spgrado = (Spinner) findViewById(R.id.Sp_grado);
+        btnRegistro= (Button) findViewById(R.id.btnRegistrar);
 
 
 
