@@ -59,6 +59,7 @@ public class ActivityRegistro extends AppCompatActivity {
         btnRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(ActivityRegistro.this, "Boton presionado", Toast.LENGTH_SHORT).show();
                 final String correo = etCorreo.getText().toString().trim();
                 if (isValidEmail(correo) && Validarcontraseña() && Validarnombre(nombre)) {
                     String contraseña = etContraseña.getText().toString();
@@ -88,6 +89,8 @@ public class ActivityRegistro extends AppCompatActivity {
                                     }
                                 }
                             });
+                }else{
+                    Toast.makeText(ActivityRegistro.this, "fallo", Toast.LENGTH_SHORT).show();
                 }
             }
 
