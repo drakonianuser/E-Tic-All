@@ -28,11 +28,10 @@ public class ActivityLogin extends AppCompatActivity {
 
 
     //objetos
-    private Button btnLogin;
+    private Button btnInicio;
     private EditText textmail,textpasw;
     private ProgressDialog progressDialog;
     private FirebaseDatabase database;
-    static String perfil;
     //objeto fireBase
     private FirebaseAuth mAuth;
 
@@ -53,14 +52,14 @@ public class ActivityLogin extends AppCompatActivity {
         textmail = (EditText) findViewById(R.id.txt_Email);
         textpasw = (EditText) findViewById(R.id.txt_Password);
 
-        btnLogin = (Button) findViewById(R.id.btn_inicio);
+        btnInicio = (Button) findViewById(R.id.btn_inicio);
 
         progressDialog = new ProgressDialog(this);
 
 
         progressDialog.setMessage("Iniciando sesión");
         //asociar oyentes
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String correo = textmail.getText().toString();
