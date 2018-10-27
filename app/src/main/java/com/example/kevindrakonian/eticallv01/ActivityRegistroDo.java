@@ -77,7 +77,7 @@ public class ActivityRegistroDo extends AppCompatActivity {
                                             reference.setValue(usuarioDocente);
                                             startActivity(new Intent(ActivityRegistroDo.this,ActivityLogin.class));
                                             Toast.makeText(ActivityRegistroDo.this, "Se ha registrado correctamente", Toast.LENGTH_SHORT).show();
-                                            finish();
+                                            nextActivityToLoginDo();
                                         } else {
                                             // If sign in fails, display a message to the user.
                                             Toast.makeText(ActivityRegistroDo.this, "Error al registrarse", Toast.LENGTH_SHORT).show();
@@ -112,6 +112,10 @@ public class ActivityRegistroDo extends AppCompatActivity {
         public boolean Validarnombre(String nombre){
 
             return !nombre.isEmpty();
+        }
+        private void nextActivityToLoginDo(){
+            startActivity(new Intent(ActivityRegistroDo.this,ActivityLogin.class));
+            finish();
         }
 
 

@@ -82,7 +82,7 @@ public class ActivityLogin extends AppCompatActivity {
                                                 progressDialog.dismiss();
                                                 Usuarios usuario = dataSnapshot.getValue(Usuarios.class);
                                                 Toast.makeText(ActivityLogin.this, "Este Usuario es: " + usuario.getPerfil(), Toast.LENGTH_SHORT).show();
-                                                nextActivity();
+                                                nextActivityToInicio();
                                             }
 
                                             @Override
@@ -142,31 +142,15 @@ public class ActivityLogin extends AppCompatActivity {
 
     }
 
-
-    /*protected void onResume(){
+    protected void onResume(){
         super.onResume();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser!=null){
-            DatabaseReference reference = database.getReference("Estudiantes/"+currentUser.getUid());
-            reference.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    UsuariosEstudiantes usuario = dataSnapshot.getValue(UsuariosEstudiantes.class);
-                    Toast.makeText(ActivityLogin.this,"Este Usuario es: "+usuario.getPerfil(),Toast.LENGTH_LONG);
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-            //Toast.makeText(this,"Usuario logeado",Toast.LENGTH_SHORT).show();
-            //nextActivity();
+            Toast.makeText(this,"usuario Logeado", Toast.LENGTH_SHORT).show();
+            nextActivityToInicio();
         }
-    }*/
-
-    private void nextActivity(){
+    }
+    private void nextActivityToInicio(){
         startActivity(new Intent(ActivityLogin.this,ActivityInicio.class));
         finish();
     }
