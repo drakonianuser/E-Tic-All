@@ -26,6 +26,9 @@ public class ActivityCrime extends AppCompatActivity {
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        if(true){
+
+        }
     }
 
     @Override
