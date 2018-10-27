@@ -49,8 +49,8 @@ public class ActivityLogin extends AppCompatActivity {
         database= FirebaseDatabase.getInstance();
 
         //Referencias de los views
-        textmail = (EditText) findViewById(R.id.txt_Email);
-        textpasw = (EditText) findViewById(R.id.txt_Password);
+        textmail = (EditText) findViewById(R.id.txt_EmailLogin);
+        textpasw = (EditText) findViewById(R.id.txt_PasswordLogin);
 
         btnInicio = (Button) findViewById(R.id.btn_inicio);
 
@@ -166,7 +166,7 @@ public class ActivityLogin extends AppCompatActivity {
     }*/
 
     private void nextActivity(){
-        startActivity(new Intent(ActivityLogin.this,ActivityDocente.class));
+        startActivity(new Intent(ActivityLogin.this,ActivityInicio.class));
         finish();
     }
 

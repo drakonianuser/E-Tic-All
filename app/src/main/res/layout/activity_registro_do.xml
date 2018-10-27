@@ -9,7 +9,7 @@
 
 
     <EditText
-        android:id="@+id/txt_correo"
+        android:id="@+id/txt_correoRegistroDo"
         android:layout_width="310dp"
         android:layout_height="37dp"
         android:layout_alignParentTop="true"
@@ -23,16 +23,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Apellidos"
+        app:layout_constraintTop_toBottomOf="@+id/txt_ApellidosRegistroEs"
         tools:textSize="14sp"
         tools:typeface="serif" />
 
     <EditText
-        android:id="@+id/pw"
+        android:id="@+id/passwordRegistroDo"
         android:layout_width="147dp"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/txt_NameRegistroDo"
+        android:layout_alignLeft="@+id/txt_NameRegistroDo"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/txt_Name"
         android:layout_marginBottom="200dp"
         android:ems="10"
         android:hint="@string/txtPw"
@@ -40,12 +41,11 @@
         android:textSize="14sp"
         android:typeface="serif"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_correo"
-        tools:textSize="14sp"
-        android:layout_alignLeft="@+id/txt_Name" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_correoRegistroDo"
+        tools:textSize="14sp" />
 
     <EditText
-        android:id="@+id/txt_Name"
+        android:id="@+id/txt_NameRegistroDo"
 
 
         android:layout_width="307dp"
@@ -60,30 +60,30 @@
         android:typeface="serif"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewRegistroDo" />
 
     <EditText
-        android:id="@+id/txt_confir"
+        android:id="@+id/passwordConfirRegistroDo"
         android:layout_width="154dp"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/passwordRegistroEs"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/pw"
+        android:layout_alignParentRight="true"
         android:layout_marginEnd="7dp"
+        android:layout_marginRight="7dp"
         android:ems="10"
         android:hint="@string/txtPw2"
         android:inputType="textPassword"
         android:textSize="14sp"
         android:typeface="serif"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/pw"
-        app:layout_constraintTop_toBottomOf="@+id/txt_correo"
+        app:layout_constraintStart_toEndOf="@+id/passwordRegistroEs"
+        app:layout_constraintTop_toBottomOf="@+id/txt_correoRegistroDo"
         tools:textSize="14sp"
-        tools:typeface="serif"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="7dp" />
+        tools:typeface="serif" />
 
     <EditText
-        android:id="@+id/txt_Apellidos"
+        android:id="@+id/txt_ApellidosRegistroDo"
         android:layout_width="309dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -96,10 +96,10 @@
         android:typeface="serif"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Name" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_NameRegistroDo" />
 
     <EditText
-        android:id="@+id/txt_Unidad"
+        android:id="@+id/txt_UnidadRegistroDo"
         android:layout_width="308dp"
         android:layout_height="35dp"
         android:layout_alignParentTop="true"
@@ -112,35 +112,36 @@
         android:typeface="serif"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Documento"
+        app:layout_constraintTop_toBottomOf="@+id/txt_DocumentoRegistroDo"
         tools:textSize="14sp"
         tools:typeface="serif" />
 
     <EditText
-        android:id="@+id/txt_Departamento"
+        android:id="@+id/txt_DepartamentoRegistroDo"
         android:layout_width="155dp"
         android:layout_height="40dp"
-        android:layout_alignEnd="@+id/txt_correo"
-        android:layout_alignTop="@+id/txt_Documento"
+        android:layout_alignTop="@+id/txt_DocumentoRegistroDo"
+        android:layout_alignEnd="@+id/txt_correoRegistroDo"
+        android:layout_alignRight="@+id/txt_correoRegistroDo"
         android:ems="10"
         android:hint="@string/txtDepartamento"
         android:inputType="textPersonName"
         android:textSize="14sp"
         android:typeface="serif"
-        app:layout_constraintBottom_toTopOf="@+id/txt_Unidad"
-        app:layout_constraintEnd_toStartOf="@+id/txt_Documento"
+        app:layout_constraintBottom_toTopOf="@+id/txt_UnidadRegistroDo"
+        app:layout_constraintEnd_toStartOf="@+id/txt_DocumentoRegistroDo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pw"
+        app:layout_constraintTop_toBottomOf="@+id/passwordRegistroEs"
         tools:textSize="14sp"
-        tools:typeface="serif"
-        android:layout_alignRight="@+id/txt_correo" />
+        tools:typeface="serif" />
 
     <EditText
-        android:id="@+id/txt_Documento"
+        android:id="@+id/txt_DocumentoRegistroDo"
         android:layout_width="149dp"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/passwordRegistroEs"
+        android:layout_alignLeft="@+id/passwordRegistroEs"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/pw"
         android:layout_marginBottom="143dp"
         android:ems="10"
         android:hint="CC"
@@ -148,12 +149,11 @@
         android:textSize="14sp"
         android:typeface="serif"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_confir"
-        tools:textSize="14sp"
-        android:layout_alignLeft="@+id/pw" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordConfirRegistroEs"
+        tools:textSize="14sp" />
 
     <Button
-        android:id="@+id/btnRegistrar"
+        android:id="@+id/btnRegistrarDo"
 
         android:layout_width="141dp"
         android:layout_height="25dp"
@@ -168,12 +168,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Unidad"
+        app:layout_constraintTop_toBottomOf="@+id/txt_UnidadRegistroDo"
         app:layout_constraintVertical_bias="1.0"
         tools:typeface="serif" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewRegistroDo"
         android:layout_width="wrap_content"
         android:layout_height="15dp"
         android:layout_alignParentTop="true"
@@ -188,18 +188,18 @@
         tools:typeface="serif" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/image_view_registro_do"
         android:layout_width="75dp"
         android:layout_height="76dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="56dp"
         android:contentDescription="@string/txtPw2"
-        app:layout_constraintBottom_toTopOf="@+id/btnRegistrar"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegistrarEs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Unidad"
+        app:layout_constraintTop_toBottomOf="@+id/txt_UnidadRegistroDo"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@mipmap/e_tic_all" />
 

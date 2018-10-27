@@ -21,8 +21,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
-
 public class ActivityRegistro extends AppCompatActivity {
 
     private EditText etNombre,etApellidos,etCorreo,etContraseña,etConfir;
@@ -30,20 +28,19 @@ public class ActivityRegistro extends AppCompatActivity {
     private Button btnRegistro;
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
-    //private DatabaseReference referenciaUsuarios; MUENTES esto ya no se usa
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-        etNombre = (EditText) findViewById(R.id.txt_Name);
-        etApellidos = (EditText) findViewById(R.id.txt_Apellidos);
-        etCorreo = (EditText) findViewById(R.id.txt_correo);
-        etContraseña = (EditText) findViewById(R.id.pw);
-        etConfir = (EditText) findViewById(R.id.txt_confir);
-        Spgrado = (Spinner) findViewById(R.id.Sp_grado);
-        btnRegistro= (Button) findViewById(R.id.btnRegistrar);
+        etNombre = (EditText) findViewById(R.id.txt_NameRegistroEs);
+        etApellidos = (EditText) findViewById(R.id.txt_ApellidosRegistroEs);
+        etCorreo = (EditText) findViewById(R.id.txt_correoRegistroDo);
+        etContraseña = (EditText) findViewById(R.id.passwordRegistroEs);
+        etConfir = (EditText) findViewById(R.id.passwordConfirRegistroEs);
+        Spgrado = (Spinner) findViewById(R.id.Sp_gradoRegistroEs);
+        btnRegistro= (Button) findViewById(R.id.btnRegistrarEs);
 
 
 
@@ -72,18 +69,18 @@ public class ActivityRegistro extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         // Sign in success, update UI with the signed-in user's information
                                         Toast.makeText(ActivityRegistro.this, "Se a registrado corretacmente", Toast.LENGTH_SHORT).show();
-                                        UsuariosEstudiantes u = new UsuariosEstudiantes();
-                                        u.setCorreo(correo);
-                                        u.setNombre(nombre);
-                                        u.setApellidos(apellidos);
-                                        u.setGrado(SelecGrado());
+                                        UsuariosEstudiantes usuarioEstudiante = new UsuariosEstudiantes();
+                                        usuarioEstudiante.setCorreo(correo);
+                                        usuarioEstudiante.setNombre(nombre);
+                                        usuarioEstudiante.setApellidos(apellidos);
+                                        usuarioEstudiante.setGrado(SelecGrado());
                                         //agregue estas 3 lineas de codigo
                                         FirebaseUser currentUser = mAuth.getCurrentUser();
                                         DatabaseReference reference = database.getReference("Usuarios/"+currentUser.getUid());
-                                        reference.setValue(u);
+                                        reference.setValue(usuarioEstudiante);
                                         //caca
                                         //agrege esta linea
-                                        startActivity(new Intent(ActivityRegistro.this,ActivityLogin.class));
+                                        nextActivityToLoginEs();
                                     } else {
                                         // If sign in fails, display a message to the user.
                                         Toast.makeText(ActivityRegistro.this, "Error al registrarse", Toast.LENGTH_SHORT).show();
@@ -126,6 +123,11 @@ public class ActivityRegistro extends AppCompatActivity {
 
     public String SelecGrado(){
         return Spgrado.getSelectedItem().toString();
+    }
+
+    private void nextActivityToLoginEs(){
+        startActivity(new Intent(ActivityRegistro.this,ActivityLogin.class));
+        finish();
     }
 
 }

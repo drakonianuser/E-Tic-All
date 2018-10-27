@@ -6,14 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.kevindrakonian.eticallv01.Entidades.UsuariosDocentes;
-import com.example.kevindrakonian.eticallv01.Entidades.UsuariosEstudiantes;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -37,15 +34,15 @@ public class ActivityRegistroDo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_do);
 
-            etNombre = (EditText) findViewById(R.id.txt_Name);
-            etApellidos = (EditText) findViewById(R.id.txt_Apellidos);
-            etCorreo = (EditText) findViewById(R.id.txt_correo);
-            etContraseña = (EditText) findViewById(R.id.pw);
-            etConfir = (EditText) findViewById(R.id.txt_confir);
-            etUnidad = (EditText) findViewById(R.id.txt_Unidad);
-            etDepartamento = (EditText) findViewById(R.id.txt_Departamento);
-            etDocumento = (EditText) findViewById(R.id.txt_Documento);
-            btnRegistro= (Button) findViewById(R.id.btnRegistrar);
+            etNombre = (EditText) findViewById(R.id.txt_NameRegistroDo);
+            etApellidos = (EditText) findViewById(R.id.txt_ApellidosRegistroDo);
+            etCorreo = (EditText) findViewById(R.id.txt_correoRegistroDo);
+            etContraseña = (EditText) findViewById(R.id.passwordRegistroDo);
+            etConfir = (EditText) findViewById(R.id.passwordConfirRegistroDo);
+            etUnidad = (EditText) findViewById(R.id.txt_UnidadRegistroDo);
+            etDepartamento = (EditText) findViewById(R.id.txt_DepartamentoRegistroDo);
+            etDocumento = (EditText) findViewById(R.id.txt_DocumentoRegistroDo);
+            btnRegistro= (Button) findViewById(R.id.btnRegistrarDo);
             mAuth = FirebaseAuth.getInstance();
             database= FirebaseDatabase.getInstance();
             final String nombre = etNombre.getText().toString();
@@ -68,21 +65,18 @@ public class ActivityRegistroDo extends AppCompatActivity {
                                         if (task.isSuccessful()) {
                                             // Sign in success, update UI with the signed-in user's information
                                             Toast.makeText(ActivityRegistroDo.this, "Se a registrado corretacmente", Toast.LENGTH_SHORT).show();
-                                            UsuariosDocentes u = new UsuariosDocentes();
-                                            u.setCorreo(correo);
-                                            u.setNombre(nombre);
-                                            u.setApellidos(apellidos);
-                                            u.setUnidad(unidad);
-                                            u.setDepartamento(Departamento);
-                                            u.setDocumento(Documento);
-                                            //agregue estas 3 lineas de codigo MUENTES
+                                            UsuariosDocentes usuarioDocente = new UsuariosDocentes();
+                                            usuarioDocente.setCorreo(correo);
+                                            usuarioDocente.setNombre(nombre);
+                                            usuarioDocente.setApellidos(apellidos);
+                                            usuarioDocente.setUnidad(unidad);
+                                            usuarioDocente.setDepartamento(Departamento);
+                                            usuarioDocente.setDocumento(Documento);
                                             FirebaseUser currentUser = mAuth.getCurrentUser();
                                             DatabaseReference reference = database.getReference("Usuarios/"+currentUser.getUid());
-                                            reference.setValue(u);
-                                            //caca
-                                            //agregue esta linea MUENTES
+                                            reference.setValue(usuarioDocente);
                                             startActivity(new Intent(ActivityRegistroDo.this,ActivityLogin.class));
-                                            Toast.makeText(ActivityRegistroDo.this, "SE ha registrado correctamente", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(ActivityRegistroDo.this, "Se ha registrado correctamente", Toast.LENGTH_SHORT).show();
                                             finish();
                                         } else {
                                             // If sign in fails, display a message to the user.
