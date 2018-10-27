@@ -26,8 +26,6 @@ public class ActivityRegistroDo extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
 
-    //private DatabaseReference referenciaUsuarios; MUENTES esto ya no se usa
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +52,7 @@ public class ActivityRegistroDo extends AppCompatActivity {
             btnRegistro.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Toast.makeText(ActivityRegistroDo.this, "Entro al boton", Toast.LENGTH_SHORT).show();
                     final String correo = etCorreo.getText().toString().trim();
                     if (isValidEmail(correo) && Validarcontraseña() && Validarnombre(nombre)) {
                         String contraseña = etContraseña.getText().toString();
@@ -84,6 +83,8 @@ public class ActivityRegistroDo extends AppCompatActivity {
                                         }
                                     }
                                 });
+                    }else{
+                        Toast.makeText(ActivityRegistroDo.this, "Error al registrarse", Toast.LENGTH_SHORT).show();
                     }
                 }
 

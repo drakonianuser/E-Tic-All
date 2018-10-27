@@ -36,7 +36,7 @@ public class ActivityRegistro extends AppCompatActivity {
 
         etNombre = (EditText) findViewById(R.id.txt_NameRegistroEs);
         etApellidos = (EditText) findViewById(R.id.txt_ApellidosRegistroEs);
-        etCorreo = (EditText) findViewById(R.id.txt_correoRegistroDo);
+        etCorreo = (EditText) findViewById(R.id.txt_correoRegistroEs);
         etContraseña = (EditText) findViewById(R.id.passwordRegistroEs);
         etConfir = (EditText) findViewById(R.id.passwordConfirRegistroEs);
         Spgrado = (Spinner) findViewById(R.id.Sp_gradoRegistroEs);
