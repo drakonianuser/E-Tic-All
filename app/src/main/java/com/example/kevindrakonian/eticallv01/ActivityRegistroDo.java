@@ -79,7 +79,7 @@ public class ActivityRegistroDo extends AppCompatActivity {
                                             nextActivityToLoginDo();
                                         } else {
                                             // If sign in fails, display a message to the user.
-                                            Toast.makeText(ActivityRegistroDo.this, "Error al registrarse", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(ActivityRegistroDo.this, "hola al registrarse", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
@@ -91,7 +91,8 @@ public class ActivityRegistroDo extends AppCompatActivity {
             });
         }
 
-        public final static boolean isValidEmail(CharSequence target) {
+        private boolean isValidEmail(CharSequence target) {
+            Toast.makeText(ActivityRegistroDo.this, String.valueOf(!TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches()), Toast.LENGTH_SHORT).show();
             return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
         }
 
@@ -100,18 +101,21 @@ public class ActivityRegistroDo extends AppCompatActivity {
             Contraseña = etContraseña.getText().toString();
             confirmacion=etConfir.getText().toString();
             if (Contraseña.equals(confirmacion)){
-                if (Contraseña.length()>=8 && Contraseña.length()<=20){
+                if (Contraseña.length()>=6 && Contraseña.length()<=16){
+
                     return true;
                 }else{
+                    Toast.makeText(ActivityRegistroDo.this, "contraseña larga", Toast.LENGTH_SHORT).show();
                     return false;
                 }
             }else {
+                Toast.makeText(ActivityRegistroDo.this, "contraseñas no iguales", Toast.LENGTH_SHORT).show();
                 return false;
             }
 
         }
         public boolean Validarnombre(String nombre){
-
+            Toast.makeText(ActivityRegistroDo.this, String.valueOf(!nombre.isEmpty()), Toast.LENGTH_SHORT).show();
             return !nombre.isEmpty();
         }
         private void nextActivityToLoginDo(){

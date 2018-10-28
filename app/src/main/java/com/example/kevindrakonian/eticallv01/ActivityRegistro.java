@@ -98,6 +98,7 @@ public class ActivityRegistro extends AppCompatActivity {
 
     //MUENTES aca segun el video habia que borrar esto public final static y ponerlo privado
     private boolean isValidEmail(CharSequence target) {
+        Toast.makeText(ActivityRegistro.this, String.valueOf(!TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches()), Toast.LENGTH_SHORT).show();
         return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
 
@@ -109,15 +110,17 @@ public class ActivityRegistro extends AppCompatActivity {
             if (Contraseña.length()>=8 && Contraseña.length()<=20){
                 return true;
             }else{
+                Toast.makeText(ActivityRegistro.this, "contraseña larga", Toast.LENGTH_SHORT).show();
                 return false;
             }
         }else {
+            Toast.makeText(ActivityRegistro.this, "las contraseñas no son iguales", Toast.LENGTH_SHORT).show();
             return false;
         }
 
     }
     public boolean Validarnombre(String nombre){
-
+        Toast.makeText(ActivityRegistro.this, String.valueOf(!nombre.isEmpty()), Toast.LENGTH_SHORT).show();
         return !nombre.isEmpty();
     }
 
