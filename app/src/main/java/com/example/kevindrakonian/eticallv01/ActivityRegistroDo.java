@@ -167,13 +167,14 @@ public class ActivityRegistroDo extends AppCompatActivity {
     }
     public boolean ValidarExistenciaDocumento(String documento){
         reference = database.getReference("documentosIdentidad");//modulo de Usuario
-        Query q=reference.orderByChild(getString(R.string.campo_Validar_Profesor)).equalTo(documento);
+        Query q=reference.orderByChild(getString(R.string.campo_Validar_Profesor)).equalTo("hola");
         q.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot){
                 x=0;
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
                     x++;
+                    Toast.makeText(ActivityRegistroDo.this, "-"+x, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -182,6 +183,7 @@ public class ActivityRegistroDo extends AppCompatActivity {
 
             }
         });
+        Toast.makeText(this, ""+x, Toast.LENGTH_SHORT).show();
         if(x>=1){
             return true;
         }else{

@@ -66,7 +66,7 @@ public class ActivityInicio extends AppCompatActivity {
     }
 
     private void nextActivityToLoginIni(){
-        startActivity(new Intent(ActivityInicio.this,ActivityInicio.class));
+        startActivity(new Intent(ActivityInicio.this,ActivityLogin.class));
         finish();
     }
 
