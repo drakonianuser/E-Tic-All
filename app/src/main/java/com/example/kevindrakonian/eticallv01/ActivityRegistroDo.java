@@ -65,6 +65,7 @@ public class ActivityRegistroDo extends AppCompatActivity {
 
 
                     if (isValidEmail(correo) && Validarcontraseña() && ValidarCampos(nombre,apellidos,unidad,Departamento,Documento,contraseña)) {
+
                         mAuth.createUserWithEmailAndPassword(correo, contraseña)
                                 .addOnCompleteListener(ActivityRegistroDo.this, new OnCompleteListener<AuthResult>() {
                                     @Override
@@ -72,21 +73,23 @@ public class ActivityRegistroDo extends AppCompatActivity {
                                         if (task.isSuccessful()) {
                                             // Sign in success, update UI with the signed-in user's information
                                             Toast.makeText(ActivityRegistroDo.this, "Se a registrado corretacmente", Toast.LENGTH_SHORT).show();
-                                            UsuariosDocentes usuarioDocente = new UsuariosDocentes();
-                                            usuarioDocente.setCorreo(correo);
-                                            usuarioDocente.setNombre(nombre);
-                                            usuarioDocente.setApellidos(apellidos);
-                                            usuarioDocente.setUnidad(unidad);
-                                            usuarioDocente.setDepartamento(Departamento);
-                                            usuarioDocente.setDocumento("D.I"+Documento);
+                                            UsuariosDocentes usuariosDocentes = new UsuariosDocentes();
+                                            usuariosDocentes.setCorreo(correo);
+                                            usuariosDocentes.setNombre(nombre);
+                                            usuariosDocentes.setApellidos(apellidos);
+                                            usuariosDocentes.setDepartamento(Departamento);
+                                            usuariosDocentes.setDocumento(Documento);
+                                            usuariosDocentes.setUnidad(unidad);
+                                            //agregue estas 3 lineas de codigo
                                             FirebaseUser currentUser = mAuth.getCurrentUser();
                                             DatabaseReference reference = database.getReference("Usuarios/"+currentUser.getUid());
-                                            reference.setValue(usuarioDocente);
-                                            startActivity(new Intent(ActivityRegistroDo.this,ActivityLogin.class));
-                                            Toast.makeText(ActivityRegistroDo.this, "Se ha registrado correctamente", Toast.LENGTH_SHORT).show();
+                                            reference.setValue(usuariosDocentes);
+                                            //caca
+                                            //agrege esta linea
                                             nextActivityToLoginDo();
                                         } else {
                                             // If sign in fails, display a message to the user.
+                                            Toast.makeText(ActivityRegistroDo.this, "Error al registrarse", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
