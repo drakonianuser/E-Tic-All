@@ -1,10 +1,15 @@
 package com.example.kevindrakonian.eticallv01.Entidades.Firebase;
 
+import com.google.firebase.database.Exclude;
+import com.google.firebase.database.ServerValue;
+
 public class UsuariosDocentes {
-    private String Nombre,Apellidos,Correo,Unidad,Departamento,Documento,Perfil="ActivityDocente";
+    private String Nombre,Apellidos,Correo,Unidad,Departamento,Documento,Perfil="Directivo",UrlFotoPerfil;
+    private Object createdTimestamp;
+
 
     public UsuariosDocentes() {
-
+        createdTimestamp = ServerValue.TIMESTAMP;
     }
 
     public String getNombre() {
@@ -62,4 +67,21 @@ public class UsuariosDocentes {
     public void setDocumento(String documento) {
         Documento = documento;
     }
+
+    public String getUrlFotoPerfil() {
+        return UrlFotoPerfil;
+    }
+
+    public void setUrlFotoPerfil(String urlFotoPerfil) {
+        UrlFotoPerfil = urlFotoPerfil;
+    }
+
+    public Object getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+    @Exclude
+    public long getCreatedTimesTampLong(){
+        return (long)createdTimestamp;
+    }
+
 }
