@@ -5,16 +5,26 @@ public class FiltroDocenteEntity {
     private String Nombre;
     private String Departamento;
     private String Unidad;
-    private String UrlImagen;
+    private String UrlFotoPerfil;
+    private String Key;
 
     public FiltroDocenteEntity() {
     }
 
-    public FiltroDocenteEntity(String nombre, String departamento, String unidad, String urlImagen) {
+    public FiltroDocenteEntity(String nombre, String departamento, String unidad, String urlFotoPerfil, String key) {
         Nombre = nombre;
         Departamento = departamento;
         Unidad = unidad;
-        UrlImagen = urlImagen;
+        UrlFotoPerfil = urlFotoPerfil;
+        Key = key;
+    }
+
+    public String getKey() {
+        return Key;
+    }
+
+    public void setKey(String key) {
+        Key = key;
     }
 
     public String getNombre() {
@@ -42,10 +52,10 @@ public class FiltroDocenteEntity {
     }
 
     public String getUrlImagen() {
-        return UrlImagen;
+        return UrlFotoPerfil;
     }
 
     public void setUrlImagen(String urlImagen) {
-        UrlImagen = urlImagen;
+        UrlFotoPerfil = urlImagen;
     }
 }
