@@ -22,8 +22,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class ActivityFiltro extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
 
+public class ActivityFiltro extends AppCompatActivity {
+    private List<FiltroDocenteEntity> listaDocente = new ArrayList<>();
     private Button btnfiltro;
     private RecyclerView rvDocentes;
     private EditText tvTexto;
@@ -35,6 +38,7 @@ public class ActivityFiltro extends AppCompatActivity {
     private FirebaseStorage storage;
     private StorageReference storageRef;
     private AdaterFiltro adaterFiltro;
+    private AdaterFiltro hola;
 
 
     protected void onCreate(Bundle savedInstanceState){
@@ -50,10 +54,12 @@ public class ActivityFiltro extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
 
         adaterFiltro = new AdaterFiltro(this);
+
         adaterFiltro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Selecion: " + rvDocentes.getChildAdapterPosition(v) ,Toast.LENGTH_SHORT).show();
+                listaDocente= adaterFiltro.returnLista();
+                Toast.makeText(getApplicationContext(),"Selección: "+listaDocente.get(rvDocentes.getChildAdapterPosition(v)).getKey(),Toast.LENGTH_SHORT).show();
             }
         });
         LinearLayoutManager l = new LinearLayoutManager(this);
@@ -65,7 +71,7 @@ public class ActivityFiltro extends AppCompatActivity {
 
         btnfiltro.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {//Validar que el campo no este vacio
+            public void onClick(View v) {
                 Query q=reference.orderByChild(getString(R.string.campo_Filtro)).equalTo(tvTexto.getText().toString());
                 q.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override

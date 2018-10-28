@@ -15,7 +15,7 @@ import com.example.kevindrakonian.eticallv01.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdaterFiltro  extends RecyclerView.Adapter <HolderFitro> implements View.OnClickListener {
+public class AdaterFiltro  extends RecyclerView.Adapter <HolderFitro> implements View.OnClickListener{
 
     private List<FiltroDocenteEntity> listaDocente = new ArrayList<>();
     private View.OnClickListener listener;
@@ -28,6 +28,10 @@ public class AdaterFiltro  extends RecyclerView.Adapter <HolderFitro> implements
     public void addDocente(FiltroDocenteEntity docente){
         listaDocente.add(docente);
         notifyItemInserted(listaDocente.size());
+    }
+
+    public List<FiltroDocenteEntity> returnLista(){
+        return listaDocente;
     }
 
     public void ClearList(){
