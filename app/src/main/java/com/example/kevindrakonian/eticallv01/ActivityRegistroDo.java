@@ -30,7 +30,7 @@ public class ActivityRegistroDo extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private DatabaseReference reference;
-    private static int x =0;
+    private static int x;
 
 
     @Override
@@ -87,7 +87,6 @@ public class ActivityRegistroDo extends AppCompatActivity {
                                             nextActivityToLoginDo();
                                         } else {
                                             // If sign in fails, display a message to the user.
-                                            Toast.makeText(ActivityRegistroDo.this, "hola al registrarse", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
@@ -103,7 +102,7 @@ public class ActivityRegistroDo extends AppCompatActivity {
             if(android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches()){
                 return true;
             }else{
-                Toast.makeText(ActivityRegistroDo.this, "El correo ingresado no es valido", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivityRegistroDo.this, "Debe ingresar un correo valido", Toast.LENGTH_SHORT).show();
                 return false;
             }
         }
@@ -141,87 +140,63 @@ public class ActivityRegistroDo extends AppCompatActivity {
         }
 
 
-    public boolean ValidarExistenciaUsuario(String documento){
-        reference = database.getReference("Usuarios");//modulo de Usuario
-        Query q=reference.orderByChild(getString(R.string.campo_Validar_Existencia)).equalTo(documento);
-        q.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot){
-                x=0;
-                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
-                    x++;
-                }
+        public boolean ValidarExistenciaUsuario(String documento){
+            ConsultaUsuario(documento);
+            if(x>=1){
+                Toast.makeText(ActivityRegistroDo.this, "Este documento ya se encuentra registrado", Toast.LENGTH_SHORT).show();
+                return false;
+            }else{
+                return true;
             }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        if(x>=1){
-            Toast.makeText(ActivityRegistroDo.this, "Este documento ya se encuentra registrado", Toast.LENGTH_SHORT).show();
-            return false;
-        }else{
-            return true;
         }
-    }
 
-
-
-    public boolean ValidarExistenciaDocumento(String documento){
-        Consulta(documento);
-        if(x>=1){
-            return true;
-        }else{
-            Toast.makeText(ActivityRegistroDo.this, "Este documento no pertenece a un directivo", Toast.LENGTH_SHORT).show();
-            return false;
-
-        }
-    }
-
-
-
-    public void Consulta(String documento){
-
-        reference = database.getReference("documentosIdentidad");//modulo de Usuario
-<<<<<<< HEAD
-        Query q=reference.orderByChild(getString(R.string.campo_Validar_Profesor)).equalTo(123);
-=======
-        Query q=reference.orderByChild(getString(R.string.campo_Validar_Profesor)).equalTo("hola");
->>>>>>> 3b1dc80173c9aa2b8f57d859aced5958b609299a
-        q.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot){
-                x=0;
-                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
-                    x++;
-<<<<<<< HEAD
-                    Toast.makeText(ActivityRegistroDo.this,String.valueOf(x), Toast.LENGTH_SHORT).show();
-
-=======
-                    Toast.makeText(ActivityRegistroDo.this, "-"+x, Toast.LENGTH_SHORT).show();
->>>>>>> 3b1dc80173c9aa2b8f57d859aced5958b609299a
+        public void ConsultaUsuario(String documento){
+            reference = database.getReference("Usuarios");//modulo de Usuario
+            Query q=reference.orderByChild(getString(R.string.campo_Validar_Existencia)).equalTo(documento);
+            q.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot){
+                    x=0;
+                    for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
+                        x++;
+                    }
                 }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+            });
+        }
+
+
+
+        public boolean ValidarExistenciaDocumento(String documento){
+            ConsultaDocumento(documento);
+            if(x>=1){
+                return true;
+            }else{
+                Toast.makeText(ActivityRegistroDo.this, "Este documento no pertenece a un directivo", Toast.LENGTH_SHORT).show();
+                return false;
+
             }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-<<<<<<< HEAD
-=======
-        Toast.makeText(this, ""+x, Toast.LENGTH_SHORT).show();
-        if(x>=1){
-            return true;
-        }else{
-            Toast.makeText(ActivityRegistroDo.this, "Este documento no pertenece a un directivo", Toast.LENGTH_SHORT).show();
-            return false;
->>>>>>> 3b1dc80173c9aa2b8f57d859aced5958b609299a
-
-    }
+        }
 
 
 
-    }
+        public void ConsultaDocumento(String documento){
 
+            reference = database.getReference("documentosIdentidad");//modulo de Usuario
+            Query q=reference.orderByChild(getString(R.string.campo_Validar_Profesor)).equalTo(documento);
+            q.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot){
+                    x=0;
+                    for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
+                        x++;
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+            });
+        }
+}

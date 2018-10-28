@@ -66,7 +66,7 @@ public class ActivityRegistro extends AppCompatActivity {
                 final String nombre = etNombre.getText().toString();
                 final String apellidos = etApellidos.getText().toString();
                 final String correo = etCorreo.getText().toString().trim();
-                if (isValidEmail(correo) && Validarcontraseña() && ValidarCampos(nombre,apellidos,correo)) {
+                if (isValidEmail(correo) && Validarcontraseña() && ValidarCampos(nombre,apellidos)) {
                     String contraseña = etContraseña.getText().toString();
 
                     mAuth.createUserWithEmailAndPassword(correo, contraseña)
@@ -108,7 +108,7 @@ public class ActivityRegistro extends AppCompatActivity {
         if(android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches()){
             return true;
         }else{
-            Toast.makeText(ActivityRegistro.this, "El correo ingresado no es valido", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ActivityRegistro.this, "Debe ingresar un correo valido", Toast.LENGTH_SHORT).show();
             return false;
         }
     }
@@ -131,8 +131,8 @@ public class ActivityRegistro extends AppCompatActivity {
 
     }
 
-    public boolean ValidarCampos(String nombre, String apellidos, String correo){
-        if(!nombre.isEmpty() && !apellidos.isEmpty() && !correo.isEmpty()){
+    public boolean ValidarCampos(String nombre, String apellidos){
+        if(!nombre.isEmpty() && !apellidos.isEmpty()){
             return true;
         }else{
             Toast.makeText(ActivityRegistro.this, "Debe rellenar los campos", Toast.LENGTH_SHORT).show();
@@ -141,6 +141,16 @@ public class ActivityRegistro extends AppCompatActivity {
     }
 
     public boolean ValidarExistenciaUsuario(String documento){
+        ConsultaUsuario(documento);
+        if(x>=1){
+            Toast.makeText(ActivityRegistro.this, "Este documento ya se encuentra registrado", Toast.LENGTH_SHORT).show();
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    public void ConsultaUsuario(String documento){
         reference = database.getReference("Usuarios");//modulo de Usuario
         Query q=reference.orderByChild(getString(R.string.campo_Validar_Existencia)).equalTo(documento);
         q.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -151,18 +161,11 @@ public class ActivityRegistro extends AppCompatActivity {
                     x++;
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
-        if(x>=1){
-            Toast.makeText(ActivityRegistro.this, "Este documento ya se encuentra registrado", Toast.LENGTH_SHORT).show();
-            return false;
-        }else{
-            return true;
-        }
+
     }
 
     public String SelecGrado(){
