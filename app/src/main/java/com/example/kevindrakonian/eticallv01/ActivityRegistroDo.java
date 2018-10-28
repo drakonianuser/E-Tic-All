@@ -78,7 +78,7 @@ public class ActivityRegistroDo extends AppCompatActivity {
                                             usuarioDocente.setApellidos(apellidos);
                                             usuarioDocente.setUnidad(unidad);
                                             usuarioDocente.setDepartamento(Departamento);
-                                            usuarioDocente.setDocumento(Documento);
+                                            usuarioDocente.setDocumento("D.I"+Documento);
                                             FirebaseUser currentUser = mAuth.getCurrentUser();
                                             DatabaseReference reference = database.getReference("Usuarios/"+currentUser.getUid());
                                             reference.setValue(usuarioDocente);
@@ -152,7 +152,7 @@ public class ActivityRegistroDo extends AppCompatActivity {
 
         public void ConsultaUsuario(String documento){
             reference = database.getReference("Usuarios");//modulo de Usuario
-            Query q=reference.orderByChild(getString(R.string.campo_Validar_Existencia)).equalTo(documento);
+            Query q=reference.orderByChild(getString(R.string.campo_Validar_Existencia)).equalTo("D.I"+documento);
             q.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot){
