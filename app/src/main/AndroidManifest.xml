@@ -55,6 +55,7 @@
         <activity android:name=".ActivityCrime" />
         <activity android:name=".ActivitySexting" />
         <activity android:name=".ActivityTips" />
+        <activity android:name=".CrearCaso.ActivitySelecionarDocente" />
         <activity android:name=".CrearCaso.ActivityCrearCaso"></activity>
     </application>
 

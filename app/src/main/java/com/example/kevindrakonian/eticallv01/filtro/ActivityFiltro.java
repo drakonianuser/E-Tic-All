@@ -1,5 +1,6 @@
 package com.example.kevindrakonian.eticallv01.filtro;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.kevindrakonian.eticallv01.Adatadores.AdaterFiltro;
+import com.example.kevindrakonian.eticallv01.CrearCaso.ActivitySelecionarDocente;
 import com.example.kevindrakonian.eticallv01.Entidades.Firebase.FiltroDocenteEntity;
 import com.example.kevindrakonian.eticallv01.R;
 import com.google.firebase.database.DataSnapshot;
@@ -59,7 +61,9 @@ public class ActivityFiltro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 listaDocente= adaterFiltro.returnLista();
-                Toast.makeText(getApplicationContext(),"Selección: "+listaDocente.get(rvDocentes.getChildAdapterPosition(v)).getKey(),Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(v.getContext(), ActivitySelecionarDocente.class);
+                i.putExtra("keyDocente_selecionado",listaDocente.get(rvDocentes.getChildAdapterPosition(v)).getKey());
+                startActivity(i);
             }
         });
         LinearLayoutManager l = new LinearLayoutManager(this);

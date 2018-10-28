@@ -10,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.kevindrakonian.eticallv01.filtro.ActivityFiltro;
+
 public class ActivityInicio extends AppCompatActivity {
 
     private Toolbar toolbar;
@@ -53,6 +55,10 @@ public class ActivityInicio extends AppCompatActivity {
 
     }
 
+    public void Crearcaso(View view){
+        Intent siguiente = new Intent(this,ActivityFiltro.class);
+        startActivity(siguiente);
+    }
 
 
 }

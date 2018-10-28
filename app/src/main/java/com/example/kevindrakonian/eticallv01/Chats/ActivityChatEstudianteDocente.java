@@ -43,6 +43,7 @@ public class ActivityChatEstudianteDocente extends AppCompatActivity {
     private ImageButton enviar_imagen;
 
     private static final int PHOTO_SEND = 1;
+    private String SalaChat = getIntent().getStringExtra("SalaDeChat");
 
     private MensajeAdapter adapter;
 
@@ -64,8 +65,10 @@ public class ActivityChatEstudianteDocente extends AppCompatActivity {
         btnEnviar =  (Button) findViewById(R.id.enviar);
         enviar_imagen = (ImageButton) findViewById(R.id.enviar_imagen);
 
+
+
         database = FirebaseDatabase.getInstance();
-        reference = database.getReference("chat");//salas de los chats
+        reference = database.getReference(SalaChat);//salas de los chats
         storage = FirebaseStorage.getInstance();
 
 
@@ -150,7 +153,7 @@ public class ActivityChatEstudianteDocente extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PHOTO_SEND && resultCode == RESULT_OK){
             Uri u = data.getData();
-            storageRef = storage.getReference("imagenes_del_chat");//Carpeta  de la imagen
+            storageRef = storage.getReference(SalaChat);//Carpeta  de la imagen
             final StorageReference FOTO_REF = storageRef.child(u.getLastPathSegment());
             FOTO_REF.putFile(u).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override

@@ -1,76 +1,73 @@
 package com.example.kevindrakonian.eticallv01.CrearCaso;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.Toast;
 
-import com.example.kevindrakonian.eticallv01.Entidades.Firebase.FiltroDocenteEntity;
-import com.example.kevindrakonian.eticallv01.Entidades.Firebase.Usuarios;
-import com.example.kevindrakonian.eticallv01.Entidades.Logica.LUsuario;
+import com.example.kevindrakonian.eticallv01.Chats.ActivityChatEstudianteDocente;
+import com.example.kevindrakonian.eticallv01.Entidades.Firebase.CasosEntity;
 import com.example.kevindrakonian.eticallv01.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 public class ActivityCrearCaso extends AppCompatActivity {
 
-
-    //objetos de la parte grafica
-    private ImageView ivFotoDocente;
-    private TextView tvNombreCompleto;
-    private TextView tvDepartamento;
-    private TextView tvUnidad;
+    //objetos de lo Grafico
+    private EditText etTitulo;
+    private EditText etDescricion;
     private Button btnCrear;
-    private LUsuario Estudiante;
-    private LUsuario Docente;
 
-    //objetos de Firebase
+    //objetos de firebase
     private DatabaseReference referenceCasos;
-    private DatabaseReference referenceDocente;
+    private DatabaseReference referenceChat;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_caso);
-        //grafico
-        ivFotoDocente = (ImageView)  findViewById(R.id.Foto_Docente_Crear_caso);
-        tvNombreCompleto = (TextView) findViewById(R.id.txt_nombreDocente_Crear_Caso);
-        tvDepartamento = (TextView) findViewById(R.id.txt_Departamento_Crear_Caso);
-        tvUnidad = (TextView) findViewById(R.id.txt_Unidad_Crear_Caso);
-        btnCrear = (Button) findViewById(R.id.btn_Crear_Crear_caso);
+        //conexion con lo grafico
 
-        //base de datos
+        etTitulo= (EditText) findViewById(R.id.txt_titulo_crear_caso);
+        etDescricion= (EditText) findViewById(R.id.txt_descripcion_Crear_caso);
+        btnCrear = (Button) findViewById(R.id.btn_crear_Crear_caso);
+
         referenceCasos = FirebaseDatabase.getInstance().getReference("Casos");
-        referenceDocente = FirebaseDatabase.getInstance().getReference("Usuarios");
 
-        String keydocente = getIntent().getStringExtra("keyDocente");
-        Query q = referenceDocente.orderByKey().equalTo(keydocente);
-        q.addListenerForSingleValueEvent(new ValueEventListener() {
+        final String keyDocente = getIntent().getStringExtra("keyDocente_crear");
+        final String keyEstudiante = getIntent().getStringExtra("keyEstudiante_crear");
+
+
+        btnCrear.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-                    FiltroDocenteEntity Docente = dataSnapshot.getValue(FiltroDocenteEntity.class);
-                    tvNombreCompleto.setText(Docente.getNombre());
-                    tvDepartamento.setText(Docente.getDepartamento());
-                    tvUnidad.setText(Docente.getUnidad());
+            public void onClick(View v) {
+                String titulo = etTitulo.getText().toString();
+                String Descripcion = etDescricion.getText().toString();
+                if (!titulo.isEmpty() && !Descripcion.isEmpty()){
+                    CasosEntity caso = new CasosEntity();
+                    caso.setDescripcion(Descripcion);
+                    caso.setKeyDocente(keyDocente);
+                    caso.setKeyEsutudinate(keyEstudiante);
+                    caso.setTitulo(titulo);
+                    caso.setSalaChat(""+keyDocente+"/"+keyEstudiante);
+
+                    //envio y Creasion
+                    referenceChat = FirebaseDatabase.getInstance().getReference(caso.getSalaChat());
+                    referenceCasos.push().setValue(caso);
+
+                    //enviar a la sala
+                    Intent i = new Intent(ActivityCrearCaso.this , ActivityChatEstudianteDocente.class);
+                    i.putExtra("SalaDeChat",caso.getSalaChat());
+                    startActivity(i);
+                    finish();
+                }else {
+                    Toast.makeText(ActivityCrearCaso.this, "Rellena todos los campos", Toast.LENGTH_SHORT).show();
                 }
             }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
         });
-
-
     }
 }
