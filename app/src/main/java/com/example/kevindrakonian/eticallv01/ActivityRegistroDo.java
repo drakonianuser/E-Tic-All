@@ -43,19 +43,21 @@ public class ActivityRegistroDo extends AppCompatActivity {
             btnRegistro= (Button) findViewById(R.id.btnRegistrarDo);
             mAuth = FirebaseAuth.getInstance();
             database= FirebaseDatabase.getInstance();
-            final String nombre = etNombre.getText().toString();
-            final String apellidos = etApellidos.getText().toString();
-            final String unidad = etUnidad.getText().toString();
-            final String Departamento = etDepartamento.getText().toString();
-            final String Documento = etDocumento.getText().toString();
+
 
             btnRegistro.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(ActivityRegistroDo.this, "Entro al boton", Toast.LENGTH_SHORT).show();
+                    final String nombre = etNombre.getText().toString();
+                    final String apellidos = etApellidos.getText().toString();
+                    final String unidad = etUnidad.getText().toString();
+                    final String Departamento = etDepartamento.getText().toString();
+                    final String Documento = etDocumento.getText().toString();
                     final String correo = etCorreo.getText().toString().trim();
+                    final String contraseña = etContraseña.getText().toString();
                     if (isValidEmail(correo) && Validarcontraseña() && Validarnombre(nombre)) {
-                        String contraseña = etContraseña.getText().toString();
+
 
                         mAuth.createUserWithEmailAndPassword(correo, contraseña)
                                 .addOnCompleteListener(ActivityRegistroDo.this, new OnCompleteListener<AuthResult>() {
@@ -117,9 +119,6 @@ public class ActivityRegistroDo extends AppCompatActivity {
 
         }
         public boolean Validarnombre(String nombre){
-        if(nombre.isEmpty()){
-            Toast.makeText(ActivityRegistroDo.this, "el campo nombre esta vacio", Toast.LENGTH_SHORT).show();
-        }
             return !nombre.isEmpty();
         }
         private void nextActivityToLoginDo(){

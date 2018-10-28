@@ -50,14 +50,14 @@ public class ActivityRegistro extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         database= FirebaseDatabase.getInstance();
-        final String nombre = etNombre.getText().toString();
-        final String apellidos = etApellidos.getText().toString();
+
 
         btnRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(ActivityRegistro.this, "Boton presionado", Toast.LENGTH_SHORT).show();
-
+                final String nombre = etNombre.getText().toString();
+                final String apellidos = etApellidos.getText().toString();
                 final String correo = etCorreo.getText().toString().trim();
                 if (isValidEmail(correo) && Validarcontraseña() && Validarnombre(nombre)) {
                     String contraseña = etContraseña.getText().toString();
