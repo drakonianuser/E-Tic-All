@@ -31,7 +31,7 @@ public class ActivityRegistroDo extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference reference;
     private boolean x = false;
-    private boolean y = false;
+    private boolean y = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,7 +147,7 @@ public class ActivityRegistroDo extends AppCompatActivity {
 
 
         public void ValidarExistenciaUsuario(){
-            y=true;
+            y=false;
         }
 
         public void ConsultaUsuario(String documento){
