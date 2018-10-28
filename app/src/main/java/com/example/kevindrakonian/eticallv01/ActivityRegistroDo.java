@@ -92,7 +92,9 @@ public class ActivityRegistroDo extends AppCompatActivity {
         }
 
         private boolean isValidEmail(CharSequence target) {
-            Toast.makeText(ActivityRegistroDo.this, "correo", Toast.LENGTH_SHORT).show();
+        if(!TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches()){
+            Toast.makeText(ActivityRegistroDo.this, "funciona", Toast.LENGTH_SHORT).show();
+        }
             return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
         }
 
@@ -115,7 +117,9 @@ public class ActivityRegistroDo extends AppCompatActivity {
 
         }
         public boolean Validarnombre(String nombre){
-            Toast.makeText(ActivityRegistroDo.this, "error nombre", Toast.LENGTH_SHORT).show();
+        if(nombre.isEmpty()){
+            Toast.makeText(ActivityRegistroDo.this, "el campo nombre esta vacio", Toast.LENGTH_SHORT).show();
+        }
             return !nombre.isEmpty();
         }
         private void nextActivityToLoginDo(){
