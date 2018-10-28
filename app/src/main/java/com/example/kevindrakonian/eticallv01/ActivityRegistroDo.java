@@ -68,7 +68,6 @@ public class ActivityRegistroDo extends AppCompatActivity {
                                             Toast.makeText(ActivityRegistroDo.this, "Se a registrado corretacmente", Toast.LENGTH_SHORT).show();
                                             UsuariosDocentes u = new UsuariosDocentes();
                                             u.setCorreo(correo);
-                                            u.setNombre(nombre);
                                             u.setApellidos(apellidos);
                                             u.setUnidad(unidad);
                                             u.setDepartamento(Departamento);
