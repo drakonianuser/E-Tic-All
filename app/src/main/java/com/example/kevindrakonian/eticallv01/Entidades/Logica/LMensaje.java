@@ -2,10 +2,14 @@ package com.example.kevindrakonian.eticallv01.Entidades.Logica;
 
 import com.example.kevindrakonian.eticallv01.Entidades.Firebase.MensajeEntity;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class LMensaje {
 
     private String key;
     private MensajeEntity mensajeEntity;
+    private LUsuario lUsuario;
 
     public LMensaje(String key, MensajeEntity mensajeEntity) {
         this.key = key;
@@ -31,4 +35,20 @@ public class LMensaje {
     public long getCeatedTimestampLong(){
         return (long) mensajeEntity.getCreatedTimestamp();
     }
+
+    public LUsuario getlUsuario() {
+        return lUsuario;
+    }
+
+    public void setlUsuario(LUsuario lUsuario) {
+        this.lUsuario = lUsuario;
+    }
+
+
+    public String FechaEnvioMensaje(){
+        Date date = new Date(getCeatedTimestampLong());
+        SimpleDateFormat hora = new SimpleDateFormat("hh:mm:ss a");
+        return hora.format(date);
+    }
+
 }

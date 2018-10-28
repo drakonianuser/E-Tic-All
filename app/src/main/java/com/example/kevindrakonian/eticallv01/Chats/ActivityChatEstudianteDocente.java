@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.kevindrakonian.eticallv01.Adatadores.MensajeAdapter;
 import com.example.kevindrakonian.eticallv01.Entidades.Firebase.MensajeEntity;
+import com.example.kevindrakonian.eticallv01.Entidades.Logica.LMensaje;
 import com.example.kevindrakonian.eticallv01.R;
 import com.example.kevindrakonian.eticallv01.persistencia.UsuarioDao;
 import com.google.android.gms.tasks.Continuation;
@@ -112,8 +113,9 @@ public class ActivityChatEstudianteDocente extends AppCompatActivity {
         reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                MensajeRecibirEntity m = dataSnapshot.getValue(MensajeRecibirEntity.class);
-                adapter.addMensaje(m);
+                MensajeEntity mensaje = dataSnapshot.getValue(MensajeEntity.class);
+                LMensaje lmensaje = new LMensaje(dataSnapshot.getKey(),mensaje);
+                adapter.addMensaje(lmensaje);
             }
 
             @Override

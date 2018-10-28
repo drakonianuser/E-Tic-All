@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+import com.example.kevindrakonian.eticallv01.Entidades.Logica.LMensaje;
 import com.example.kevindrakonian.eticallv01.Holder.MensajeHolder;
 import com.example.kevindrakonian.eticallv01.R;
 
@@ -17,15 +18,15 @@ import java.util.List;
 
 public class MensajeAdapter extends RecyclerView.Adapter <MensajeHolder> {
 
-    private List<MensajeRecibirEntity> listamensajes = new ArrayList<>();
+    private List<LMensaje> listamensajes = new ArrayList<>();
     private Context c;
 
     public MensajeAdapter(Context c) {
         this.c = c;
     }
 
-    public void addMensaje(MensajeRecibirEntity me){
-     listamensajes.add(me);
+    public void addMensaje(LMensaje lMensaje){
+     listamensajes.add(lMensaje);
      notifyItemInserted(listamensajes.size());
     }
 
@@ -37,22 +38,21 @@ public class MensajeAdapter extends RecyclerView.Adapter <MensajeHolder> {
 
     @Override
     public void onBindViewHolder(MensajeHolder holder, int position) {
-        holder.getNombre().setText(listamensajes.get(position).getNombre());
-        holder.getMensaje().setText(listamensajes.get(position).getMensaje());
+        LMensaje lmensaje = listamensajes.get(position);
 
-        if (listamensajes.get(position).getType().equals("2")){
+        holder.getNombre().setText(lmensaje.getlUsuario().getUsuarios().getNombre());
+        holder.getMensaje().setText(lmensaje.getMensajeEntity().getMensaje());
+
+        if (lmensaje.getMensajeEntity().isEnviaFoto()){
             holder.getFotoMensaje().setVisibility(View.VISIBLE);
             holder.getMensaje().setVisibility(View.VISIBLE);
-            Glide.with(c).load(listamensajes.get(position).getFoto_envia()).into(holder.getFotoMensaje());
-        }else if (listamensajes.get(position).getType().equals("1")){
+            Glide.with(c).load(lmensaje.getMensajeEntity().getUrlFoto()).into(holder.getFotoMensaje());
+        }else {
             holder.getFotoMensaje().setVisibility(View.GONE);
             holder.getMensaje().setVisibility(View.VISIBLE);
         }
 
-        Long condigoHora = listamensajes.get(position).getHora();
-        Date d = new Date(condigoHora);
-        SimpleDateFormat ho = new SimpleDateFormat("hh:mm:ss a");
-        holder.getHora().setText(ho.format(d));
+        holder.getHora().setText(lmensaje.FechaEnvioMensaje());
     }
 
     @Override
