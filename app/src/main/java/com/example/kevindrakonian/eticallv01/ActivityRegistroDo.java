@@ -94,9 +94,7 @@ public class ActivityRegistroDo extends AppCompatActivity {
         }
 
         private boolean isValidEmail(CharSequence target) {
-        if(!TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches()){
-            Toast.makeText(ActivityRegistroDo.this, "funciona", Toast.LENGTH_SHORT).show();
-        }
+
             return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
         }
 

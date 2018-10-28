@@ -141,11 +141,14 @@
 
     <EditText
         android:id="@+id/txt_DocumentoRegistroDo"
-        android:layout_width="149dp"
+        android:layout_width="186dp"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/passwordRegistroEs"
         android:layout_alignLeft="@+id/passwordRegistroEs"
+        android:layout_alignRight="@+id/txt_correoRegistroDo"
         android:layout_alignParentBottom="true"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="198dp"
         android:layout_marginBottom="138dp"
         android:ems="10"
         android:hint="CC"
