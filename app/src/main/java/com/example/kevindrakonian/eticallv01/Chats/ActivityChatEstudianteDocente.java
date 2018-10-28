@@ -84,7 +84,7 @@ public class ActivityChatEstudianteDocente extends AppCompatActivity {
                 MensajeEntity mensaje = new MensajeEntity();
                 mensaje.setMensaje(txtmensaje);
                 mensaje.setEnviaFoto(false);
-                mensaje.setKeyEmisor(UsuarioDao.getKeyUsuario());
+                mensaje.setKeyEmisor(UsuarioDao.getInstancia().getKeyUsuario());
 
                 reference.push().setValue(mensaje);
                 etMensaje.setText("");
@@ -169,7 +169,7 @@ public class ActivityChatEstudianteDocente extends AppCompatActivity {
                         mensaje.setMensaje("Ha enviado una foto");
                         mensaje.setUrlFoto(uri.toString());
                         mensaje.setEnviaFoto(true);
-                        mensaje.setKeyEmisor(UsuarioDao.getKeyUsuario());
+                        mensaje.setKeyEmisor(UsuarioDao.getInstancia().getKeyUsuario());
                         reference.push().setValue(mensaje);
                     }
                 }

@@ -4,7 +4,6 @@ import com.google.firebase.database.Exclude;
 
 public class Usuarios {
     private String Nombre,Apellidos,Correo,grado,Unidad,Departamento,Documento,Perfil,UrlFotoPerfil;
-    private Object createdTimestamp;
     public String getNombre() {
         return Nombre;
     }
@@ -69,13 +68,6 @@ public class Usuarios {
         Perfil = perfil;
     }
 
-    public Object getCreatedTimestamp() {
-        return createdTimestamp;
-    }
-    @Exclude
-    public long getCreatedTimesTampLong(){
-        return (long)createdTimestamp;
-    }
 
     public String getUrlFotoPerfil() {
         return UrlFotoPerfil;

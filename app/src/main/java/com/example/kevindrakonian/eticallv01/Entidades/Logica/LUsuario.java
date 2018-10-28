@@ -1,6 +1,7 @@
 package com.example.kevindrakonian.eticallv01.Entidades.Logica;
 
 import com.example.kevindrakonian.eticallv01.Entidades.Firebase.Usuarios;
+import com.example.kevindrakonian.eticallv01.persistencia.UsuarioDao;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,16 +20,14 @@ public class LUsuario {
         return usuarios;
     }
 
-    public long getCreatedTimesTampLong(){
-        return (long)usuarios.getCreatedTimestamp();
-    }
+
     public void setUsuarios(Usuarios usuarios) {
         this.usuarios = usuarios;
     }
 
     public String obtenerFechaDeCreacion(){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM,yyyy", Locale.getDefault());
-        Date date = new Date(getCreatedTimesTampLong());
+        Date date = new Date(UsuarioDao.getInstancia().fechaDeCreacionLong());
         return simpleDateFormat.format(date);
     }
 

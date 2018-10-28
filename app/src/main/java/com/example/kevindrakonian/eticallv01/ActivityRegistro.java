@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.kevindrakonian.eticallv01.Entidades.Firebase.UsuariosEstudiantes;
+import com.example.kevindrakonian.eticallv01.Utilidades.Constantes;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -75,6 +76,7 @@ public class ActivityRegistro extends AppCompatActivity {
                                         u.setNombre(nombre);
                                         u.setApellidos(apellidos);
                                         u.setGrado(SelecGrado());
+                                        u.setUrlFotoPerfil(Constantes.URL_FOTO_DEFECTO_ESTUDIANTE);
                                         //agregue estas 3 lineas de codigo
                                         FirebaseUser currentUser = mAuth.getCurrentUser();
                                         DatabaseReference reference = database.getReference("Usuarios/"+currentUser.getUid());

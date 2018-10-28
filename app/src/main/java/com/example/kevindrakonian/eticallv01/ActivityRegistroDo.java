@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.kevindrakonian.eticallv01.Entidades.Firebase.UsuariosDocentes;
+import com.example.kevindrakonian.eticallv01.Utilidades.Constantes;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -72,6 +73,7 @@ public class ActivityRegistroDo extends AppCompatActivity {
                                             u.setUnidad(unidad);
                                             u.setDepartamento(Departamento);
                                             u.setDocumento(Documento);
+                                            u.setUrlFotoPerfil(Constantes.URL_FOTO_DEFECTO_PROFESOR);
                                             //agregue estas 3 lineas de codigo MUENTES
                                             FirebaseUser currentUser = mAuth.getCurrentUser();
                                             DatabaseReference reference = database.getReference("Usuarios/"+currentUser.getUid());
