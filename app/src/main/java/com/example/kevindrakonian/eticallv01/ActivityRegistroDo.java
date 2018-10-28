@@ -185,7 +185,7 @@ public class ActivityRegistroDo extends AppCompatActivity {
         public void ConsultaDocumento(String documento){
 
             reference = database.getReference("documentosIdentidad");//modulo de Usuario
-            Query q=reference.orderByChild(getString(R.string.campo_Validar_Profesor)).equalTo(documento);
+            Query q=reference.orderByChild(getString(R.string.campo_Validar_Profesor)).equalTo("D.I"+documento);
             q.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot){
