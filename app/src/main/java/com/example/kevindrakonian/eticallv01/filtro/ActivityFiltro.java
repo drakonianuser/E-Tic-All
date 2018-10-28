@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.kevindrakonian.eticallv01.Adatadores.AdaterFiltro;
 import com.example.kevindrakonian.eticallv01.Entidades.Firebase.FiltroDocenteEntity;
 import com.example.kevindrakonian.eticallv01.R;
 import com.google.firebase.database.DataSnapshot;

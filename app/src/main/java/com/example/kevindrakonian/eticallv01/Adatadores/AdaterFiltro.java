@@ -1,4 +1,4 @@
-package com.example.kevindrakonian.eticallv01.filtro;
+package com.example.kevindrakonian.eticallv01.Adatadores;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.example.kevindrakonian.eticallv01.Entidades.Firebase.FiltroDocenteEntity;
+import com.example.kevindrakonian.eticallv01.Holder.HolderFitro;
 import com.example.kevindrakonian.eticallv01.R;
 
 import java.util.ArrayList;
