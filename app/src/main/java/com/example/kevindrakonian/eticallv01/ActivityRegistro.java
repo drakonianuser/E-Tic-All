@@ -12,14 +12,20 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.kevindrakonian.eticallv01.Entidades.FiltroDocenteEntity;
 import com.example.kevindrakonian.eticallv01.Entidades.UsuariosEstudiantes;
+import com.example.kevindrakonian.eticallv01.filtro.ActivityFiltro;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class ActivityRegistro extends AppCompatActivity {
 
@@ -28,7 +34,8 @@ public class ActivityRegistro extends AppCompatActivity {
     private Button btnRegistro;
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
-
+    private DatabaseReference reference;
+    private static int x =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +66,7 @@ public class ActivityRegistro extends AppCompatActivity {
                 final String nombre = etNombre.getText().toString();
                 final String apellidos = etApellidos.getText().toString();
                 final String correo = etCorreo.getText().toString().trim();
-                if (isValidEmail(correo) && Validarcontraseña() && Validarnombre(nombre)) {
+                if (isValidEmail(correo) && Validarcontraseña() && ValidarCampos(nombre,apellidos,correo)) {
                     String contraseña = etContraseña.getText().toString();
 
                     mAuth.createUserWithEmailAndPassword(correo, contraseña)
@@ -98,8 +105,12 @@ public class ActivityRegistro extends AppCompatActivity {
 
     //MUENTES aca segun el video habia que borrar esto public final static y ponerlo privado
     private boolean isValidEmail(CharSequence target) {
-        Toast.makeText(ActivityRegistro.this, String.valueOf(!TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches()), Toast.LENGTH_SHORT).show();
-        return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+        if(android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches()){
+            return true;
+        }else{
+            Toast.makeText(ActivityRegistro.this, "El correo ingresado no es valido", Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 
     public boolean Validarcontraseña(){
@@ -107,10 +118,10 @@ public class ActivityRegistro extends AppCompatActivity {
         Contraseña = etContraseña.getText().toString();
         confirmacion=etConfir.getText().toString();
         if (Contraseña.equals(confirmacion)){
-            if (Contraseña.length()>=8 && Contraseña.length()<=20){
+            if (Contraseña.length()>=6 && Contraseña.length()<=16){
                 return true;
             }else{
-                Toast.makeText(ActivityRegistro.this, "contraseña larga", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivityRegistro.this, "la contraseña es minimo 6 y maximo 16 caracteres", Toast.LENGTH_SHORT).show();
                 return false;
             }
         }else {
@@ -119,9 +130,39 @@ public class ActivityRegistro extends AppCompatActivity {
         }
 
     }
-    public boolean Validarnombre(String nombre){
-        Toast.makeText(ActivityRegistro.this, String.valueOf(!nombre.isEmpty()), Toast.LENGTH_SHORT).show();
-        return !nombre.isEmpty();
+
+    public boolean ValidarCampos(String nombre, String apellidos, String correo){
+        if(!nombre.isEmpty() && !apellidos.isEmpty() && !correo.isEmpty()){
+            return true;
+        }else{
+            Toast.makeText(ActivityRegistro.this, "Debe rellenar los campos", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    public boolean ValidarExistenciaUsuario(String documento){
+        reference = database.getReference("Usuarios");//modulo de Usuario
+        Query q=reference.orderByChild(getString(R.string.campo_Validar_Existencia)).equalTo(documento);
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot){
+                x=0;
+                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
+                    x++;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        if(x>=1){
+            Toast.makeText(ActivityRegistro.this, "Este documento ya se encuentra registrado", Toast.LENGTH_SHORT).show();
+            return false;
+        }else{
+            return true;
+        }
     }
 
     public String SelecGrado(){

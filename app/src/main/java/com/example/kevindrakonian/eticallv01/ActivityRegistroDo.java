@@ -16,8 +16,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class ActivityRegistroDo extends AppCompatActivity {
 
@@ -25,6 +29,8 @@ public class ActivityRegistroDo extends AppCompatActivity {
     private Button btnRegistro;
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
+    private DatabaseReference reference;
+    private static int x =0;
 
 
     @Override
@@ -56,7 +62,7 @@ public class ActivityRegistroDo extends AppCompatActivity {
                     final String Documento = etDocumento.getText().toString();
                     final String correo = etCorreo.getText().toString().trim();
                     final String contraseña = etContraseña.getText().toString();
-                    if (isValidEmail(correo) && Validarcontraseña() && Validarnombre(nombre)) {
+                    if (isValidEmail(correo) && Validarcontraseña() && ValidarCampos(nombre,apellidos,unidad,Departamento,correo,Documento,contraseña)&& ValidarExistenciaUsuario(Documento) && ValidarExistenciaDocumento(Documento)) {
 
 
                         mAuth.createUserWithEmailAndPassword(correo, contraseña)
@@ -94,8 +100,12 @@ public class ActivityRegistroDo extends AppCompatActivity {
         }
 
         private boolean isValidEmail(CharSequence target) {
-
-            return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+            if(android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches()){
+                return true;
+            }else{
+                Toast.makeText(ActivityRegistroDo.this, "El correo ingresado no es valido", Toast.LENGTH_SHORT).show();
+                return false;
+            }
         }
 
         public boolean Validarcontraseña(){
@@ -107,22 +117,80 @@ public class ActivityRegistroDo extends AppCompatActivity {
 
                     return true;
                 }else{
-                    Toast.makeText(ActivityRegistroDo.this, "contraseña larga", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivityRegistroDo.this, "la contraseña es minimo 6 y maximo 16 caracteres", Toast.LENGTH_SHORT).show();
                     return false;
                 }
             }else {
-                Toast.makeText(ActivityRegistroDo.this, "contraseñas no iguales", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivityRegistroDo.this, "las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
                 return false;
             }
 
         }
-        public boolean Validarnombre(String nombre){
-            return !nombre.isEmpty();
+        public boolean ValidarCampos(String nombre,String apellidos, String unidad, String Departamento, String correo, String Documento, String contraseña){
+            if(!nombre.isEmpty() && !apellidos.isEmpty() && !unidad.isEmpty() && !Departamento.isEmpty() && !Documento.isEmpty() && !correo.isEmpty() && !contraseña.isEmpty()){
+                return true;
+            }else{
+                Toast.makeText(ActivityRegistroDo.this, "Debe rellenar todos los campos", Toast.LENGTH_SHORT).show();
+                return false;
+            }
         }
+
         private void nextActivityToLoginDo(){
             startActivity(new Intent(ActivityRegistroDo.this,ActivityLogin.class));
             finish();
         }
+
+
+    public boolean ValidarExistenciaUsuario(String documento){
+        reference = database.getReference("Usuarios");//modulo de Usuario
+        Query q=reference.orderByChild(getString(R.string.campo_Validar_Existencia)).equalTo(documento);
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot){
+                x=0;
+                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
+                    x++;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        if(x>=1){
+            Toast.makeText(ActivityRegistroDo.this, "Este documento ya se encuentra registrado", Toast.LENGTH_SHORT).show();
+            return false;
+        }else{
+            return true;
+        }
+    }
+    public boolean ValidarExistenciaDocumento(String documento){
+        reference = database.getReference("documentosIdentidad");//modulo de Usuario
+        Query q=reference.orderByChild(getString(R.string.campo_Validar_Profesor)).equalTo(documento);
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot){
+                x=0;
+                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
+                    x++;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        if(x>=1){
+            return true;
+        }else{
+            Toast.makeText(ActivityRegistroDo.this, "Este documento no pertenece a un directivo", Toast.LENGTH_SHORT).show();
+            return false;
+
+        }
+    }
+
 
 
     }
