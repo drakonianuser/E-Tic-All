@@ -92,7 +92,7 @@ public class ActivityRegistroDo extends AppCompatActivity {
         }
 
         private boolean isValidEmail(CharSequence target) {
-            Toast.makeText(ActivityRegistroDo.this, String.valueOf(!TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches()), Toast.LENGTH_SHORT).show();
+            Toast.makeText(ActivityRegistroDo.this, "correo", Toast.LENGTH_SHORT).show();
             return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
         }
 
@@ -115,7 +115,7 @@ public class ActivityRegistroDo extends AppCompatActivity {
 
         }
         public boolean Validarnombre(String nombre){
-            Toast.makeText(ActivityRegistroDo.this, String.valueOf(!nombre.isEmpty()), Toast.LENGTH_SHORT).show();
+            Toast.makeText(ActivityRegistroDo.this, "error nombre", Toast.LENGTH_SHORT).show();
             return !nombre.isEmpty();
         }
         private void nextActivityToLoginDo(){
