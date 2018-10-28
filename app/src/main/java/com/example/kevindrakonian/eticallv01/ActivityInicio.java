@@ -9,11 +9,15 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ActivityInicio extends AppCompatActivity {
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
+    private Button salir;
 
     //menu haburguesa
     @Override
@@ -25,11 +29,19 @@ public class ActivityInicio extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         drawerLayout =findViewById(R.id.inicio);
-
+        salir = findViewById(R.id.boton_salir);
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        salir.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                nextActivityToLoginIni();
+                finish();
+            }
+        });
     }
 
     //menu hamburguesa
@@ -51,6 +63,11 @@ public class ActivityInicio extends AppCompatActivity {
         Intent siguiente = new Intent(this,ActivityAprende.class);
         startActivity(siguiente);
 
+    }
+
+    private void nextActivityToLoginIni(){
+        startActivity(new Intent(ActivityInicio.this,ActivityInicio.class));
+        finish();
     }
 
 
