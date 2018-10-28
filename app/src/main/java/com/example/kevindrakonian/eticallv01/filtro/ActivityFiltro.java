@@ -72,6 +72,7 @@ public class ActivityFiltro extends AppCompatActivity {
                         adaterFiltro.ClearList();
                         for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
                             FiltroDocenteEntity filtro = dataSnapshot1.getValue(FiltroDocenteEntity.class);
+                            filtro.setKey(dataSnapshot1.getKey());
                             Toast.makeText(ActivityFiltro.this, "he encontrado",Toast.LENGTH_SHORT).show();
                             adaterFiltro.addDocente(filtro);
                         }
