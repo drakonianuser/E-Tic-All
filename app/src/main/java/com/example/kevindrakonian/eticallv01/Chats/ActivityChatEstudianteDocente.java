@@ -165,8 +165,12 @@ public class ActivityChatEstudianteDocente extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Uri> task) {
                     if (task.isSuccessful()){
                         Uri uri = task.getResult();
-                        MensajeEnviarEntity m = new MensajeEnviarEntity("autor",uri.toString(),tvnombre.getText().toString(),"","2",2,ServerValue.TIMESTAMP);
-                        reference.push().setValue(m);
+                        MensajeEntity mensaje = new MensajeEntity();
+                        mensaje.setMensaje("Ha enviado una foto");
+                        mensaje.setUrlFoto(uri.toString());
+                        mensaje.setEnviaFoto(true);
+                        mensaje.setKeyEmisor(UsuarioDao.getKeyUsuario());
+                        reference.push().setValue(mensaje);
                     }
                 }
             });

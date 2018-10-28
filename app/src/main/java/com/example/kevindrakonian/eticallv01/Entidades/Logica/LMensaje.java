@@ -4,6 +4,7 @@ import com.example.kevindrakonian.eticallv01.Entidades.Firebase.MensajeEntity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class LMensaje {
 
@@ -47,7 +48,7 @@ public class LMensaje {
 
     public String FechaEnvioMensaje(){
         Date date = new Date(getCeatedTimestampLong());
-        SimpleDateFormat hora = new SimpleDateFormat("hh:mm:ss a");
+        SimpleDateFormat hora = new SimpleDateFormat("hh:mm:ss a",Locale.getDefault());
         return hora.format(date);
     }
 
