@@ -1,10 +1,22 @@
-package com.example.kevindrakonian.eticallv01.Entidades;
+package com.example.kevindrakonian.eticallv01.Entidades.Firebase;
 
-public class Usuarios {
-    private String Nombre,Apellidos,Correo,grado,Unidad,Departamento,Documento,Perfil;
+public class UsuariosDocentes {
+    private String Nombre,Apellidos,Correo,Unidad,Departamento,Documento,Perfil="ActivityDocente";
+
+    public UsuariosDocentes() {
+
+    }
 
     public String getNombre() {
         return Nombre;
+    }
+
+    public String getPerfil() {
+        return Perfil;
+    }
+
+    public void setPerfil(String perfil) {
+        Perfil = perfil;
     }
 
     public void setNombre(String nombre) {
@@ -25,14 +37,6 @@ public class Usuarios {
 
     public void setCorreo(String correo) {
         Correo = correo;
-    }
-
-    public String getGrado() {
-        return grado;
-    }
-
-    public void setGrado(String grado) {
-        this.grado = grado;
     }
 
     public String getUnidad() {
@@ -57,13 +61,5 @@ public class Usuarios {
 
     public void setDocumento(String documento) {
         Documento = documento;
-    }
-
-    public String getPerfil() {
-        return Perfil;
-    }
-
-    public void setPerfil(String perfil) {
-        Perfil = perfil;
     }
 }

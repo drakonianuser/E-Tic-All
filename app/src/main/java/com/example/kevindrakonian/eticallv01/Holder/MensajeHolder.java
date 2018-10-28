@@ -1,4 +1,4 @@
-package com.example.kevindrakonian.eticallv01.Chats;
+package com.example.kevindrakonian.eticallv01.Holder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -8,7 +8,7 @@ import com.example.kevindrakonian.eticallv01.R;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class HolderMensaje extends RecyclerView.ViewHolder {
+public class MensajeHolder extends RecyclerView.ViewHolder {
 
     private TextView nombre;
     private TextView mensaje;
@@ -16,7 +16,7 @@ public class HolderMensaje extends RecyclerView.ViewHolder {
     private ImageView foto;
     private ImageView fotoMensaje;
 
-    public HolderMensaje(View itemView) {
+    public MensajeHolder(View itemView) {
         super(itemView);
 
         nombre = (TextView) itemView.findViewById(R.id.nombreMensaje);

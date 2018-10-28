@@ -2,7 +2,6 @@ package com.example.kevindrakonian.eticallv01.Chats;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,16 +13,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.kevindrakonian.eticallv01.Entidades.MensajeEntity;
-import com.example.kevindrakonian.eticallv01.Entidades.MensajeEnviarEntity;
-import com.example.kevindrakonian.eticallv01.Entidades.MensajeRecibirEntity;
+import com.example.kevindrakonian.eticallv01.Adatadores.MensajeAdapter;
+import com.example.kevindrakonian.eticallv01.Entidades.Firebase.MensajeEntity;
 import com.example.kevindrakonian.eticallv01.R;
-import com.google.android.gms.auth.api.signin.internal.Storage;
+import com.example.kevindrakonian.eticallv01.persistencia.UsuarioDao;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -34,8 +30,6 @@ import com.google.firebase.database.ServerValue;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ActivityChatEstudianteDocente extends AppCompatActivity {
 
@@ -49,7 +43,7 @@ public class ActivityChatEstudianteDocente extends AppCompatActivity {
 
     private static final int PHOTO_SEND = 1;
 
-    private AdapterMensajes adapter;
+    private MensajeAdapter adapter;
 
     private FirebaseDatabase database;
     private DatabaseReference reference;
@@ -74,15 +68,26 @@ public class ActivityChatEstudianteDocente extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
 
 
-        adapter = new AdapterMensajes(this);
+        adapter = new MensajeAdapter(this);
         LinearLayoutManager l = new LinearLayoutManager(this);
         rvMensajes.setLayoutManager(l);
         rvMensajes.setAdapter(adapter);
+
+
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              reference.push().setValue(new MensajeEnviarEntity(etMensaje.getText().toString(),tvnombre.getText().toString(),"","1",1,ServerValue.TIMESTAMP));
-              etMensaje.setText("");
+                String txtmensaje = etMensaje.getText().toString();
+                if (!txtmensaje.isEmpty()){
+
+                MensajeEntity mensaje = new MensajeEntity();
+                mensaje.setMensaje(txtmensaje);
+                mensaje.setEnviaFoto(false);
+                mensaje.setKeyEmisor(UsuarioDao.getKeyUsuario());
+
+                reference.push().setValue(mensaje);
+                etMensaje.setText("");
+                }
             }
         });
 

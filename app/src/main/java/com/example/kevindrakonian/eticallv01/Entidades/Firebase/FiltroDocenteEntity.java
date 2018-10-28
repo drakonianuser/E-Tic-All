@@ -1,4 +1,4 @@
-package com.example.kevindrakonian.eticallv01.Entidades;
+package com.example.kevindrakonian.eticallv01.Entidades.Firebase;
 
 public class FiltroDocenteEntity {
 

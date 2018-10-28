@@ -8,8 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
-import com.example.kevindrakonian.eticallv01.Chats.HolderMensaje;
-import com.example.kevindrakonian.eticallv01.Entidades.FiltroDocenteEntity;
+import com.example.kevindrakonian.eticallv01.Entidades.Firebase.FiltroDocenteEntity;
 import com.example.kevindrakonian.eticallv01.R;
 
 import java.util.ArrayList;
