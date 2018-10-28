@@ -62,7 +62,7 @@ public class ActivityRegistroDo extends AppCompatActivity {
                     final String Documento = etDocumento.getText().toString();
                     final String correo = etCorreo.getText().toString().trim();
                     final String contraseña = etContraseña.getText().toString();
-                    if (isValidEmail(correo) && Validarcontraseña() && ValidarCampos(nombre,apellidos,unidad,Departamento,correo,Documento,contraseña)&& ValidarExistenciaUsuario(Documento) && ValidarExistenciaDocumento(Documento)) {
+                    if (isValidEmail(correo) && Validarcontraseña() && ValidarCampos(nombre,apellidos,unidad,Departamento,correo,contraseña)&& ValidarExistenciaUsuario(Documento) && ValidarExistenciaDocumento(Documento)) {
 
 
                         mAuth.createUserWithEmailAndPassword(correo, contraseña)
@@ -126,8 +126,8 @@ public class ActivityRegistroDo extends AppCompatActivity {
             }
 
         }
-        public boolean ValidarCampos(String nombre,String apellidos, String unidad, String Departamento, String correo, String Documento, String contraseña){
-            if(!nombre.isEmpty() && !apellidos.isEmpty() && !unidad.isEmpty() && !Departamento.isEmpty() && !Documento.isEmpty() && !correo.isEmpty() && !contraseña.isEmpty()){
+        public boolean ValidarCampos(String nombre,String apellidos, String unidad, String Departamento, String Documento, String contraseña){
+            if(!nombre.isEmpty() && !apellidos.isEmpty() && !unidad.isEmpty() && !Departamento.isEmpty() && !Documento.isEmpty() && !contraseña.isEmpty()){
                 return true;
             }else{
                 Toast.makeText(ActivityRegistroDo.this, "Debe rellenar todos los campos", Toast.LENGTH_SHORT).show();
@@ -165,15 +165,34 @@ public class ActivityRegistroDo extends AppCompatActivity {
             return true;
         }
     }
+
+
+
     public boolean ValidarExistenciaDocumento(String documento){
+        Consulta(documento);
+        if(x>=1){
+            return true;
+        }else{
+            Toast.makeText(ActivityRegistroDo.this, "Este documento no pertenece a un directivo", Toast.LENGTH_SHORT).show();
+            return false;
+
+        }
+    }
+
+
+
+    public void Consulta(String documento){
+
         reference = database.getReference("documentosIdentidad");//modulo de Usuario
-        Query q=reference.orderByChild(getString(R.string.campo_Validar_Profesor)).equalTo(documento);
+        Query q=reference.orderByChild(getString(R.string.campo_Validar_Profesor)).equalTo(123);
         q.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot){
                 x=0;
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
                     x++;
+                    Toast.makeText(ActivityRegistroDo.this,String.valueOf(x), Toast.LENGTH_SHORT).show();
+
                 }
             }
 
@@ -182,13 +201,7 @@ public class ActivityRegistroDo extends AppCompatActivity {
 
             }
         });
-        if(x>=1){
-            return true;
-        }else{
-            Toast.makeText(ActivityRegistroDo.this, "Este documento no pertenece a un directivo", Toast.LENGTH_SHORT).show();
-            return false;
 
-        }
     }
 
 
