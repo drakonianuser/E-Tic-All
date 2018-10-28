@@ -95,7 +95,6 @@ public class ActivityRegistro extends AppCompatActivity {
                                 }
                             });
                 }else{
-                    Toast.makeText(ActivityRegistro.this, "fallo", Toast.LENGTH_SHORT).show();
                 }
             }
 

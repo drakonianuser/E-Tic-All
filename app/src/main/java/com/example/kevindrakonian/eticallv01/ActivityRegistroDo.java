@@ -91,7 +91,7 @@ public class ActivityRegistroDo extends AppCompatActivity {
                                     }
                                 });
                     }else{
-                        Toast.makeText(ActivityRegistroDo.this, "Error al registrarse", Toast.LENGTH_SHORT).show();
+
                     }
                 }
 
@@ -126,7 +126,7 @@ public class ActivityRegistroDo extends AppCompatActivity {
 
         }
         public boolean ValidarCampos(String nombre,String apellidos, String unidad, String Departamento, String Documento, String contraseña){
-            if(!nombre.isEmpty() && !apellidos.isEmpty() && !unidad.isEmpty() && !Departamento.isEmpty() && !Documento.isEmpty() && !contraseña.isEmpty() && Documento.isEmpty()){
+            if(!nombre.isEmpty() && !apellidos.isEmpty() && !unidad.isEmpty() && !Departamento.isEmpty() && !Documento.isEmpty() && !contraseña.isEmpty()){
                 return true;
             }else{
                 Toast.makeText(ActivityRegistroDo.this, "Debe rellenar todos los campos", Toast.LENGTH_SHORT).show();
