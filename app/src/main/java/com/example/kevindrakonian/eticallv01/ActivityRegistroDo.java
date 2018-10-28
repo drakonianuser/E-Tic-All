@@ -78,7 +78,7 @@ public class ActivityRegistroDo extends AppCompatActivity {
                                             usuarioDocente.setApellidos(apellidos);
                                             usuarioDocente.setUnidad(unidad);
                                             usuarioDocente.setDepartamento(Departamento);
-                                            usuarioDocente.setDocumento("D.I"+Documento);
+                                            usuarioDocente.setDocumento(Documento);
                                             FirebaseUser currentUser = mAuth.getCurrentUser();
                                             DatabaseReference reference = database.getReference("Usuarios/"+currentUser.getUid());
                                             reference.setValue(usuarioDocente);
