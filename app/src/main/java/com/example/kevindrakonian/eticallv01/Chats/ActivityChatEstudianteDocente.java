@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kevindrakonian.eticallv01.Adatadores.MensajeAdapter;
 import com.example.kevindrakonian.eticallv01.Entidades.Firebase.MensajeEntity;
@@ -43,7 +44,7 @@ public class ActivityChatEstudianteDocente extends AppCompatActivity {
     private ImageButton enviar_imagen;
 
     private static final int PHOTO_SEND = 1;
-    private String SalaChat = getIntent().getStringExtra("SalaDeChat");
+    private String SalaChat;
 
     private MensajeAdapter adapter;
 
@@ -65,10 +66,16 @@ public class ActivityChatEstudianteDocente extends AppCompatActivity {
         btnEnviar =  (Button) findViewById(R.id.enviar);
         enviar_imagen = (ImageButton) findViewById(R.id.enviar_imagen);
 
+        SalaChat= getIntent().getStringExtra("SalaDeChat");
+
+        if (SalaChat.isEmpty()){
+            Toast.makeText(this, "Error: "+SalaChat, Toast.LENGTH_SHORT).show();
+            SalaChat = "chat";
+        }
 
 
         database = FirebaseDatabase.getInstance();
-        reference = database.getReference(SalaChat);//salas de los chats
+        reference = database.getReference("chat");//salas de los chats
         storage = FirebaseStorage.getInstance();
 
 

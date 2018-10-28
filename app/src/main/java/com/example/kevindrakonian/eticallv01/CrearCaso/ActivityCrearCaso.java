@@ -10,7 +10,9 @@ import android.widget.Toast;
 
 import com.example.kevindrakonian.eticallv01.Chats.ActivityChatEstudianteDocente;
 import com.example.kevindrakonian.eticallv01.Entidades.Firebase.CasosEntity;
+import com.example.kevindrakonian.eticallv01.Entidades.Firebase.MensajeEntity;
 import com.example.kevindrakonian.eticallv01.R;
+import com.example.kevindrakonian.eticallv01.persistencia.UsuarioDao;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -56,14 +58,14 @@ public class ActivityCrearCaso extends AppCompatActivity {
                     caso.setSalaChat(""+keyDocente+"/"+keyEstudiante);
 
                     //envio y Creasion
-                    referenceChat = FirebaseDatabase.getInstance().getReference(caso.getSalaChat());
                     referenceCasos.push().setValue(caso);
 
                     //enviar a la sala
-                    Intent i = new Intent(ActivityCrearCaso.this , ActivityChatEstudianteDocente.class);
-                    i.putExtra("SalaDeChat",caso.getSalaChat());
-                    startActivity(i);
-                    finish();
+
+                Intent i = new Intent(ActivityCrearCaso.this , ActivityChatEstudianteDocente.class);
+                i.putExtra("SalaDeChat",caso.getSalaChat());
+                startActivity(i);
+
                 }else {
                     Toast.makeText(ActivityCrearCaso.this, "Rellena todos los campos", Toast.LENGTH_SHORT).show();
                 }
