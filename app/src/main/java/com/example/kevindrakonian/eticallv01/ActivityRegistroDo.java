@@ -4,24 +4,19 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.example.kevindrakonian.eticallv01.Entidades.UsuariosDocentes;
+import com.example.kevindrakonian.eticallv01.Entidades.Firebase.UsuariosDocentes;
+import com.example.kevindrakonian.eticallv01.Utilidades.Constantes;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 public class ActivityRegistroDo extends AppCompatActivity {
 
@@ -73,17 +68,18 @@ public class ActivityRegistroDo extends AppCompatActivity {
                                         if (task.isSuccessful()) {
                                             // Sign in success, update UI with the signed-in user's information
                                             Toast.makeText(ActivityRegistroDo.this, "Se a registrado corretacmente", Toast.LENGTH_SHORT).show();
-                                            UsuariosDocentes usuariosDocentes = new UsuariosDocentes();
-                                            usuariosDocentes.setCorreo(correo);
-                                            usuariosDocentes.setNombre(nombre);
-                                            usuariosDocentes.setApellidos(apellidos);
-                                            usuariosDocentes.setDepartamento(Departamento);
-                                            usuariosDocentes.setDocumento(Documento);
-                                            usuariosDocentes.setUnidad(unidad);
-                                            //agregue estas 3 lineas de codigo
+                                            UsuariosDocentes u = new UsuariosDocentes();
+                                            u.setCorreo(correo);
+                                            u.setNombre(nombre);
+                                            u.setApellidos(apellidos);
+                                            u.setUnidad(unidad);
+                                            u.setDepartamento(Departamento);
+                                            u.setDocumento(Documento);
+                                            u.setUrlFotoPerfil(Constantes.URL_FOTO_DEFECTO_PROFESOR);
+                                            //agregue estas 3 lineas de codigo MUENTES
                                             FirebaseUser currentUser = mAuth.getCurrentUser();
                                             DatabaseReference reference = database.getReference("Usuarios/"+currentUser.getUid());
-                                            reference.setValue(usuariosDocentes);
+                                            reference.setValue(u);
                                             //caca
                                             //agrege esta linea
                                             nextActivityToLoginDo();

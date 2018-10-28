@@ -1,4 +1,4 @@
-package com.example.kevindrakonian.eticallv01.filtro;
+package com.example.kevindrakonian.eticallv01.Holder;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;

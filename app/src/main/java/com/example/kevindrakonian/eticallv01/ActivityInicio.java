@@ -13,6 +13,8 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import com.example.kevindrakonian.eticallv01.filtro.ActivityFiltro;
+
 public class ActivityInicio extends AppCompatActivity {
 
     private Toolbar toolbar;
@@ -65,9 +67,16 @@ public class ActivityInicio extends AppCompatActivity {
 
     }
 
+
     private void nextActivityToLoginIni(){
         startActivity(new Intent(ActivityInicio.this,ActivityLogin.class));
         finish();
+    }
+
+
+    public void Crearcaso(View view){
+        Intent siguiente = new Intent(this,ActivityFiltro.class);
+        startActivity(siguiente);
     }
 
 

@@ -1,4 +1,4 @@
-package com.example.kevindrakonian.eticallv01.filtro;
+package com.example.kevindrakonian.eticallv01.Adatadores;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,14 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
-import com.example.kevindrakonian.eticallv01.Chats.HolderMensaje;
-import com.example.kevindrakonian.eticallv01.Entidades.FiltroDocenteEntity;
+import com.example.kevindrakonian.eticallv01.Entidades.Firebase.FiltroDocenteEntity;
+import com.example.kevindrakonian.eticallv01.Holder.HolderFitro;
 import com.example.kevindrakonian.eticallv01.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdaterFiltro  extends RecyclerView.Adapter <HolderFitro> implements View.OnClickListener {
+public class AdaterFiltro  extends RecyclerView.Adapter <HolderFitro> implements View.OnClickListener{
 
     private List<FiltroDocenteEntity> listaDocente = new ArrayList<>();
     private View.OnClickListener listener;
@@ -28,6 +28,10 @@ public class AdaterFiltro  extends RecyclerView.Adapter <HolderFitro> implements
     public void addDocente(FiltroDocenteEntity docente){
         listaDocente.add(docente);
         notifyItemInserted(listaDocente.size());
+    }
+
+    public List<FiltroDocenteEntity> returnLista(){
+        return listaDocente;
     }
 
     public void ClearList(){

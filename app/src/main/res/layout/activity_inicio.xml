@@ -17,6 +17,7 @@
 
     </LinearLayout>
 
+
     <android.support.design.widget.NavigationView
         android:id="@+id/navegationView"
         android:layout_width="wrap_content"
@@ -53,6 +54,12 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Salir" />
+
+                    <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="crear"
+                    android:onClick="Crearcaso"/>
 
                 <TextView
                     android:id="@+id/textView16"

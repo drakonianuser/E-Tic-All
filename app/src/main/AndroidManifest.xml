@@ -33,13 +33,15 @@
         <activity android:name=".Chats.ActivityChatEstudianteDocente">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".filtro.ActivityFiltro">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".ActivityDrawle" />
@@ -52,8 +54,9 @@
         <activity android:name=".ActivityGrooming" />
         <activity android:name=".ActivityCrime" />
         <activity android:name=".ActivitySexting" />
-        <activity android:name=".ActivityTips"></activity>
-
+        <activity android:name=".ActivityTips" />
+        <activity android:name=".CrearCaso.ActivitySelecionarDocente" />
+        <activity android:name=".CrearCaso.ActivityCrearCaso"></activity>
     </application>
 
 </manifest>

@@ -1,8 +1,9 @@
-package com.example.kevindrakonian.eticallv01.Entidades;
+package com.example.kevindrakonian.eticallv01.Entidades.Firebase;
+
+import com.google.firebase.database.Exclude;
 
 public class Usuarios {
-    private String Nombre,Apellidos,Correo,grado,Unidad,Departamento,Documento,Perfil;
-
+    private String Nombre,Apellidos,Correo,grado,Unidad,Departamento,Documento,Perfil,UrlFotoPerfil;
     public String getNombre() {
         return Nombre;
     }
@@ -65,5 +66,14 @@ public class Usuarios {
 
     public void setPerfil(String perfil) {
         Perfil = perfil;
+    }
+
+
+    public String getUrlFotoPerfil() {
+        return UrlFotoPerfil;
+    }
+
+    public void setUrlFotoPerfil(String urlFotoPerfil) {
+        UrlFotoPerfil = urlFotoPerfil;
     }
 }
