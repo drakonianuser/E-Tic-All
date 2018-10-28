@@ -64,7 +64,7 @@ public class ActivityRegistroDo extends AppCompatActivity {
                     final String contraseña = etContraseña.getText().toString();
 
 
-                    if (isValidEmail(correo) && Validarcontraseña() && ValidarCampos(nombre,apellidos,unidad,Departamento,Documento,contraseña)) {
+                    if (isValidEmail(correo) && Validarcontraseña() && ValidarCampos(nombre,apellidos,unidad,Departamento,Documento)) {
 
                         mAuth.createUserWithEmailAndPassword(correo, contraseña)
                                 .addOnCompleteListener(ActivityRegistroDo.this, new OnCompleteListener<AuthResult>() {
@@ -128,8 +128,8 @@ public class ActivityRegistroDo extends AppCompatActivity {
             }
 
         }
-        public boolean ValidarCampos(String nombre,String apellidos, String unidad, String Departamento, String Documento, String contraseña){
-            if(!nombre.isEmpty() && !apellidos.isEmpty() && !unidad.isEmpty() && !Departamento.isEmpty() && !Documento.isEmpty() && !contraseña.isEmpty()){
+        public boolean ValidarCampos(String nombre,String apellidos, String unidad, String Departamento, String Documento){
+            if(!nombre.isEmpty() && !apellidos.isEmpty() && !unidad.isEmpty() && !Departamento.isEmpty() && !Documento.isEmpty()){
                 return true;
             }else{
                 Toast.makeText(ActivityRegistroDo.this, "Debe rellenar todos los campos", Toast.LENGTH_SHORT).show();
