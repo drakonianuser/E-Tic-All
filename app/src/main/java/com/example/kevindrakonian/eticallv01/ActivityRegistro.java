@@ -140,33 +140,6 @@ public class ActivityRegistro extends AppCompatActivity {
         }
     }
 
-    public boolean ValidarExistenciaUsuario(String documento){
-        ConsultaUsuario(documento);
-        if(x>=1){
-            Toast.makeText(ActivityRegistro.this, "Este documento ya se encuentra registrado", Toast.LENGTH_SHORT).show();
-            return false;
-        }else{
-            return true;
-        }
-    }
-
-    public void ConsultaUsuario(String documento){
-        reference = database.getReference("Usuarios");//modulo de Usuario
-        Query q=reference.orderByChild(getString(R.string.campo_Validar_Existencia)).equalTo(documento);
-        q.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot){
-                x=0;
-                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
-                    x++;
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
-
-    }
 
     public String SelecGrado(){
         return Spgrado.getSelectedItem().toString();

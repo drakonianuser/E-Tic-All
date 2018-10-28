@@ -62,15 +62,9 @@ public class ActivityRegistroDo extends AppCompatActivity {
                     final String Documento = etDocumento.getText().toString();
                     final String correo = etCorreo.getText().toString().trim();
                     final String contraseña = etContraseña.getText().toString();
-                    ConsultaDocumento(Documento);
-                    ConsultaUsuario(Documento);
-                    if(x==false){
-                        Toast.makeText(ActivityRegistroDo.this, "El documento no pertenece a un directivo", Toast.LENGTH_SHORT).show();
-                    }else if(y== false){
-                        Toast.makeText(ActivityRegistroDo.this, "Ese documento ya esta registrado", Toast.LENGTH_SHORT).show();
-                    }else if (isValidEmail(correo) && Validarcontraseña() && ValidarCampos(nombre,apellidos,unidad,Departamento,correo,contraseña)) {
 
 
+                    if (isValidEmail(correo) && Validarcontraseña() && ValidarCampos(nombre,apellidos,unidad,Departamento,Documento,contraseña)) {
                         mAuth.createUserWithEmailAndPassword(correo, contraseña)
                                 .addOnCompleteListener(ActivityRegistroDo.this, new OnCompleteListener<AuthResult>() {
                                     @Override
@@ -132,7 +126,7 @@ public class ActivityRegistroDo extends AppCompatActivity {
 
         }
         public boolean ValidarCampos(String nombre,String apellidos, String unidad, String Departamento, String Documento, String contraseña){
-            if(!nombre.isEmpty() && !apellidos.isEmpty() && !unidad.isEmpty() && !Departamento.isEmpty() && !Documento.isEmpty() && !contraseña.isEmpty()){
+            if(!nombre.isEmpty() && !apellidos.isEmpty() && !unidad.isEmpty() && !Departamento.isEmpty() && !Documento.isEmpty() && !contraseña.isEmpty() && Documento.isEmpty()){
                 return true;
             }else{
                 Toast.makeText(ActivityRegistroDo.this, "Debe rellenar todos los campos", Toast.LENGTH_SHORT).show();
@@ -146,54 +140,10 @@ public class ActivityRegistroDo extends AppCompatActivity {
         }
 
 
-        public void ValidarExistenciaUsuario(){
-            y=false;
-        }
-
-        public void ConsultaUsuario(String documento){
-            reference = database.getReference("Usuarios");//modulo de Usuario
-            Query q=reference.orderByChild(getString(R.string.campo_Validar_Existencia)).equalTo("D.I"+documento);
-            q.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot){
-
-                    for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
-                        if(dataSnapshot1.exists()){
-                            ValidarExistenciaUsuario();
-                        }
-                    }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                }
-            });
-        }
 
 
 
-        public void ValidarExistenciaDocumento(){
-            x=true;
-        }
 
-
-
-        public void ConsultaDocumento(String documento){
-            reference = database.getReference("documentosIdentidad");//modulo de Usuario
-            Query q=reference.orderByChild(getString(R.string.campo_Validar_Profesor)).equalTo("D.I"+documento);
-            q.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot){
-                    for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
-                        if(dataSnapshot1.exists()){
-                            ValidarExistenciaDocumento();
-                        }
-                    }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                }
-            });
-        }
 
 
 }
