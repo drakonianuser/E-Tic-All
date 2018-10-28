@@ -30,8 +30,8 @@ public class ActivityRegistroDo extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private DatabaseReference reference;
-    private static int x;
-
+    private boolean x = false;
+    private boolean y = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +62,13 @@ public class ActivityRegistroDo extends AppCompatActivity {
                     final String Documento = etDocumento.getText().toString();
                     final String correo = etCorreo.getText().toString().trim();
                     final String contraseña = etContraseña.getText().toString();
-                    if (isValidEmail(correo) && Validarcontraseña() && ValidarCampos(nombre,apellidos,unidad,Departamento,correo,contraseña)&& ValidarExistenciaUsuario(Documento) && ValidarExistenciaDocumento(Documento)) {
+                    ConsultaDocumento(Documento);
+                    ConsultaUsuario(Documento);
+                    if(x==false){
+                        Toast.makeText(ActivityRegistroDo.this, "El documento no pertenece a un directivo", Toast.LENGTH_SHORT).show();
+                    }else if(y== false){
+                        Toast.makeText(ActivityRegistroDo.this, "Ese documento ya esta registrado", Toast.LENGTH_SHORT).show();
+                    }else if (isValidEmail(correo) && Validarcontraseña() && ValidarCampos(nombre,apellidos,unidad,Departamento,correo,contraseña)) {
 
 
                         mAuth.createUserWithEmailAndPassword(correo, contraseña)
@@ -140,14 +146,8 @@ public class ActivityRegistroDo extends AppCompatActivity {
         }
 
 
-        public boolean ValidarExistenciaUsuario(String documento){
-            ConsultaUsuario(documento);
-            if(x>=1){
-                Toast.makeText(ActivityRegistroDo.this, "Este documento ya se encuentra registrado", Toast.LENGTH_SHORT).show();
-                return false;
-            }else{
-                return true;
-            }
+        public void ValidarExistenciaUsuario(){
+            y=true;
         }
 
         public void ConsultaUsuario(String documento){
@@ -156,9 +156,11 @@ public class ActivityRegistroDo extends AppCompatActivity {
             q.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot){
-                    x=0;
+
                     for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
-                        x++;
+                        if(dataSnapshot1.exists()){
+                            ValidarExistenciaUsuario();
+                        }
                     }
                 }
                 @Override
@@ -169,29 +171,22 @@ public class ActivityRegistroDo extends AppCompatActivity {
 
 
 
-        public boolean ValidarExistenciaDocumento(String documento){
-            ConsultaDocumento(documento);
-            if(x>=1){
-                return true;
-            }else{
-                Toast.makeText(ActivityRegistroDo.this, "Este documento no pertenece a un directivo", Toast.LENGTH_SHORT).show();
-                return false;
-
-            }
+        public void ValidarExistenciaDocumento(){
+            x=true;
         }
 
 
 
         public void ConsultaDocumento(String documento){
-
             reference = database.getReference("documentosIdentidad");//modulo de Usuario
             Query q=reference.orderByChild(getString(R.string.campo_Validar_Profesor)).equalTo("D.I"+documento);
             q.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot){
-                    x=0;
                     for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
-                        x++;
+                        if(dataSnapshot1.exists()){
+                            ValidarExistenciaDocumento();
+                        }
                     }
                 }
                 @Override
@@ -199,4 +194,6 @@ public class ActivityRegistroDo extends AppCompatActivity {
                 }
             });
         }
+
+
 }
