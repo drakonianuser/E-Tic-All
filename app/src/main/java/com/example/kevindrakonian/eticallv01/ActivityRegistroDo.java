@@ -184,15 +184,23 @@ public class ActivityRegistroDo extends AppCompatActivity {
     public void Consulta(String documento){
 
         reference = database.getReference("documentosIdentidad");//modulo de Usuario
+<<<<<<< HEAD
         Query q=reference.orderByChild(getString(R.string.campo_Validar_Profesor)).equalTo(123);
+=======
+        Query q=reference.orderByChild(getString(R.string.campo_Validar_Profesor)).equalTo("hola");
+>>>>>>> 3b1dc80173c9aa2b8f57d859aced5958b609299a
         q.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot){
                 x=0;
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
                     x++;
+<<<<<<< HEAD
                     Toast.makeText(ActivityRegistroDo.this,String.valueOf(x), Toast.LENGTH_SHORT).show();
 
+=======
+                    Toast.makeText(ActivityRegistroDo.this, "-"+x, Toast.LENGTH_SHORT).show();
+>>>>>>> 3b1dc80173c9aa2b8f57d859aced5958b609299a
                 }
             }
 
@@ -201,6 +209,15 @@ public class ActivityRegistroDo extends AppCompatActivity {
 
             }
         });
+<<<<<<< HEAD
+=======
+        Toast.makeText(this, ""+x, Toast.LENGTH_SHORT).show();
+        if(x>=1){
+            return true;
+        }else{
+            Toast.makeText(ActivityRegistroDo.this, "Este documento no pertenece a un directivo", Toast.LENGTH_SHORT).show();
+            return false;
+>>>>>>> 3b1dc80173c9aa2b8f57d859aced5958b609299a
 
     }
 
