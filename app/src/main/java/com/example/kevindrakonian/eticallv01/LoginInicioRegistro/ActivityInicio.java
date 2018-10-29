@@ -95,6 +95,8 @@ public class ActivityInicio extends AppCompatActivity {
                     case R.id.nav_correo:
                         item.setChecked(true);
                         correo();
+                        drawerLayout.closeDrawers();
+                        return true;
 
                     case R.id.nav_salir:
                         item.setChecked(true);
@@ -112,15 +114,7 @@ public class ActivityInicio extends AppCompatActivity {
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
-        salir.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                nextActivityToLoginIni();
-                finish();
-            }
-        });
     }
 
 

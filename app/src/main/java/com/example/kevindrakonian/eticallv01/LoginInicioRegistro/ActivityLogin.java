@@ -150,7 +150,7 @@ public class ActivityLogin extends AppCompatActivity {
     public boolean Validarcontraseña(){
         String Contraseña;
         Contraseña = textpasw.getText().toString();
-        if (Contraseña.length()>=8 && Contraseña.length()<=20){
+        if (Contraseña.length()>=6 && Contraseña.length()<=16){
             return true;
         }else return false;
 

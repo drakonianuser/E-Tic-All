@@ -12,10 +12,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kevindrakonian.eticallv01.Aprende.ActivityAcercaDe;
 import com.example.kevindrakonian.eticallv01.Aprende.ActivityAprende;
 import com.example.kevindrakonian.eticallv01.Aprende.ActivityCreditos;
+import com.example.kevindrakonian.eticallv01.Entidades.Firebase.Usuarios;
 import com.example.kevindrakonian.eticallv01.Entidades.Firebase.UsuariosDocentes;
 import com.example.kevindrakonian.eticallv01.Entidades.Firebase.UsuariosEstudiantes;
 import com.example.kevindrakonian.eticallv01.LoginInicioRegistro.ActivityInicio;
@@ -49,6 +51,8 @@ public class ActivityPerfilEstudiante extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
+        mAuth = FirebaseAuth.getInstance();
+        database= FirebaseDatabase.getInstance();
 
         drawerLayout =findViewById(R.id.perfilEstudiante);
         navigationView = findViewById(R.id.navegationView);
@@ -198,6 +202,7 @@ public class ActivityPerfilEstudiante extends AppCompatActivity {
         Intent siguiente = new Intent(this,ActivityLogin.class);
         startActivity(siguiente);
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -219,4 +224,6 @@ public class ActivityPerfilEstudiante extends AppCompatActivity {
             }
         });
     }
+
+
 }

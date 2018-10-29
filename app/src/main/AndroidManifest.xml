@@ -9,12 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
-        <activity
-            android:name=".ActivityRegistro"
-=======
+
         <activity android:name=".LoginInicioRegistro.ActivityRegistro"
->>>>>>> diseñoDefinitivo
             android:label="E-TIC-ALL">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
