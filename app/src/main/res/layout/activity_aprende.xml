@@ -17,14 +17,7 @@
 
     </LinearLayout>
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/navegationView"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/fondo_menu"
-        app:headerLayout="@layout/header_layout"
-        app:menu="@menu/navegation_menu" />
+
 
 
     <ScrollView
@@ -182,5 +175,14 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navegationView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/fondo_menu"
+        app:headerLayout="@layout/header_layout"
+        app:menu="@menu/navegation_menu" />
 
 </android.support.v4.widget.DrawerLayout>

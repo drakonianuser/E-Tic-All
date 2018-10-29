@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item android:id="@+id/nav_inicio"
+            android:icon="@drawable/ic_home"
+            android:title="Inicio"/>
+
+        <item android:id="@+id/nav_perfil"
+            android:icon="@drawable/ic_person"
+            android:title="Perfil"/>
+
+        <item android:id="@+id/nav_correo"
+            android:icon="@drawable/ic_mail"
+            android:title="Correo"/>
+
+        <item android:id="@+id/nav_aprende"
+            android:icon="@drawable/ic_apren"
+            android:title="Aprende"/>
+
+        <item android:id="@+id/nav_acerca_de"
+            android:icon="@drawable/ic_group"
+            android:title="Acerca De"/>
+
+        <item android:id="@+id/nav_creditos"
+            android:icon="@drawable/ic_acer"
+            android:title="Creditos"/>
+
+
+    </group>
+
+</menu>
