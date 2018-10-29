@@ -12,6 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.kevindrakonian.eticallv01.Correo.CorreoActivity;
+
 public class ActivityInicioDocente extends AppCompatActivity {
 
     private Toolbar toolbar;
@@ -63,6 +65,12 @@ public class ActivityInicioDocente extends AppCompatActivity {
                     case R.id.nav_creditos:
                         item.setChecked(true);
                         creditos();
+                        drawerLayout.closeDrawers();
+                        return true;
+
+                    case R.id.nav_correo:
+                        item.setChecked(true);
+                        correo();
                         drawerLayout.closeDrawers();
                         return true;
 
@@ -149,4 +157,13 @@ public class ActivityInicioDocente extends AppCompatActivity {
         startActivity(siguiente);
 
     }
+
+    public void correo(){
+
+        Intent siguiente = new Intent(this,CorreoActivity.class);
+        startActivity(siguiente);
+
+    }
+
+
 }

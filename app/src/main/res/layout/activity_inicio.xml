@@ -43,19 +43,6 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/boton_salir"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Salir" />
-
-                    <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="crear"
-                    android:onClick="Crearcaso"/>
-
                 <TextView
                     android:id="@+id/textView16"
                     android:layout_width="wrap_content"
@@ -95,6 +82,7 @@
                     android:layout_height="160dp"
                     android:layout_weight="1"
                     android:background="#ffff"
+                    android:onClick="Crearcaso"
                     app:srcCompat="@mipmap/ic_crear" />
 
                 <TextView

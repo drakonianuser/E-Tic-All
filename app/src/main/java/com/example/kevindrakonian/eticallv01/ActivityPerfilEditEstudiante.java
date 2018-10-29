@@ -11,6 +11,9 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.example.kevindrakonian.eticallv01.Correo.CorreoActivity;
+import com.example.kevindrakonian.eticallv01.filtro.ActivityFiltro;
+
 public class ActivityPerfilEditEstudiante extends AppCompatActivity {
 
     private Toolbar toolbar;
@@ -62,6 +65,18 @@ public class ActivityPerfilEditEstudiante extends AppCompatActivity {
                     case R.id.nav_creditos:
                         item.setChecked(true);
                         creditos();
+                        drawerLayout.closeDrawers();
+                        return true;
+
+                    case R.id.nav_crear:
+                        item.setChecked(true);
+                        crearCaso();
+                        drawerLayout.closeDrawers();
+                        return true;
+
+                    case R.id.nav_correo:
+                        item.setChecked(true);
+                        correo();
                         drawerLayout.closeDrawers();
                         return true;
 
@@ -121,6 +136,20 @@ public class ActivityPerfilEditEstudiante extends AppCompatActivity {
     public void creditos(){
 
         Intent siguiente = new Intent(this,ActivityCreditos.class);
+        startActivity(siguiente);
+
+    }
+
+    public void crearCaso(){
+
+        Intent siguiente = new Intent(this,ActivityFiltro.class);
+        startActivity(siguiente);
+
+    }
+
+    public void correo(){
+
+        Intent siguiente = new Intent(this,CorreoActivity.class);
         startActivity(siguiente);
 
     }
