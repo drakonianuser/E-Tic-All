@@ -14,7 +14,9 @@ import android.view.View;
 
 import com.example.kevindrakonian.eticallv01.LoginInicioRegistro.ActivityInicio;
 import com.example.kevindrakonian.eticallv01.ActivityPerfilEstudiante;
+import com.example.kevindrakonian.eticallv01.LoginInicioRegistro.ActivityLogin;
 import com.example.kevindrakonian.eticallv01.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ActivityAprende extends AppCompatActivity {
 
@@ -70,7 +72,11 @@ public class ActivityAprende extends AppCompatActivity {
                         drawerLayout.closeDrawers();
                         return true;
 
-
+                    case R.id.nav_salir:
+                        item.setChecked(true);
+                        salir();
+                        drawerLayout.closeDrawers();
+                        return true;
                 }
 
                 return false;
@@ -167,6 +173,12 @@ public class ActivityAprende extends AppCompatActivity {
         Intent siguiente = new Intent(this,ActivityCreditos.class);
         startActivity(siguiente);
 
+    }
+
+    public void salir(){
+        FirebaseAuth.getInstance().signOut();
+        Intent siguiente = new Intent(this,ActivityLogin.class);
+        startActivity(siguiente);
     }
 
 }

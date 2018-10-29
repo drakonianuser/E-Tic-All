@@ -83,6 +83,12 @@ public class ActivityInicio extends AppCompatActivity {
                         drawerLayout.closeDrawers();
                         return true;
 
+                    case R.id.nav_salir:
+                        item.setChecked(true);
+                        salir();
+                        drawerLayout.closeDrawers();
+                        return true;
+
                 }
 
                 return false;
@@ -187,6 +193,12 @@ public class ActivityInicio extends AppCompatActivity {
         Intent siguiente = new Intent(this,ActivityCreditos.class);
         startActivity(siguiente);
 
+    }
+
+    public void salir(){
+        FirebaseAuth.getInstance().signOut();
+        Intent siguiente = new Intent(this,ActivityLogin.class);
+        startActivity(siguiente);
     }
 
 

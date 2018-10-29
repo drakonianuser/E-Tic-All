@@ -17,6 +17,7 @@ import com.example.kevindrakonian.eticallv01.Aprende.ActivityCreditos;
 import com.example.kevindrakonian.eticallv01.ActivityPerfilDocente;
 import com.example.kevindrakonian.eticallv01.Aprende.ActivityAprende;
 import com.example.kevindrakonian.eticallv01.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ActivityInicioDocente extends AppCompatActivity {
 
@@ -72,6 +73,11 @@ public class ActivityInicioDocente extends AppCompatActivity {
                         drawerLayout.closeDrawers();
                         return true;
 
+                    case R.id.nav_salir:
+                        item.setChecked(true);
+                        salir();
+                        drawerLayout.closeDrawers();
+                        return true;
                 }
 
                 return false;
@@ -154,5 +160,10 @@ public class ActivityInicioDocente extends AppCompatActivity {
         Intent siguiente = new Intent(this,ActivityCreditos.class);
         startActivity(siguiente);
 
+    }
+    public void salir(){
+        FirebaseAuth.getInstance().signOut();
+        Intent siguiente = new Intent(this,ActivityLogin.class);
+        startActivity(siguiente);
     }
 }

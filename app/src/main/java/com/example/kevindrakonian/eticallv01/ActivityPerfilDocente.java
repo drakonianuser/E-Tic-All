@@ -11,17 +11,24 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.kevindrakonian.eticallv01.Aprende.ActivityAcercaDe;
 import com.example.kevindrakonian.eticallv01.Aprende.ActivityAprende;
 import com.example.kevindrakonian.eticallv01.Aprende.ActivityCreditos;
 import com.example.kevindrakonian.eticallv01.LoginInicioRegistro.ActivityInicioDocente;
+import com.example.kevindrakonian.eticallv01.LoginInicioRegistro.ActivityLogin;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ActivityPerfilDocente extends AppCompatActivity {
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    private TextView textViewNombre;
+    private TextView textViewUnidad;
+    private TextView textViewDepartamento;
+    private String campo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +40,9 @@ public class ActivityPerfilDocente extends AppCompatActivity {
 
         drawerLayout =findViewById(R.id.perfilDocente);
         navigationView = findViewById(R.id.navegationView);
+        textViewNombre = findViewById(R.id.perfilDocenteNombre);
+        textViewUnidad = findViewById(R.id.profesorPerfilUnidad);
+        textViewDepartamento = findViewById(R.id.profesorPerfilUnidad);
 
         //acciones del menu amburguesa
 
@@ -68,6 +78,11 @@ public class ActivityPerfilDocente extends AppCompatActivity {
                     case R.id.nav_creditos:
                         item.setChecked(true);
                         creditos();
+                        drawerLayout.closeDrawers();
+                        return true;
+                    case R.id.nav_salir:
+                        item.setChecked(true);
+                        salir();
                         drawerLayout.closeDrawers();
                         return true;
 
@@ -139,6 +154,16 @@ public class ActivityPerfilDocente extends AppCompatActivity {
         Intent siguiente = new Intent(this,ActivityCreditos.class);
         startActivity(siguiente);
 
+    }
+    public void salir(){
+        FirebaseAuth.getInstance().signOut();
+        Intent siguiente = new Intent(this,ActivityLogin.class);
+        startActivity(siguiente);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        
     }
 
 
