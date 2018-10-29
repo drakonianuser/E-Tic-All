@@ -19,6 +19,7 @@ import com.example.kevindrakonian.eticallv01.Aprende.ActivityCreditos;
 import com.example.kevindrakonian.eticallv01.LoginInicioRegistro.ActivityInicioDocente;
 import com.example.kevindrakonian.eticallv01.LoginInicioRegistro.ActivityLogin;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class ActivityPerfilDocente extends AppCompatActivity {
 
@@ -29,6 +30,8 @@ public class ActivityPerfilDocente extends AppCompatActivity {
     private TextView textViewUnidad;
     private TextView textViewDepartamento;
     private String campo;
+    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,7 +166,8 @@ public class ActivityPerfilDocente extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
     }
 
 
