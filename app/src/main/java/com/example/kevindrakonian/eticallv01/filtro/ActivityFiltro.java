@@ -63,6 +63,10 @@ public class ActivityFiltro extends AppCompatActivity {
                 listaDocente= adaterFiltro.returnLista();
                 Intent i = new Intent(v.getContext(), ActivitySelecionarDocente.class);
                 i.putExtra("keyDocente_selecionado",listaDocente.get(rvDocentes.getChildAdapterPosition(v)).getKey());
+                i.putExtra("Docente_nombre",listaDocente.get(rvDocentes.getChildAdapterPosition(v)).getNombre());
+                i.putExtra("Docente_Departamento",listaDocente.get(rvDocentes.getChildAdapterPosition(v)).getDepartamento());
+                i.putExtra("Docente_Unidad",listaDocente.get(rvDocentes.getChildAdapterPosition(v)).getUnidad());
+                i.putExtra("Docente_imagen",listaDocente.get(rvDocentes.getChildAdapterPosition(v)).getUrlImagen());
                 startActivity(i);
             }
         });

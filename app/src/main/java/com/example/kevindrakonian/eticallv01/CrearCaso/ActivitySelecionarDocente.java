@@ -55,21 +55,14 @@ public class ActivitySelecionarDocente extends AppCompatActivity {
 
         final String keyEstudiante = UsuarioDao.getInstancia().getKeyUsuario();
         final String keydocente = getIntent().getStringExtra("keyDocente_selecionado");
-        Query q = referenceDocente.orderByKey().equalTo(keydocente);
-        q.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    FiltroDocenteEntity Docente = dataSnapshot.getValue(FiltroDocenteEntity.class);
-                    tvNombreCompleto.setText(Docente.getNombre());
-                    tvDepartamento.setText(Docente.getDepartamento());
-                    tvUnidad.setText(Docente.getUnidad());
-            }
+        final String DocenteNombre = getIntent().getStringExtra("Docente_nombre");
+        final String DocenteDepartamento = getIntent().getStringExtra("Docente_Departamento");
+        final String DocenteUnidad = getIntent().getStringExtra("Docente_Unidad");
+        final String DocenteFoto = getIntent().getStringExtra("Docente_imagen");
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+        tvNombreCompleto.setText(DocenteNombre);
+        tvDepartamento.setText(DocenteDepartamento);
+        tvUnidad.setText(DocenteUnidad);
 
 
         btnCrear.setOnClickListener(new View.OnClickListener() {
