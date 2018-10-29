@@ -104,6 +104,7 @@
                     android:layout_width="121dp"
                     android:layout_height="wrap_content"
                     android:background="#FF69B9AD"
+                    android:onClick="actualizarDatosEstudiante"
                     android:text="GUARDAR"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
