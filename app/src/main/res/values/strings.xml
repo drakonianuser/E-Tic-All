@@ -13,9 +13,10 @@
     <string name="txtDocumento">Documento</string>
     <string name="btn_Enviar">Enviar</string>
     <string name="txt_Campo_mensaje">Escribe un mensaje</string>
-
+    <string name="txt_Correo">Casos</string>
 
     <string name="campo_Filtro">nombre</string>
+    <string name="campo_Correo">keyEsutudinate</string>
     <string name="campo_Validar_Existencia">Documento</string>
     <string name="campo_Validar_Profesor">dc</string>
 
