@@ -1,9 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ActivityAcercaDe">
 
-</android.support.constraint.ConstraintLayout>
+    <ScrollView
+        android:layout_width="295dp"
+        android:layout_height="488dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="22dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView73"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/textView71"
+                    android:layout_width="27dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="ACERCA DE"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:typeface="serif" />
+
+                <TextView
+                    android:id="@+id/textView72"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="288dp"
+                android:text="Esta aplicación como extensión del proyecto E-TIC-ALL fundado por el profesor Alexander Narvaez Berrio en colaboración con otros docentes y estudiantes, busca fomentar el uso responsable y ético de las TIC (tecnologías de la información) y las redes sociales, este proyecto busca apoyar esta iniciativa haciendo que los estudiantes tomen mayor participación y conocimiento del proyecto. El proyecto/aplicación busca concientizar y permitir una nueva forma de controlar y asegurar el buen uso de las TIC en las redes sociales tomando en cuenta los casos de bullyng, ciberbullyng, sexting, sexchat, grooming, etc."
+                android:typeface="serif" />
+
+            <TextView
+                android:id="@+id/textView74"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:text="Este proyecto está abalado por la ley 1273 de 2009" />
+
+            <TextView
+                android:id="@+id/textView75"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:text="Para mayor información Visita la página de facebook" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#6BA0D9"
+                android:onClick="onClick"
+                android:text="FACEBOOK"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:typeface="serif" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

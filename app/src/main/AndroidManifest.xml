@@ -5,11 +5,12 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="E-TIC-ALL"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActivityRegistro">
+        <activity android:name=".ActivityRegistro"
+            android:label="E-TIC-ALL">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,27 +34,66 @@
         <activity android:name=".Chats.ActivityChatEstudianteDocente">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".filtro.ActivityFiltro">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityDrawle" />
         <activity
             android:name=".ActivityInicio"
             android:label="Inicio" />
-        <activity android:name=".ActivityAcercaDe" />
-        <activity android:name=".ActivityAprende" />
-        <activity android:name=".ActivityBullyng" />
-        <activity android:name=".ActivityGrooming" />
-        <activity android:name=".ActivityCrime" />
-        <activity android:name=".ActivitySexting" />
-        <activity android:name=".ActivityTips"></activity>
-
+        <activity
+            android:name=".ActivityAprende"
+            android:label="Aprende" />
+        <activity
+            android:name=".ActivityBullyng"
+            android:label="CyberBullyng" />
+        <activity
+            android:name=".ActivityCrime"
+            android:label="CyberCrime" />
+        <activity
+            android:name=".ActivitySexting"
+            android:label="Sexting" />
+        <activity
+            android:name=".ActivityTips"
+            android:label="Tips" />
+        <activity
+            android:name=".ActivityPerfilEditDocente"
+            android:label="Editar" />
+        <activity
+            android:name=".ActivityPerfilDocente"
+            android:label="Perfil" />
+        <activity
+            android:name=".ActivityPerfilEditEstudiante"
+            android:label="Editar" />
+        <activity
+            android:name=".ActivityPerfilEstudiante"
+            android:label="Perfil" />
+        <activity
+            android:name=".ActivityAcercaDe"
+            android:label="Acerca De" />
+        <activity
+            android:name=".ActivitySleccionDocente"
+            android:label="Directivo" />
+        <activity
+            android:name=".ActivitySeleciconEstudiante"
+            android:label="Estudiante" />
+        <activity
+            android:name=".ActivityGrooming"
+            android:label="CyberGrooming" />
+        <activity
+            android:name=".ActivityInicioDocente"
+            android:label="Inicio" />
+        <activity
+            android:name=".ActivityAprendeDocente"
+            android:label="Aprende" />
+        <activity android:name=".ActivityCreditos"></activity>
     </application>
 
 </manifest>
