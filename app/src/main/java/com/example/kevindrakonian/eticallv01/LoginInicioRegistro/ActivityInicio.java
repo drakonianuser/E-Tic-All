@@ -1,4 +1,4 @@
-package com.example.kevindrakonian.eticallv01;
+package com.example.kevindrakonian.eticallv01.LoginInicioRegistro;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -11,24 +11,41 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+
 
 import com.example.kevindrakonian.eticallv01.Correo.CorreoActivity;
+import com.example.kevindrakonian.eticallv01.Aprende.ActivityAcercaDe;
+import com.example.kevindrakonian.eticallv01.Aprende.ActivityCreditos;
+import com.example.kevindrakonian.eticallv01.ActivityPerfilEstudiante;
+import com.example.kevindrakonian.eticallv01.Aprende.ActivityAprende;
+import com.example.kevindrakonian.eticallv01.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.example.kevindrakonian.eticallv01.filtro.ActivityFiltro;
 
-public class ActivityInicioDocente extends AppCompatActivity {
+
+public class ActivityInicio extends AppCompatActivity {
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
+
+    private Button salir;
+
     private NavigationView navigationView;
 
+
+    //menu haburguesa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inicio_docente);
+        setContentView(R.layout.activity_inicio);
 
         toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
 
-        drawerLayout =findViewById(R.id.inicioDocente);
+        drawerLayout =findViewById(R.id.inicio);
+
+
         navigationView = findViewById(R.id.navegationView);
 
         //acciones del menu amburguesa
@@ -46,7 +63,7 @@ public class ActivityInicioDocente extends AppCompatActivity {
 
                     case R.id.nav_perfil:
                         item.setChecked(true);
-                        prefilDocentes();
+                        prefilEstudiantes();
                         drawerLayout.closeDrawers();
                         return true;
 
@@ -68,9 +85,20 @@ public class ActivityInicioDocente extends AppCompatActivity {
                         drawerLayout.closeDrawers();
                         return true;
 
+
+                    case R.id.nav_crear:
+                        item.setChecked(true);
+                        crearCaso();
+                        drawerLayout.closeDrawers();
+                        return true;
+
                     case R.id.nav_correo:
                         item.setChecked(true);
                         correo();
+
+                    case R.id.nav_salir:
+                        item.setChecked(true);
+                        salir();
                         drawerLayout.closeDrawers();
                         return true;
 
@@ -80,10 +108,22 @@ public class ActivityInicioDocente extends AppCompatActivity {
             }
         });
 
+
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        salir.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                nextActivityToLoginIni();
+                finish();
+            }
+        });
     }
+
+
 
     //menu hamburguesa
     @Override
@@ -106,13 +146,24 @@ public class ActivityInicioDocente extends AppCompatActivity {
 
     }
 
-    public void perfil(View view){
+    public void prefilEstudiantes(View view){
 
-        Intent siguiente = new Intent(this,ActivityPerfilDocente.class);
+        Intent siguiente = new Intent(this,ActivityPerfilEstudiante.class);
         startActivity(siguiente);
 
     }
 
+
+    private void nextActivityToLoginIni(){
+        startActivity(new Intent(ActivityInicio.this,ActivityLogin.class));
+        finish();
+    }
+
+
+    public void Crearcaso(View view){
+        Intent siguiente = new Intent(this,ActivityFiltro.class);
+        startActivity(siguiente);
+    }
     public void acercaDe(View view){
 
         Intent siguiente = new Intent(this,ActivityAcercaDe.class);
@@ -120,12 +171,11 @@ public class ActivityInicioDocente extends AppCompatActivity {
 
     }
 
-
     //metodos para el menu hamburguesa
 
     public void inicio(){
 
-        Intent siguiente = new Intent(this,ActivityInicioDocente.class);
+        Intent siguiente = new Intent(this,ActivityInicio.class);
         startActivity(siguiente);
 
     }
@@ -137,9 +187,9 @@ public class ActivityInicioDocente extends AppCompatActivity {
 
     }
 
-    public void prefilDocentes(){
+    public void prefilEstudiantes(){
 
-        Intent siguiente = new Intent(this,ActivityPerfilDocente.class);
+        Intent siguiente = new Intent(this,ActivityPerfilEstudiante.class);
         startActivity(siguiente);
 
     }
@@ -158,11 +208,25 @@ public class ActivityInicioDocente extends AppCompatActivity {
 
     }
 
-    public void correo(){
 
-        Intent siguiente = new Intent(this,CorreoActivity.class);
+    public void crearCaso(){
+
+        Intent siguiente = new Intent(this,ActivityFiltro.class);
         startActivity(siguiente);
 
+    }
+
+    public void correo() {
+
+        Intent siguiente = new Intent(this, CorreoActivity.class);
+        startActivity(siguiente);
+    }
+
+
+    public void salir(){
+        FirebaseAuth.getInstance().signOut();
+        Intent siguiente = new Intent(this,ActivityLogin.class);
+        startActivity(siguiente);
     }
 
 

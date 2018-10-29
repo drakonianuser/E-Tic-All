@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#ffff"
     android:id="@+id/inicioDocente"
-    tools:context=".ActivityInicioDocente">
+    tools:context=".LoginInicioRegistro.ActivityInicioDocente">
 
     <LinearLayout
         android:layout_width="match_parent"

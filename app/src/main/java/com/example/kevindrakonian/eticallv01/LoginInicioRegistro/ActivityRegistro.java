@@ -1,4 +1,4 @@
-package com.example.kevindrakonian.eticallv01;
+package com.example.kevindrakonian.eticallv01.LoginInicioRegistro;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 import com.example.kevindrakonian.eticallv01.Entidades.Firebase.UsuariosEstudiantes;
+import com.example.kevindrakonian.eticallv01.R;
 import com.example.kevindrakonian.eticallv01.Utilidades.Constantes;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

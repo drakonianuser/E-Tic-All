@@ -1,4 +1,4 @@
-package com.example.kevindrakonian.eticallv01;
+package com.example.kevindrakonian.eticallv01.LoginInicioRegistro;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.kevindrakonian.eticallv01.Entidades.Firebase.Usuarios;
+import com.example.kevindrakonian.eticallv01.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -82,7 +83,13 @@ public class ActivityLogin extends AppCompatActivity {
                                                 progressDialog.dismiss();
                                                 Usuarios usuario = dataSnapshot.getValue(Usuarios.class);
                                                 Toast.makeText(ActivityLogin.this, "Este Usuario es: " + usuario.getPerfil(), Toast.LENGTH_SHORT).show();
-                                                nextActivityToInicio();
+                                                if(usuario.getPerfil().equals("Estudiante")){
+                                                    nextActivityToInicio();
+                                                    finish();
+                                                }else if(usuario.getPerfil().equals("Directivo")){
+                                                    nextActivityToInicioDo();
+                                                    finish();
+                                                }
                                             }
 
                                             @Override
@@ -153,6 +160,25 @@ public class ActivityLogin extends AppCompatActivity {
         super.onResume();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser!=null){
+            DatabaseReference reference = database.getReference("Usuarios/"+currentUser.getUid());
+            reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Usuarios usuario = dataSnapshot.getValue(Usuarios.class);
+                    if(usuario.getPerfil().equals("Estudiante")){
+                        nextActivityToInicio();
+                        finish();
+                    }else if(usuario.getPerfil().equals("Directivo")){
+                        nextActivityToInicioDo();
+                        finish();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
             Toast.makeText(this,"usuario Logeado", Toast.LENGTH_SHORT).show();
 
             nextActivityToInicio();
@@ -160,6 +186,10 @@ public class ActivityLogin extends AppCompatActivity {
     }
     private void nextActivityToInicio(){
         startActivity(new Intent(ActivityLogin.this,ActivityInicio.class));
+        finish();
+    }
+    private void nextActivityToInicioDo(){
+        startActivity(new Intent(ActivityLogin.this,ActivityInicioDocente.class));
         finish();
     }
 

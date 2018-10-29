@@ -61,7 +61,8 @@
                     android:layout_weight="1"
                     android:background="#ffff"
                     android:onClick="editar"
-                    app:srcCompat="@drawable/ic_edit" />
+                    app:srcCompat="@drawable/ic_edit"
+                    tools:ignore="VectorDrawableCompat" />
 
             </LinearLayout>
 
@@ -103,7 +104,7 @@
                     android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/perfilEstudianteNombre"
                     android:layout_width="wrap_content"
                     android:layout_height="33dp"
                     android:text="Juan Amdres Lopez Lopez"
@@ -154,7 +155,7 @@
                     android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/perfilEstudianteGrado"
                     android:layout_width="29dp"
                     android:layout_height="29dp"
                     android:text="XI"
@@ -179,14 +180,6 @@
                     android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/textView10"
-                    android:layout_width="75dp"
-                    android:layout_height="29dp"
-                    android:text="SECCION"
-                    android:textStyle="bold"
-                    android:typeface="serif" />
-
-                <TextView
                     android:id="@+id/textView44"
                     android:layout_width="18dp"
                     android:layout_height="wrap_content"
@@ -203,13 +196,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="22dp"
-                    android:layout_height="34dp"
-                    android:text="8"
-                    android:typeface="serif" />
 
                 <TextView
                     android:id="@+id/textView46"

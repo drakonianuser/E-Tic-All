@@ -1,4 +1,4 @@
-package com.example.kevindrakonian.eticallv01;
+package com.example.kevindrakonian.eticallv01.Aprende;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -14,6 +14,11 @@ import android.view.View;
 
 import com.example.kevindrakonian.eticallv01.Correo.CorreoActivity;
 import com.example.kevindrakonian.eticallv01.filtro.ActivityFiltro;
+import com.example.kevindrakonian.eticallv01.LoginInicioRegistro.ActivityInicio;
+import com.example.kevindrakonian.eticallv01.ActivityPerfilEstudiante;
+import com.example.kevindrakonian.eticallv01.LoginInicioRegistro.ActivityLogin;
+import com.example.kevindrakonian.eticallv01.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ActivityAprende extends AppCompatActivity {
 
@@ -82,6 +87,11 @@ public class ActivityAprende extends AppCompatActivity {
                         return true;
 
 
+                    case R.id.nav_salir:
+                        item.setChecked(true);
+                        salir();
+                        drawerLayout.closeDrawers();
+                        return true;
                 }
 
                 return false;
@@ -180,6 +190,7 @@ public class ActivityAprende extends AppCompatActivity {
 
     }
 
+
     public void crearCaso(){
 
         Intent siguiente = new Intent(this,ActivityFiltro.class);
@@ -187,11 +198,15 @@ public class ActivityAprende extends AppCompatActivity {
 
     }
 
-    public void correo(){
+    public void correo() {
 
-        Intent siguiente = new Intent(this,CorreoActivity.class);
+        Intent siguiente = new Intent(this, CorreoActivity.class);
         startActivity(siguiente);
-
+    }
+    public void salir(){
+        FirebaseAuth.getInstance().signOut();
+        Intent siguiente = new Intent(this,ActivityLogin.class);
+        startActivity(siguiente);
     }
 
 }

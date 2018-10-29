@@ -11,6 +11,22 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
+import com.example.kevindrakonian.eticallv01.Aprende.ActivityAcercaDe;
+import com.example.kevindrakonian.eticallv01.Aprende.ActivityAprende;
+import com.example.kevindrakonian.eticallv01.Aprende.ActivityCreditos;
+import com.example.kevindrakonian.eticallv01.Entidades.Firebase.Usuarios;
+import com.example.kevindrakonian.eticallv01.Entidades.Firebase.UsuariosDocentes;
+import com.example.kevindrakonian.eticallv01.LoginInicioRegistro.ActivityInicioDocente;
+import com.example.kevindrakonian.eticallv01.LoginInicioRegistro.ActivityLogin;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import com.example.kevindrakonian.eticallv01.Correo.CorreoActivity;
 
@@ -19,6 +35,13 @@ public class ActivityPerfilDocente extends AppCompatActivity {
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    private TextView textViewNombre;
+    private TextView textViewUnidad;
+    private TextView textViewDepartamento;
+    private String campo;
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase database;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +53,9 @@ public class ActivityPerfilDocente extends AppCompatActivity {
 
         drawerLayout =findViewById(R.id.perfilDocente);
         navigationView = findViewById(R.id.navegationView);
+        textViewNombre = findViewById(R.id.perfilDocenteNombre);
+        textViewUnidad = findViewById(R.id.profesorPerfilUnidad);
+        textViewDepartamento = findViewById(R.id.profesorPerfilUnidad);
 
         //acciones del menu amburguesa
 
@@ -65,6 +91,11 @@ public class ActivityPerfilDocente extends AppCompatActivity {
                     case R.id.nav_creditos:
                         item.setChecked(true);
                         creditos();
+                        drawerLayout.closeDrawers();
+                        return true;
+                    case R.id.nav_salir:
+                        item.setChecked(true);
+                        salir();
                         drawerLayout.closeDrawers();
                         return true;
 
@@ -142,6 +173,34 @@ public class ActivityPerfilDocente extends AppCompatActivity {
         Intent siguiente = new Intent(this,ActivityCreditos.class);
         startActivity(siguiente);
 
+    }
+    public void salir(){
+        FirebaseAuth.getInstance().signOut();
+        Intent siguiente = new Intent(this,ActivityLogin.class);
+        startActivity(siguiente);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        DatabaseReference reference = database.getReference("Usuarios/"+currentUser.getUid());
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                UsuariosDocentes docente = dataSnapshot.getValue(UsuariosDocentes.class);
+                campo = docente.getNombre();
+                textViewNombre.setText(campo);
+                campo = docente.getUnidad();
+                textViewUnidad.setText(campo);
+                campo = docente.getDepartamento();
+                textViewDepartamento.setText(campo);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void correo(){
