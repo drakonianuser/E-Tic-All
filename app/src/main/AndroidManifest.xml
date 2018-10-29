@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActivityRegistro"
+        <activity
+            android:name=".ActivityRegistro"
             android:label="E-TIC-ALL">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,9 +49,8 @@
         <activity
             android:name=".ActivityInicio"
             android:label="Inicio" />
-
         <activity android:name=".CrearCaso.ActivitySelecionarDocente" />
-        <activity android:name=".CrearCaso.ActivityCrearCaso"></activity>
+        <activity android:name=".CrearCaso.ActivityCrearCaso" />
         <activity
             android:name=".ActivityAprende"
             android:label="Aprende" />
@@ -96,7 +96,8 @@
         <activity
             android:name=".ActivityAprendeDocente"
             android:label="Aprende" />
-        <activity android:name=".ActivityCreditos"></activity>
+        <activity android:name=".ActivityCreditos" />
+        <activity android:name=".Correo.CorreoActivity"></activity>
     </application>
 
 </manifest>
