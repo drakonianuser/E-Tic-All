@@ -38,7 +38,6 @@ public class ActivityInicio extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         drawerLayout =findViewById(R.id.inicio);
-        salir = findViewById(R.id.boton_salir);
 
         navigationView = findViewById(R.id.navegationView);
 

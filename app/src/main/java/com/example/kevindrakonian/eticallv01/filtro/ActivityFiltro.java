@@ -75,6 +75,24 @@ public class ActivityFiltro extends AppCompatActivity {
         rvDocentes.setLayoutManager(l);
         rvDocentes.setAdapter(adaterFiltro);
 
+        Query q=reference.orderByChild(getString(R.string.Carga_inicial)).equalTo("Docente").limitToFirst(10);
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot){
+                adaterFiltro.ClearList();
+                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
+                    FiltroDocenteEntity filtro = dataSnapshot1.getValue(FiltroDocenteEntity.class);
+                    filtro.setKey(dataSnapshot1.getKey());
+                    Toast.makeText(ActivityFiltro.this, "he encontrado",Toast.LENGTH_SHORT).show();
+                    adaterFiltro.addDocente(filtro);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
         btnfiltro.setOnClickListener(new View.OnClickListener() {
