@@ -61,7 +61,8 @@
                     android:layout_weight="1"
                     android:background="#ffff"
                     android:onClick="editar"
-                    app:srcCompat="@drawable/ic_edit" />
+                    app:srcCompat="@drawable/ic_edit"
+                    tools:ignore="VectorDrawableCompat" />
 
             </LinearLayout>
 

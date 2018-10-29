@@ -16,10 +16,17 @@ import android.widget.TextView;
 import com.example.kevindrakonian.eticallv01.Aprende.ActivityAcercaDe;
 import com.example.kevindrakonian.eticallv01.Aprende.ActivityAprende;
 import com.example.kevindrakonian.eticallv01.Aprende.ActivityCreditos;
+import com.example.kevindrakonian.eticallv01.Entidades.Firebase.Usuarios;
+import com.example.kevindrakonian.eticallv01.Entidades.Firebase.UsuariosDocentes;
 import com.example.kevindrakonian.eticallv01.LoginInicioRegistro.ActivityInicioDocente;
 import com.example.kevindrakonian.eticallv01.LoginInicioRegistro.ActivityLogin;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ActivityPerfilDocente extends AppCompatActivity {
 
@@ -31,6 +38,7 @@ public class ActivityPerfilDocente extends AppCompatActivity {
     private TextView textViewDepartamento;
     private String campo;
     private FirebaseAuth mAuth;
+    private FirebaseDatabase database;
 
 
     @Override
@@ -167,7 +175,24 @@ public class ActivityPerfilDocente extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        DatabaseReference reference = database.getReference("Usuarios/"+currentUser.getUid());
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                UsuariosDocentes docente = dataSnapshot.getValue(UsuariosDocentes.class);
+                campo = docente.getNombre();
+                textViewNombre.setText(campo);
+                campo = docente.getUnidad();
+                textViewUnidad.setText(campo);
+                campo = docente.getDepartamento();
+                textViewDepartamento.setText(campo);
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 
