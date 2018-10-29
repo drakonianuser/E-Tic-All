@@ -21,7 +21,7 @@ public class UsuarioDao {
     private DatabaseReference referenceUSUARIOS;
 
     public static UsuarioDao getInstancia(){
-        if(usuarioDao==null) usuarioDao= new UsuarioDao();
+        if(usuarioDao==null) {usuarioDao= new UsuarioDao();}
         return usuarioDao;
     }
     public String getKeyUsuario(){

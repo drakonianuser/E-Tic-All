@@ -55,7 +55,7 @@ public class ActivityCrearCaso extends AppCompatActivity {
                     caso.setKeyDocente(keyDocente);
                     caso.setKeyEsutudinate(keyEstudiante);
                     caso.setTitulo(titulo);
-                    caso.setSalaChat(""+keyDocente+"/"+keyEstudiante);
+                    caso.setSalaChat(""+keyEstudiante+"/"+keyDocente);
 
                     //envio y Creasion
                     referenceCasos.push().setValue(caso);

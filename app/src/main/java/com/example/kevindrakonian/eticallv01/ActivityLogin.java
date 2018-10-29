@@ -147,6 +147,7 @@ public class ActivityLogin extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser!=null){
             Toast.makeText(this,"usuario Logeado", Toast.LENGTH_SHORT).show();
+
             nextActivityToInicio();
         }
     }

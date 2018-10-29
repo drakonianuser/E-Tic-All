@@ -1,18 +1,35 @@
 package com.example.kevindrakonian.eticallv01.Entidades.Firebase;
 
-import com.google.firebase.database.ServerValue;
-
 public class MensajeEntity {
-
     private String mensaje;
-    private String  UrlFoto;
-    private boolean EnviaFoto;
-    private String keyEmisor;
-    private Object createdTimestamp;
+    private String  foto_envia;
+    private String nombre;
+    private String foto;
+
+    private String type;
+    private int id_autor;
+
 
     public MensajeEntity() {
-        createdTimestamp = ServerValue.TIMESTAMP;
     }
+
+    public MensajeEntity(String mensaje, String nombre, String foto, String type, int id_autor) {
+        this.mensaje = mensaje;
+        this.nombre = nombre;
+        this.foto = foto;
+        this.type = type;
+        this.id_autor = id_autor;
+    }
+
+    public MensajeEntity(String mensaje, String foto_envia, String nombre, String foto, String type, int id_autor) {
+        this.mensaje = mensaje;
+        this.foto_envia = foto_envia;
+        this.nombre = nombre;
+        this.foto = foto;
+        this.type = type;
+        this.id_autor = id_autor;
+    }
+
 
     public String getMensaje() {
         return mensaje;
@@ -22,31 +39,43 @@ public class MensajeEntity {
         this.mensaje = mensaje;
     }
 
-    public String getUrlFoto() {
-        return UrlFoto;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setUrlFoto(String urlFoto) {
-        UrlFoto = urlFoto;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public boolean isEnviaFoto() {
-        return EnviaFoto;
+    public String getFoto() {
+        return foto;
     }
 
-    public void setEnviaFoto(boolean enviaFoto) {
-        EnviaFoto = enviaFoto;
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
-    public String getKeyEmisor() {
-        return keyEmisor;
+    public String getType() {
+        return type;
     }
 
-    public void setKeyEmisor(String keyEmisor) {
-        this.keyEmisor = keyEmisor;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public Object getCreatedTimestamp() {
-        return createdTimestamp;
+    public int getId_autor() {
+        return id_autor;
+    }
+
+    public void setId_autor(int id_autor) {
+        this.id_autor = id_autor;
+    }
+
+    public String getFoto_envia() {
+        return foto_envia;
+    }
+
+    public void setFoto_envia(String foto_envia) {
+        this.foto_envia = foto_envia;
     }
 }

@@ -2,9 +2,9 @@ package com.example.kevindrakonian.eticallv01.Chats;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -13,13 +13,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.kevindrakonian.eticallv01.Adatadores.MensajeAdapter;
-import com.example.kevindrakonian.eticallv01.Entidades.Firebase.MensajeEntity;
-import com.example.kevindrakonian.eticallv01.Entidades.Logica.LMensaje;
+import com.example.kevindrakonian.eticallv01.Adatadores.AdapterMensajes;
+import com.example.kevindrakonian.eticallv01.Entidades.Firebase.MensajeEnviarEntity;
+import com.example.kevindrakonian.eticallv01.Entidades.Firebase.MensajeRecibirEntity;
 import com.example.kevindrakonian.eticallv01.R;
-import com.example.kevindrakonian.eticallv01.persistencia.UsuarioDao;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -44,9 +42,8 @@ public class ActivityChatEstudianteDocente extends AppCompatActivity {
     private ImageButton enviar_imagen;
 
     private static final int PHOTO_SEND = 1;
-    private String SalaChat;
 
-    private MensajeAdapter adapter;
+    private AdapterMensajes adapter;
 
     private FirebaseDatabase database;
     private DatabaseReference reference;
@@ -66,39 +63,22 @@ public class ActivityChatEstudianteDocente extends AppCompatActivity {
         btnEnviar =  (Button) findViewById(R.id.enviar);
         enviar_imagen = (ImageButton) findViewById(R.id.enviar_imagen);
 
-        SalaChat= getIntent().getStringExtra("SalaDeChat");
-
-        if (SalaChat.isEmpty()){
-            Toast.makeText(this, "Error: "+SalaChat, Toast.LENGTH_SHORT).show();
-            SalaChat = "chat";
-        }
-
+        final String  Salachat = getIntent().getStringExtra("SalaDeChat");
 
         database = FirebaseDatabase.getInstance();
-        reference = database.getReference("chat");//salas de los chats
+        reference = database.getReference(Salachat);//salas de los chats
         storage = FirebaseStorage.getInstance();
 
 
-        adapter = new MensajeAdapter(this);
+        adapter = new AdapterMensajes(this);
         LinearLayoutManager l = new LinearLayoutManager(this);
         rvMensajes.setLayoutManager(l);
         rvMensajes.setAdapter(adapter);
-
-
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String txtmensaje = etMensaje.getText().toString();
-                if (!txtmensaje.isEmpty()){
-
-                MensajeEntity mensaje = new MensajeEntity();
-                mensaje.setMensaje(txtmensaje);
-                mensaje.setEnviaFoto(false);
-                mensaje.setKeyEmisor(UsuarioDao.getInstancia().getKeyUsuario());
-
-                reference.push().setValue(mensaje);
-                etMensaje.setText("");
-                }
+              reference.push().setValue(new MensajeEnviarEntity(etMensaje.getText().toString(),tvnombre.getText().toString(),"","1",1,ServerValue.TIMESTAMP));
+              etMensaje.setText("");
             }
         });
 
@@ -123,9 +103,8 @@ public class ActivityChatEstudianteDocente extends AppCompatActivity {
         reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                MensajeEntity mensaje = dataSnapshot.getValue(MensajeEntity.class);
-                LMensaje lmensaje = new LMensaje(dataSnapshot.getKey(),mensaje);
-                adapter.addMensaje(lmensaje);
+                MensajeRecibirEntity m = dataSnapshot.getValue(MensajeRecibirEntity.class);
+                adapter.addMensaje(m);
             }
 
             @Override
@@ -157,10 +136,11 @@ public class ActivityChatEstudianteDocente extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        final String  Salachat = getIntent().getStringExtra("SalaDeChat");
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PHOTO_SEND && resultCode == RESULT_OK){
             Uri u = data.getData();
-            storageRef = storage.getReference(SalaChat);//Carpeta  de la imagen
+            storageRef = storage.getReference("imagenes_"+Salachat);//Carpeta  de la imagen
             final StorageReference FOTO_REF = storageRef.child(u.getLastPathSegment());
             FOTO_REF.putFile(u).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override
@@ -175,12 +155,8 @@ public class ActivityChatEstudianteDocente extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Uri> task) {
                     if (task.isSuccessful()){
                         Uri uri = task.getResult();
-                        MensajeEntity mensaje = new MensajeEntity();
-                        mensaje.setMensaje("Ha enviado una foto");
-                        mensaje.setUrlFoto(uri.toString());
-                        mensaje.setEnviaFoto(true);
-                        mensaje.setKeyEmisor(UsuarioDao.getInstancia().getKeyUsuario());
-                        reference.push().setValue(mensaje);
+                        MensajeEnviarEntity m = new MensajeEnviarEntity(tvnombre.getText().toString()+" te envio una foto",uri.toString(),tvnombre.getText().toString(),"","2",2,ServerValue.TIMESTAMP);
+                        reference.push().setValue(m);
                     }
                 }
             });

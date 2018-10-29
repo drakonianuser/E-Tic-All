@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
-import com.example.kevindrakonian.eticallv01.Entidades.Logica.LMensaje;
+import com.example.kevindrakonian.eticallv01.Entidades.Firebase.MensajeRecibirEntity;
 import com.example.kevindrakonian.eticallv01.Holder.MensajeHolder;
 import com.example.kevindrakonian.eticallv01.R;
 
@@ -16,17 +16,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MensajeAdapter /*extends RecyclerView.Adapter <MensajeHolder>*/ {
-/*
-    private List<LMensaje> listamensajes = new ArrayList<>();
+public class AdapterMensajes extends RecyclerView.Adapter <MensajeHolder> {
+
+    private List<MensajeRecibirEntity> listamensajes = new ArrayList<>();
     private Context c;
 
-    public MensajeAdapter(Context c) {
+    public AdapterMensajes(Context c) {
         this.c = c;
     }
 
-    public void addMensaje(LMensaje lMensaje){
-     listamensajes.add(lMensaje);
+    public void addMensaje(MensajeRecibirEntity me){
+     listamensajes.add(me);
      notifyItemInserted(listamensajes.size());
     }
 
@@ -38,29 +38,26 @@ public class MensajeAdapter /*extends RecyclerView.Adapter <MensajeHolder>*/ {
 
     @Override
     public void onBindViewHolder(MensajeHolder holder, int position) {
-        LMensaje lmensaje = listamensajes.get(position);
+        holder.getNombre().setText(listamensajes.get(position).getNombre());
+        holder.getMensaje().setText(listamensajes.get(position).getMensaje());
 
-        holder.getNombre().setText(lmensaje.getlUsuario().getUsuarios().getNombre());
-        holder.getMensaje().setText(lmensaje.getMensajeEntity().getMensaje());
-        /*
-        if (lmensaje.getMensajeEntity().isEnviaFoto()){
+        if (listamensajes.get(position).getType().equals("2")){
             holder.getFotoMensaje().setVisibility(View.VISIBLE);
             holder.getMensaje().setVisibility(View.VISIBLE);
-            Glide.with(c).load(lmensaje.getMensajeEntity().getUrlFoto()).into(holder.getFotoMensaje());
-        }else {
+            Glide.with(c).load(listamensajes.get(position).getFoto_envia()).into(holder.getFotoMensaje());
+        }else if (listamensajes.get(position).getType().equals("1")){
             holder.getFotoMensaje().setVisibility(View.GONE);
             holder.getMensaje().setVisibility(View.VISIBLE);
         }
 
-        Glide.with(c).load(lmensaje.getMensajeEntity().getUrlFoto()).into(holder.getFoto());
-
-        holder.getHora().setText(lmensaje.FechaEnvioMensaje());
-
+        Long condigoHora = listamensajes.get(position).getHora();
+        Date d = new Date(condigoHora);
+        SimpleDateFormat ho = new SimpleDateFormat("hh:mm:ss a");
+        holder.getHora().setText(ho.format(d));
     }
 
     @Override
     public int getItemCount() {
         return listamensajes.size();
     }
-    */
 }

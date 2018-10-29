@@ -59,12 +59,10 @@ public class ActivitySelecionarDocente extends AppCompatActivity {
         q.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
                     FiltroDocenteEntity Docente = dataSnapshot.getValue(FiltroDocenteEntity.class);
                     tvNombreCompleto.setText(Docente.getNombre());
                     tvDepartamento.setText(Docente.getDepartamento());
                     tvUnidad.setText(Docente.getUnidad());
-                }
             }
 
             @Override

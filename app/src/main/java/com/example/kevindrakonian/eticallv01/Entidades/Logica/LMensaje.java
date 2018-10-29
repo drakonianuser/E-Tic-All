@@ -7,10 +7,18 @@ import java.util.Date;
 import java.util.Locale;
 
 public class LMensaje {
-
+/*
     private String key;
     private MensajeEntity mensajeEntity;
     private LUsuario lUsuario;
+
+    public LMensaje() {
+
+    }
+
+    public LMensaje(MensajeEntity mensajeEntity) {
+        this.mensajeEntity = mensajeEntity;
+    }
 
     public LMensaje(String key, MensajeEntity mensajeEntity) {
         this.key = key;
@@ -33,7 +41,7 @@ public class LMensaje {
         this.mensajeEntity = mensajeEntity;
     }
 
-    public long getCeatedTimestampLong(){
+    public long getCreatedTimestampLong(){
         return (long) mensajeEntity.getCreatedTimestamp();
     }
 
@@ -47,9 +55,9 @@ public class LMensaje {
 
 
     public String FechaEnvioMensaje(){
-        Date date = new Date(getCeatedTimestampLong());
+        Date date = new Date(getCreatedTimestampLong());
         SimpleDateFormat hora = new SimpleDateFormat("hh:mm:ss a",Locale.getDefault());
         return hora.format(date);
     }
-
+*/
 }
