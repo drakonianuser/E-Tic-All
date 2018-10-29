@@ -49,6 +49,8 @@ public class ActivityPerfilEstudiante extends AppCompatActivity {
 
         drawerLayout =findViewById(R.id.perfilEstudiante);
         navigationView = findViewById(R.id.navegationView);
+        textViewGrado = findViewById(R.id.perfilEstudianteGrado);
+        textViewNombre = findViewById(R.id.perfilEstudianteNombre);
 
 
         //acciones del menu amburguesa

@@ -10,17 +10,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.kevindrakonian.eticallv01.Aprende.ActivityAcercaDe;
 import com.example.kevindrakonian.eticallv01.Aprende.ActivityAprende;
 import com.example.kevindrakonian.eticallv01.Aprende.ActivityCreditos;
 import com.example.kevindrakonian.eticallv01.LoginInicioRegistro.ActivityInicio;
+import com.example.kevindrakonian.eticallv01.LoginInicioRegistro.ActivityLogin;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 
 public class ActivityPerfilEditEstudiante extends AppCompatActivity {
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    private EditText textNombre,textApellido,textGrado;
+    private DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +39,9 @@ public class ActivityPerfilEditEstudiante extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
+        textNombre = findViewById(R.id.editTextNombreEstudiante);
+        textApellido = findViewById(R.id.editTextApellidoEstudiante);
+        textGrado = findViewById(R.id.editTextGradoEstudiante);
 
         drawerLayout =findViewById(R.id.editestudiante);
         navigationView = findViewById(R.id.navegationView);
@@ -69,6 +82,13 @@ public class ActivityPerfilEditEstudiante extends AppCompatActivity {
                         creditos();
                         drawerLayout.closeDrawers();
                         return true;
+
+                    case R.id.nav_salir:
+                        item.setChecked(true);
+                        salir();
+                        drawerLayout.closeDrawers();
+                        return true;
+
 
                 }
 
@@ -127,6 +147,28 @@ public class ActivityPerfilEditEstudiante extends AppCompatActivity {
 
         Intent siguiente = new Intent(this,ActivityCreditos.class);
         startActivity(siguiente);
+
+    }
+
+    public void salir(){
+        FirebaseAuth.getInstance().signOut();
+        Intent siguiente = new Intent(this,ActivityLogin.class);
+        startActivity(siguiente);
+    }
+
+    public void actualizarDatosEstudiante(View view){
+        String nombre = textNombre.getText().toString();
+        String apellidos = textApellido.getText().toString();
+        String grado = textGrado.getText().toString();
+        if(!nombre.isEmpty() && !apellidos.isEmpty() && !grado.isEmpty()){
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+            mDatabase.child("Usuarios").child(currentUser.getUid()).child("nombre").setValue(textNombre.getText().toString());
+            mDatabase.child("Usuarios").child(currentUser.getUid()).child("apellidos").setValue(textApellido.getText().toString());
+            mDatabase.child("Usuarios").child(currentUser.getUid()).child("grado").setValue(textGrado.getText().toString());
+            Toast.makeText(ActivityPerfilEditEstudiante.this,"se actualizaron los datos",Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(ActivityPerfilEditEstudiante.this,"Debe Rellenar los campos",Toast.LENGTH_SHORT).show();
+        }
 
     }
 

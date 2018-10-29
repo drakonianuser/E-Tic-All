@@ -59,7 +59,7 @@
             </LinearLayout>
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/editTextDocenteNombre"
                 android:layout_width="match_parent"
                 android:layout_height="57dp"
                 android:ems="10"
@@ -68,7 +68,7 @@
                 android:typeface="serif" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/editTextDocenteApellido"
                 android:layout_width="match_parent"
                 android:layout_height="57dp"
                 android:ems="10"
@@ -77,7 +77,7 @@
                 android:typeface="serif" />
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/editTextDocenteUnidad"
                 android:layout_width="match_parent"
                 android:layout_height="59dp"
                 android:ems="10"
@@ -86,7 +86,7 @@
                 android:typeface="serif" />
 
             <EditText
-                android:id="@+id/editText5"
+                android:id="@+id/editTextDocenteDepartamento"
                 android:layout_width="match_parent"
                 android:layout_height="57dp"
                 android:ems="10"
@@ -110,6 +110,7 @@
                     android:layout_width="168dp"
                     android:layout_height="wrap_content"
                     android:background="#FF69B9AD"
+                    android:onClick="actualizarDatos"
                     android:text="GUARDAR"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
