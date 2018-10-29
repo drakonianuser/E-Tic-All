@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/aprendeDocente"
     android:background="#ffff"
-    tools:context=".ActivityAprendeDocente">
+    tools:context=".Aprende.ActivityAprendeDocente">
 
     <LinearLayout
         android:layout_width="match_parent"

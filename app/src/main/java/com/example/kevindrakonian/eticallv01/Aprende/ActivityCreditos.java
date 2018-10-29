@@ -1,7 +1,9 @@
-package com.example.kevindrakonian.eticallv01;
+package com.example.kevindrakonian.eticallv01.Aprende;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.kevindrakonian.eticallv01.R;
 
 public class ActivityCreditos extends AppCompatActivity {
 

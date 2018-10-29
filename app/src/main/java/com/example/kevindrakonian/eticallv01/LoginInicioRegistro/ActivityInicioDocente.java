@@ -1,4 +1,4 @@
-package com.example.kevindrakonian.eticallv01;
+package com.example.kevindrakonian.eticallv01.LoginInicioRegistro;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -11,33 +11,28 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import com.google.firebase.auth.FirebaseAuth;
-import com.example.kevindrakonian.eticallv01.filtro.ActivityFiltro;
 
+import com.example.kevindrakonian.eticallv01.Aprende.ActivityAcercaDe;
+import com.example.kevindrakonian.eticallv01.Aprende.ActivityCreditos;
+import com.example.kevindrakonian.eticallv01.ActivityPerfilDocente;
+import com.example.kevindrakonian.eticallv01.Aprende.ActivityAprende;
+import com.example.kevindrakonian.eticallv01.R;
 
-public class ActivityInicio extends AppCompatActivity {
+public class ActivityInicioDocente extends AppCompatActivity {
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
-
-    private Button salir;
-
     private NavigationView navigationView;
 
-
-    //menu haburguesa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inicio);
+        setContentView(R.layout.activity_inicio_docente);
 
         toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
 
-        drawerLayout =findViewById(R.id.inicio);
-        salir = findViewById(R.id.boton_salir);
-
+        drawerLayout =findViewById(R.id.inicioDocente);
         navigationView = findViewById(R.id.navegationView);
 
         //acciones del menu amburguesa
@@ -55,7 +50,7 @@ public class ActivityInicio extends AppCompatActivity {
 
                     case R.id.nav_perfil:
                         item.setChecked(true);
-                        prefilEstudiantes();
+                        prefilDocentes();
                         drawerLayout.closeDrawers();
                         return true;
 
@@ -83,22 +78,10 @@ public class ActivityInicio extends AppCompatActivity {
             }
         });
 
-
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
-        salir.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                nextActivityToLoginIni();
-                finish();
-            }
-        });
     }
-
-
 
     //menu hamburguesa
     @Override
@@ -121,24 +104,13 @@ public class ActivityInicio extends AppCompatActivity {
 
     }
 
-    public void prefilEstudiantes(View view){
+    public void perfil(View view){
 
-        Intent siguiente = new Intent(this,ActivityPerfilEstudiante.class);
+        Intent siguiente = new Intent(this,ActivityPerfilDocente.class);
         startActivity(siguiente);
 
     }
 
-
-    private void nextActivityToLoginIni(){
-        startActivity(new Intent(ActivityInicio.this,ActivityLogin.class));
-        finish();
-    }
-
-
-    public void Crearcaso(View view){
-        Intent siguiente = new Intent(this,ActivityFiltro.class);
-        startActivity(siguiente);
-    }
     public void acercaDe(View view){
 
         Intent siguiente = new Intent(this,ActivityAcercaDe.class);
@@ -146,11 +118,12 @@ public class ActivityInicio extends AppCompatActivity {
 
     }
 
+
     //metodos para el menu hamburguesa
 
     public void inicio(){
 
-        Intent siguiente = new Intent(this,ActivityInicio.class);
+        Intent siguiente = new Intent(this,ActivityInicioDocente.class);
         startActivity(siguiente);
 
     }
@@ -162,9 +135,9 @@ public class ActivityInicio extends AppCompatActivity {
 
     }
 
-    public void prefilEstudiantes(){
+    public void prefilDocentes(){
 
-        Intent siguiente = new Intent(this,ActivityPerfilEstudiante.class);
+        Intent siguiente = new Intent(this,ActivityPerfilDocente.class);
         startActivity(siguiente);
 
     }
@@ -182,6 +155,4 @@ public class ActivityInicio extends AppCompatActivity {
         startActivity(siguiente);
 
     }
-
-
 }

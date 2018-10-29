@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActivityRegistro"
+        <activity android:name=".LoginInicioRegistro.ActivityRegistro"
             android:label="E-TIC-ALL">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,14 +17,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityRegistroDo">
+        <activity android:name=".LoginInicioRegistro.ActivityRegistroDo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityLogin">
+        <activity android:name=".LoginInicioRegistro.ActivityLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,25 +46,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivityInicio"
+            android:name=".LoginInicioRegistro.ActivityInicio"
             android:label="Inicio" />
 
         <activity android:name=".CrearCaso.ActivitySelecionarDocente" />
         <activity android:name=".CrearCaso.ActivityCrearCaso"></activity>
         <activity
-            android:name=".ActivityAprende"
+            android:name=".Aprende.ActivityAprende"
             android:label="Aprende" />
         <activity
-            android:name=".ActivityBullyng"
+            android:name=".Aprende.ActivityBullyng"
             android:label="CyberBullyng" />
         <activity
-            android:name=".ActivityCrime"
+            android:name=".Aprende.ActivityCrime"
             android:label="CyberCrime" />
         <activity
-            android:name=".ActivitySexting"
+            android:name=".Aprende.ActivitySexting"
             android:label="Sexting" />
         <activity
-            android:name=".ActivityTips"
+            android:name=".Aprende.ActivityTips"
             android:label="Tips" />
         <activity
             android:name=".ActivityPerfilEditDocente"
@@ -79,7 +79,7 @@
             android:name=".ActivityPerfilEstudiante"
             android:label="Perfil" />
         <activity
-            android:name=".ActivityAcercaDe"
+            android:name=".Aprende.ActivityAcercaDe"
             android:label="Acerca De" />
         <activity
             android:name=".ActivitySleccionDocente"
@@ -88,15 +88,15 @@
             android:name=".ActivitySeleciconEstudiante"
             android:label="Estudiante" />
         <activity
-            android:name=".ActivityGrooming"
+            android:name=".Aprende.ActivityGrooming"
             android:label="CyberGrooming" />
         <activity
-            android:name=".ActivityInicioDocente"
+            android:name=".LoginInicioRegistro.ActivityInicioDocente"
             android:label="Inicio" />
         <activity
-            android:name=".ActivityAprendeDocente"
+            android:name=".Aprende.ActivityAprendeDocente"
             android:label="Aprende" />
-        <activity android:name=".ActivityCreditos"></activity>
+        <activity android:name=".Aprende.ActivityCreditos"></activity>
     </application>
 
 </manifest>

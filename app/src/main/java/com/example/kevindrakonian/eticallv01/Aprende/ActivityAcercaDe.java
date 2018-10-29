@@ -1,10 +1,12 @@
-package com.example.kevindrakonian.eticallv01;
+package com.example.kevindrakonian.eticallv01.Aprende;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.kevindrakonian.eticallv01.R;
 
 public class ActivityAcercaDe extends AppCompatActivity {
 

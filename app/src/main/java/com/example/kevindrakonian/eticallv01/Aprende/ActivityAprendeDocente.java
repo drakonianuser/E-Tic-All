@@ -1,4 +1,4 @@
-package com.example.kevindrakonian.eticallv01;
+package com.example.kevindrakonian.eticallv01.Aprende;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -11,6 +11,10 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.example.kevindrakonian.eticallv01.LoginInicioRegistro.ActivityInicioDocente;
+import com.example.kevindrakonian.eticallv01.ActivityPerfilDocente;
+import com.example.kevindrakonian.eticallv01.R;
 
 public class ActivityAprendeDocente extends AppCompatActivity {
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/inicio"
-    tools:context=".ActivityInicio"
+    tools:context=".LoginInicioRegistro.ActivityInicio"
     android:background="#ffff">
 
     <LinearLayout

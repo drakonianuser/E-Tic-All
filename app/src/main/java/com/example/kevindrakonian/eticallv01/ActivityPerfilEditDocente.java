@@ -11,6 +11,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.example.kevindrakonian.eticallv01.Aprende.ActivityAcercaDe;
+import com.example.kevindrakonian.eticallv01.Aprende.ActivityAprende;
+import com.example.kevindrakonian.eticallv01.Aprende.ActivityCreditos;
+import com.example.kevindrakonian.eticallv01.LoginInicioRegistro.ActivityInicioDocente;
+
 public class ActivityPerfilEditDocente extends AppCompatActivity {
 
     private Toolbar toolbar;
