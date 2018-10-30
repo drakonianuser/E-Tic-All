@@ -51,6 +51,9 @@ public class ActivityPerfilEditDocente extends AppCompatActivity {
         textUnidad = findViewById(R.id.editTextDocenteUnidad);
         textDepartamento = findViewById(R.id.editTextDocenteDepartamento);
 
+        mAuth = FirebaseAuth.getInstance();
+
+
         //acciones del menu amburguesa
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {

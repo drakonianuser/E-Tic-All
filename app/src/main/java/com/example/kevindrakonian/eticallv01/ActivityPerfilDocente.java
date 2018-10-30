@@ -50,6 +50,8 @@ public class ActivityPerfilDocente extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
+        mAuth = FirebaseAuth.getInstance();
+        database= FirebaseDatabase.getInstance();
 
         drawerLayout =findViewById(R.id.perfilDocente);
         navigationView = findViewById(R.id.navegationView);

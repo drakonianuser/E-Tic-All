@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 
 import com.example.kevindrakonian.eticallv01.Correo.CorreoActivity;
 import com.example.kevindrakonian.eticallv01.filtro.ActivityFiltro;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class ActivityPerfilEditEstudiante extends AppCompatActivity {
 
@@ -48,6 +49,9 @@ public class ActivityPerfilEditEstudiante extends AppCompatActivity {
 
         drawerLayout =findViewById(R.id.editestudiante);
         navigationView = findViewById(R.id.navegationView);
+
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         //acciones del menu amburguesa
 
