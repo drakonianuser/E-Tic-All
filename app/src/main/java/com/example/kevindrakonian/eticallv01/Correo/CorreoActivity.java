@@ -38,6 +38,7 @@ public class CorreoActivity extends AppCompatActivity {
     private ArrayList<CasosEntity> lista = new ArrayList<>();
     private FirebaseDatabase database;
     private FirebaseAuth mAuth;
+    private String Campo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,36 +69,53 @@ public class CorreoActivity extends AppCompatActivity {
         rvlistaCasos.setLayoutManager(l);
         rvlistaCasos.setAdapter(adapter);
 
-        String key = UsuarioDao.getInstancia().getKeyUsuario();
-        /*FirebaseUser currentUser = mAuth.getCurrentUser();
-        DatabaseReference reference = database.getReference("Usuarios/"+currentUser.getUid());
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+        final String key = UsuarioDao.getInstancia().getKeyUsuario();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        DatabaseReference referenceu = database.getReference("Usuarios/"+currentUser.getUid());
+        referenceu.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Usuarios usuario = dataSnapshot.getValue(Usuarios.class);
                 if(usuario.getPerfil().equals("Estudiante")){
+                    Campo = getString(R.string.campo_Correo_Estudiante);
+                    Toast.makeText(CorreoActivity.this, "Estudiante", Toast.LENGTH_SHORT).show();
+
+                    Query q = reference.orderByChild(Campo).equalTo(key);
+                    q.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot){
+                            for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
+                                CasosEntity caso = dataSnapshot1.getValue(CasosEntity.class);
+                                adapter.addCaso(caso);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
 
                 }else if(usuario.getPerfil().equals("Directivo")){
+                    Campo = getString(R.string.campo_Correo_Docente);
+                    Toast.makeText(CorreoActivity.this, "Directivo", Toast.LENGTH_SHORT).show();
 
-                }
-            }
+                    Query q = reference.orderByChild(Campo).equalTo(key);
+                    q.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot){
+                            for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
+                                CasosEntity caso = dataSnapshot1.getValue(CasosEntity.class);
+                                adapter.addCaso(caso);
+                            }
+                        }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });*/
-
-        Toast.makeText(this,"usuario Logeado", Toast.LENGTH_SHORT).show();
-
-
-        Query q = reference.orderByChild(getString(R.string.campo_Correo_Estudiante)).equalTo(key);
-        q.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot){
-                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
-                    CasosEntity caso = dataSnapshot1.getValue(CasosEntity.class);
-                    adapter.addCaso(caso);
+                        }
+                    });
                 }
             }
 
@@ -106,6 +124,10 @@ public class CorreoActivity extends AppCompatActivity {
 
             }
         });
+
+        Toast.makeText(this,"usuario Logeado", Toast.LENGTH_SHORT).show();
+
+
 
     }
 }
