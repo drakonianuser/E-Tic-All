@@ -18,6 +18,8 @@ import com.example.kevindrakonian.eticallv01.R;
 import com.example.kevindrakonian.eticallv01.filtro.ActivityFiltro;
 import com.example.kevindrakonian.eticallv01.persistencia.UsuarioDao;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,6 +36,8 @@ public class CorreoActivity extends AppCompatActivity {
     private DatabaseReference reference;
     private CorreoAdapter adapter;
     private ArrayList<CasosEntity> lista = new ArrayList<>();
+    private FirebaseDatabase database;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +49,9 @@ public class CorreoActivity extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference("Casos");//modulo de Usuario
 
         adapter = new CorreoAdapter(this);
+        mAuth = FirebaseAuth.getInstance();
 
+        database= FirebaseDatabase.getInstance();
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +69,26 @@ public class CorreoActivity extends AppCompatActivity {
         rvlistaCasos.setAdapter(adapter);
 
         String key = UsuarioDao.getInstancia().getKeyUsuario();
+        /*FirebaseUser currentUser = mAuth.getCurrentUser();
+        DatabaseReference reference = database.getReference("Usuarios/"+currentUser.getUid());
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Usuarios usuario = dataSnapshot.getValue(Usuarios.class);
+                if(usuario.getPerfil().equals("Estudiante")){
+
+                }else if(usuario.getPerfil().equals("Directivo")){
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });*/
+
+        Toast.makeText(this,"usuario Logeado", Toast.LENGTH_SHORT).show();
 
 
         Query q = reference.orderByChild(getString(R.string.campo_Correo_Estudiante)).equalTo(key);
