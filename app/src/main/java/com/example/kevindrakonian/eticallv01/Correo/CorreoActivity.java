@@ -17,6 +17,7 @@ import com.example.kevindrakonian.eticallv01.Entidades.Firebase.Usuarios;
 import com.example.kevindrakonian.eticallv01.R;
 import com.example.kevindrakonian.eticallv01.filtro.ActivityFiltro;
 import com.example.kevindrakonian.eticallv01.persistencia.UsuarioDao;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -64,14 +65,7 @@ public class CorreoActivity extends AppCompatActivity {
         String key = UsuarioDao.getInstancia().getKeyUsuario();
 
 
-        Query q;
-        q = reference.orderByChild(getString(R.string.campo_Correo_Estudiante)).equalTo(key);
-        Toast.makeText(this, ""+UsuarioDao.getInstancia().getPerfil(), Toast.LENGTH_SHORT).show();
-        if (UsuarioDao.getInstancia().getPerfil().equals("Docente")) {
-            q=reference.orderByChild(getString(R.string.campo_Correo_Docente)).equalTo(key);
-        }
-
-
+        Query q = reference.orderByChild(getString(R.string.campo_Correo_Estudiante)).equalTo(key);
         q.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot){

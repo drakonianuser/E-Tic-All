@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.kevindrakonian.eticallv01.ActivitySleccionDocente;
 import com.example.kevindrakonian.eticallv01.Adatadores.AdaterFiltro;
 import com.example.kevindrakonian.eticallv01.CrearCaso.ActivitySelecionarDocente;
 import com.example.kevindrakonian.eticallv01.Entidades.Firebase.FiltroDocenteEntity;
@@ -61,7 +62,7 @@ public class ActivityFiltro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 listaDocente= adaterFiltro.returnLista();
-                Intent i = new Intent(v.getContext(), ActivitySelecionarDocente.class);
+                Intent i = new Intent(v.getContext(), ActivitySleccionDocente.class);
                 i.putExtra("keyDocente_selecionado",listaDocente.get(rvDocentes.getChildAdapterPosition(v)).getKey());
                 i.putExtra("Docente_nombre",listaDocente.get(rvDocentes.getChildAdapterPosition(v)).getNombre());
                 i.putExtra("Docente_Departamento",listaDocente.get(rvDocentes.getChildAdapterPosition(v)).getDepartamento());
