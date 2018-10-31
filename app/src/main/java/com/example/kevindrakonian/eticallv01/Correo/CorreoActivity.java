@@ -33,7 +33,6 @@ public class CorreoActivity extends AppCompatActivity {
     private DatabaseReference reference;
     private CorreoAdapter adapter;
     private ArrayList<CasosEntity> lista = new ArrayList<>();
-    private UsuarioDao usuari;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +49,10 @@ public class CorreoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 lista = adapter.retunlista();
+                Toast.makeText(CorreoActivity.this, "Selecionado", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(v.getContext(), ActivityChatEstudianteDocente.class);
                 i.putExtra("SalaDeChat",lista.get(rvlistaCasos.getChildAdapterPosition(v)).getSalaChat());
+                startActivity(i);
             }
         });
 
@@ -60,8 +61,17 @@ public class CorreoActivity extends AppCompatActivity {
         rvlistaCasos.setLayoutManager(l);
         rvlistaCasos.setAdapter(adapter);
 
+        String key = UsuarioDao.getInstancia().getKeyUsuario();
 
-        Query q=reference.orderByChild(getString(R.string.campo_Filtro)).equalTo(usuari.getKeyUsuario());
+
+        Query q;
+        q = reference.orderByChild(getString(R.string.campo_Correo_Estudiante)).equalTo(key);
+        Toast.makeText(this, ""+UsuarioDao.getInstancia().getPerfil(), Toast.LENGTH_SHORT).show();
+        if (UsuarioDao.getInstancia().getPerfil().equals("Docente")) {
+            q=reference.orderByChild(getString(R.string.campo_Correo_Docente)).equalTo(key);
+        }
+
+
         q.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot){

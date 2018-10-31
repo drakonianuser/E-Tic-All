@@ -53,7 +53,7 @@ public class ActivityCrearCaso extends AppCompatActivity {
                     CasosEntity caso = new CasosEntity();
                     caso.setDescripcion(Descripcion);
                     caso.setKeyDocente(keyDocente);
-                    caso.setKeyEsutudinate(keyEstudiante);
+                    caso.setKeyEstudiante(keyEstudiante);
                     caso.setTitulo(titulo);
                     caso.setSalaChat(""+keyEstudiante+"/"+keyDocente);
 
@@ -61,7 +61,6 @@ public class ActivityCrearCaso extends AppCompatActivity {
                     referenceCasos.push().setValue(caso);
 
                     //enviar a la sala
-
                 Intent i = new Intent(ActivityCrearCaso.this , ActivityChatEstudianteDocente.class);
                 i.putExtra("SalaDeChat",caso.getSalaChat());
                 startActivity(i);
