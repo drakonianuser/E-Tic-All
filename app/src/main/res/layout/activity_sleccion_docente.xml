@@ -48,7 +48,7 @@
                     android:layout_weight="1" />
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/Foto_Docente_Selecionar_docente"
                     android:layout_width="245dp"
                     android:layout_height="265dp"
                     android:adjustViewBounds="false"
@@ -101,7 +101,7 @@
                     android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/txt_nombreDocente_Selecionar_docente"
                     android:layout_width="188dp"
                     android:layout_height="33dp"
                     android:text="Juan Amdres Lopez Lopez"
@@ -152,7 +152,7 @@
                     android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/txt_Unidad_Selecionar_docente"
                     android:layout_width="26dp"
                     android:layout_height="29dp"
                     android:text="11"
@@ -203,7 +203,7 @@
                     android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/txt_Departamento_Selecionar_docente"
                     android:layout_width="wrap_content"
                     android:layout_height="34dp"
                     android:text="Matematicas"
@@ -217,7 +217,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btn_Selecionar_Selecionar_docente"
                 android:layout_width="362dp"
                 android:layout_height="wrap_content"
                 android:background="#FF69B9AD"
