@@ -7,14 +7,14 @@
     tools:context=".Aprende.ActivityGrooming">
 
     <ScrollView
-        android:layout_width="297dp"
-        android:layout_height="449dp"
+        android:layout_width="351dp"
+        android:layout_height="529dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="24dp">
+        android:layout_marginStart="23dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="38dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,10 +50,17 @@
 
             <TextView
                 android:id="@+id/textView11"
-                android:layout_width="287dp"
-                android:layout_height="239dp"
+                android:layout_width="match_parent"
+                android:layout_height="351dp"
                 android:text="Es un método utilizado por los pedófilos (aquellos que buscan abusar sexualmente de niños) para hacer contacto con niños y adolescentes en internet. Normalmente usan las redes sociales para hacerse pasar por niños y tratar de realizar video llamadas con estos. El objetivo es mantener una cita virtual hasta el punto de estar dispuestos a desnudarse y convencer al menor de hacer lo mismo. En algunos casos los pedófilos acaban grabando para venderlo después o para chantajear a los niños a cambio de más actos."
-                android:typeface="serif" />18sp"
+                android:textSize="18sp"
+                android:typeface="serif" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/img_grooming" />18sp"
             android:typeface="serif" />
 
         </LinearLayout>
