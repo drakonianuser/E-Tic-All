@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Chats.ActivityChatEstudianteDocente"
+    android:background="#ffff"
     android:padding="5sp"
     android:orientation="vertical">
 
@@ -56,4 +57,5 @@
             android:layout_height="wrap_content"
             android:hint="@string/btn_Enviar"/>
     </LinearLayout>
+
 </LinearLayout>
