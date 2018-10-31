@@ -24,6 +24,11 @@ public class UsuarioDao {
         if(usuarioDao==null) {usuarioDao= new UsuarioDao();}
         return usuarioDao;
     }
+
+    public static String getPerfil(){
+        return FirebaseDatabase.getInstance().getReference().child("Usuarios").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("perfil").getParent().toString();
+    }
     public String getKeyUsuario(){
         return FirebaseAuth.getInstance().getUid();
     }
@@ -47,14 +52,13 @@ public class UsuarioDao {
                 }
             }
 
-
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
     }
+
 
     private UsuarioDao(){
         database = FirebaseDatabase.getInstance();

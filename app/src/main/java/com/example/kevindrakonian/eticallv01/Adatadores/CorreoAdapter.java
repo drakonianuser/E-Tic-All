@@ -32,6 +32,7 @@ public class CorreoAdapter extends RecyclerView.Adapter <CorreoHolder> implement
     @Override
     public CorreoHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(c).inflate(R.layout.card_view_casos,viewGroup,false);
+        v.setOnClickListener(this);
         return new CorreoHolder(v);
     }
 

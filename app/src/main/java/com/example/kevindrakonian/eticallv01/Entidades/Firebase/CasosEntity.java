@@ -1,7 +1,7 @@
 package com.example.kevindrakonian.eticallv01.Entidades.Firebase;
 
 public class CasosEntity {
-    private String keyEsutudinate;
+    private String keyEstudiante;
     private String keyDocente;
     private String titulo;
     private String Descripcion;
@@ -11,19 +11,19 @@ public class CasosEntity {
     }
 
     public CasosEntity(String keyEsutudinate, String keyDocente, String titulo, String descripcion, String salaChat) {
-        this.keyEsutudinate = keyEsutudinate;
+        this.keyEstudiante = keyEsutudinate;
         this.keyDocente = keyDocente;
         this.titulo = titulo;
         Descripcion = descripcion;
         SalaChat = salaChat;
     }
 
-    public String getKeyEsutudinate() {
-        return keyEsutudinate;
+    public String getKeyEstudiante() {
+        return keyEstudiante;
     }
 
-    public void setKeyEsutudinate(String keyEsutudinate) {
-        this.keyEsutudinate = keyEsutudinate;
+    public void setKeyEstudiante(String keyEsutudinate) {
+        this.keyEstudiante = keyEsutudinate;
     }
 
     public String getKeyDocente() {

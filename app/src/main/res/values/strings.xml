@@ -16,7 +16,8 @@
     <string name="txt_Correo">Casos</string>
 
     <string name="campo_Filtro">nombre</string>
-    <string name="campo_Correo">keyEsutudinate</string>
+    <string name="campo_Correo_Estudiante">keyEstudiante</string>
+    <string name="campo_Correo_Docente">keyDocente</string>
     <string name="Carga_inicial">perfil</string>
     <string name="campo_Validar_Existencia">Documento</string>
     <string name="campo_Validar_Profesor">dc</string>
