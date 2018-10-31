@@ -25,10 +25,7 @@ public class UsuarioDao {
         return usuarioDao;
     }
 
-    public static String getPerfil(){
-        return FirebaseDatabase.getInstance().getReference().child("Usuarios").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("perfil").getParent().toString();
-    }
+
     public String getKeyUsuario(){
         return FirebaseAuth.getInstance().getUid();
     }
